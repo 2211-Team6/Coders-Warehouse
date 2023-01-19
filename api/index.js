@@ -13,5 +13,9 @@ apiRouter.get('/health', (req, res, next) => {
 });
 
 // place your routers here
+const usersRouter = require('./user');
+router.use('/user', usersRouter);
+
+
 
 module.exports = apiRouter;

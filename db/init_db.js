@@ -3,14 +3,17 @@ const {
   // declare your model imports here
   // for example, User
 } = require('./');
+const {createUser} = require("./models")
 
 // drop tables in correct order
 async function dropTables() {
-  console.log("Dropping All Tables...")
   try {
+    console.log("Dropping All Tables...")
     await client.query(`
+  DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS users;
   `);
+  console.log("finishin dropTables")
   } catch (error) {
     console.error("Error dropping tables!");
     throw error;
@@ -24,9 +27,18 @@ async function createTables() {
   try {
     await client.query(`
     CREATE TABLE users (
-      id SERIAL PRIMARY KEY,
-      username VARCHAR(255) UNIQUE NOT NULL,
-      password VARCHAR(255) NOT NULL
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+);
+    CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    price INTEGER NOT NULL,
+);
+
     `);
   } catch (error) {
     console.error("Error building tables!");
@@ -57,6 +69,7 @@ async function populateInitialData() {
 
 async function rebuildDB() {
   try {
+    client.connect()
     await dropTables()
     await createTables()
   } catch (error) {
