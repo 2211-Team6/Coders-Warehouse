@@ -25,6 +25,9 @@ async function createUser({ username, password, email }) {
 }
 
 
+//TESTING 1,2 1,2
+
+
 module.exports = {
   // add your database adapter fns here
   getAllUsers, 
