@@ -20,7 +20,7 @@ const addCartItem = async (product_id, quantity) => {
         VALUES ($1, $2) 
         RETURNING *;
         `, [product_id, quantity])
-        return rows[0]
+        return rows
     } catch (error) {
         console.log(error)
         throw error;
@@ -48,7 +48,7 @@ const deleteCartItem = async (id) => {
         WHERE id = $1
         RETURNING *;
         `[id])
-        return rows[0]
+        return rows
     } catch (error) {
         console.log(error)
         throw error;
