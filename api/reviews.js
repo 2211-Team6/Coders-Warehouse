@@ -35,3 +35,6 @@ router.post("/", requireUser, async (req, res, next) => {
       next({ name, message });
     }
   });
+
+
+  module.exports = router
