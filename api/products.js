@@ -7,7 +7,6 @@ const {
     updateProduct, 
     deleteProduct
 } = require("../db");
-const { deleteProduct } = require("../db/models/products");
 
 //! NEED TO MAKE ROUTER FOR ALL OF API
 // !Need a requireUser function in Utils folder
