@@ -1,4 +1,6 @@
-const apiRouter = require('express').Router();
+// const apiRouter = require('express').Router();
+const express = require("express");
+const apiRouter = express.Router();
 
 
 apiRouter.get('/', (req, res, next) => {
@@ -14,11 +16,11 @@ apiRouter.get('/health', (req, res, next) => {
 });
 
 // place your routers here
-const usersRouter = require('./user');
-apiRouter.use('/user', usersRouter);
+// const usersRouter = require('./user');
+// apiRouter.use('/user', usersRouter);
 
-const reviewsRouter = require('./reviews');
-apiRouter.use('/reviews', reviewsRouter);
+// const reviewsRouter = require('./reviews');
+// apiRouter.use('/reviews', reviewsRouter);
 
 
 

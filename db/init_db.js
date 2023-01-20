@@ -7,8 +7,8 @@ const {createUser} = require("./models/user")
 
 // drop tables in correct order
 async function dropTables() {
+  console.log("Dropping All Tables...")
   try {
-    console.log("Dropping All Tables...")
     await client.query(`
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS product_tags;
