@@ -7,9 +7,8 @@ const {
     updateProduct, 
     deleteProduct
 } = require("../db");
-
-//! NEED TO MAKE ROUTER FOR ALL OF API
-// !Need a requireUser function in Utils folder
+const {requireUser} = require("./utils"
+)
 
 // GET /api/products
 productsRouter.get("/", async (req, res, next) => {
@@ -65,7 +64,7 @@ productsRouter.patch("/:productId", requireUser, async (req, res, next) => {
 
 // DELETE /api/products/:productId
 productsRouter.delete("/:productId", async (req, res, next) => {
-    const id = req.params
+    const { id } = req.params
     try {
         const deletedProduct = await deleteProduct(id) 
         res.send(deletedProduct)
