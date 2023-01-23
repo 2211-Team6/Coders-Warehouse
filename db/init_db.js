@@ -41,18 +41,14 @@ async function createTables() {
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    price INTEGER NOT NULL
+    price INTEGER NOT NULL,
+    quantity INTEGER NOT NULL
 );
     CREATE TABLE cart_items (
     id SERIAL PRIMARY KEY,
     product_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL
 );
-
-    CREATE TABLE categories (
-      id SERIAL PRIMARY KEY,
-      name VARCHAR(225) NOT NULL
-    );
 
     CREATE TABLE tags (
       id SERIAL PRIMARY KEY,
@@ -67,7 +63,7 @@ async function createTables() {
 
     CREATE TABLE reviews (
       id SERIAL PRIMARY KEY,
-      "username" VARCHAR(255) REFERENCES users(username),
+      "userName" VARCHAR(255) REFERENCES users(username),
       "productId" INTEGER REFERENCES products(id),
       rating INTEGER,
       description TEXT NOT NULL
