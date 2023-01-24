@@ -49,6 +49,7 @@ export const getAllProducts = async () => {
         }
       );
       const result = await response.json();
+      console.log("Result line 52:", result)
       return result;
     } catch (error) {
       console.log(error);

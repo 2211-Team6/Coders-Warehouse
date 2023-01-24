@@ -26,6 +26,9 @@ apiRouter.use('/reviews', reviewsRouter);
 const tagsRouter = require('./tags');
 apiRouter.use('/tags', tagsRouter)
 
+const productsRouter = require('./products');
+apiRouter.use('/products', productsRouter)
+
 //ROUTER: /api/cart
 const cartRouter = require('./cart');
 apiRouter.use('./cart', cartRouter);
