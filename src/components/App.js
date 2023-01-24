@@ -9,6 +9,7 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import ReviewForm from "./ReviewForm";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -35,6 +36,7 @@ const App = () => {
         {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/review-form" element={<ReviewForm />} />
       </Routes>
     </div>
   );
