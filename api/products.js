@@ -22,9 +22,9 @@ productsRouter.get("/", async (req, res, next) => {
 
 // POST /api/products
 productsRouter.post("/", async (req, res, next) => {
-    const {title, description, price} = req.body
+    const {title, description, price, quantity} = req.body
     try {
-      const product = await createProduct(title, description, price);
+      const product = await createProduct(title, description, price, quantity);
       if( product ){
         res.send({ product });
       }
@@ -35,7 +35,7 @@ productsRouter.post("/", async (req, res, next) => {
 // PATCH /api/products/:productId
 productsRouter.patch("/:productId", requireUser, async (req, res, next) => {
     const { id } = req.params
-    const { title, description, price} = req.body
+    const { title, description, price, quantity} = req.body
 
     const updateFields = {}
 
@@ -49,6 +49,10 @@ productsRouter.patch("/:productId", requireUser, async (req, res, next) => {
 
     if (price){
         updateFields.price = price
+    }
+
+    if (quantity){
+      updateFields.quantity = quantity
     }
 
     try {
