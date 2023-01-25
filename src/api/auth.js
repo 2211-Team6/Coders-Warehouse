@@ -204,22 +204,33 @@ export const getReviews = async () => {
 
   //************ CART ************//
 
-  export const fetchCartItems = () => {
-    fetch("/api/cart_items")
-      .then((response) => response.json())
-      .then((data) => setAllCartItemsArray(data))
-      .catch((error) => console.log(error));
+  export async function fetchcartProducts(cartProduct) {
+     try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            body: JSON.stringify(cartProduct),
+          },
+        }
+      );
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      // console.log(error);
+    }
   };
 
-  export const updateCartItem = async (cartItem) => {
+  export async function updatecartProduct(cartProduct){
     try {
-      const response = await fetch(`/api/cart_items/${cartItem.id}`, {
+      const response = await fetch(`/api/cart/${cartProduct.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cartItem),
+        body: JSON.stringify(cartProduct),
       });
       if(response.ok) {
-        fetchCartItems();
+        fetchcartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }
@@ -228,14 +239,14 @@ export const getReviews = async () => {
     }
   };
 
- export const removeCartItem = async (cartItemId) => {
+  export async function removecartProduct(cartProductId){
     try {
-      const response = await fetch(`/api/cart_items/${cartItemId}`, {
+      const response = await fetch(`/api/cart/${cartProductId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
       if(response.ok) {
-        fetchCartItems();
+        fetchcartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }

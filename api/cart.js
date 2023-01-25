@@ -1,24 +1,24 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { getCartItems, addCartItem, updateCartItem, deleteCartItem, } = require("../db/models/cart")
+const { getcartProducts, addcartProduct, updatecartProduct, deletecartProduct, } = require("../db/models/cart")
 
 
-// GET / api/cartItems
+// GET / api/cartProducts
 cartRouter.get ("/", async (req, res) => {
     try {
-        const cartItems = await getCartItems()
-        res.send({ cartItems })
+        const cartProducts = await getcartProducts()
+        res.send({ cartProducts })
     } catch (error) {
         next({error})
     }
 });
 
-// POST /api/cartItems = this adds a new cart item
+// POST /api/cartProducts = this adds a new cart item
 cartRouter.post("/", async (req, res) => {
     try {
         const {product_id, quantity} = req.body; 
-        const cartItem = await addCartItem(product_id, quantity);
-        res.send(cartItem)
+        const cartProduct = await addcartProduct(product_id, quantity);
+        res.send(cartProduct)
     } catch (error) {
         next({error});
     }
@@ -29,8 +29,8 @@ cartRouter.patch("/:id", async (req, res) => {
     try {
         const {id} = req.params;
         const {product_id, quantity} = req.body;
-        const cartItem = await updateCartItem(id, product_id, quantity);
-        res.send(cartItem)
+        const cartProduct = await updatecartProduct(id, product_id, quantity);
+        res.send(cartProduct)
     } catch(error) {
         next(error)
     }
@@ -40,8 +40,8 @@ cartRouter.patch("/:id", async (req, res) => {
 cartRouter.delete("/:id", async (req, res) => {
     try {
         const {id} = req.params;
-        const cartItem = await deleteCartItem(id);
-        res.send(cartItem)
+        const cartProduct = await deletecartProduct(id);
+        res.send(cartProduct)
     } catch (error) {
         next(error)
     }

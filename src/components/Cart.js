@@ -1,40 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getCartItems, updateCartItem, deleteCartItem } from "../api/auth"
+import { updatecartProduct, removecartProduct, fetchcartProducts} from "../api/auth"
 
 const cart = (props) => {
   useEffect(() => {
-    fetchCartItems();
+    fetchcartProducts();
   }, []);
 
-  const fetchCartItems = () => {
-    getCartItems().then((items) => {
-      console.log(items)
-      setAllCartItemsArray(items);
-    });
-  };
+  // const fetchcartProducts = () => {
+  //   e.preventDefault();
+  //   fetchcartProducts().then((items) => {
+  //     console.log(items)
+  //     setAllcartProductsArray(items);
+  //   });
+  // };
 
-  const updateCartItem = (item) => {
-    getCartItems(item.id, item.quantity)
-      .then((items) => {
-        setAllCartItemsArray(items);
+  const updatecartProduct = (product) => {
+    fetchcartProducts(product.id, product.quantity)
+      .then((products) => {
+        setAllcartProductsArray(products);
       })
       .catch((error) => console.log(error));
   };
 
-  const removeCartItem = (cartItemId) => {
-    deleteCartItem(cartItemId)
-      .then((items) => {
-        setAllCartItemsArray(items);
+  const removecartProduct = (cartProductId) => {
+    deletecartProduct(cartProductId)
+      .then((products) => {
+        setAllcartProductsArray(products);
       })
       .catch((error) => console.log(error));
   };
 
   const calculateTotalPrice = () => {
     let price = 0;
-    if (Array.isArray(allCartItemsArray)) {
-      allCartItemsArray.forEach((item) => {
-        price += item.quantity * item.price;
+    if (Array.isArray(allcartProductsArray)) {
+      allcartProductsArray.forEach((product) => {
+        price += product.quantity * product.price;
       });
     }
     return price;
@@ -43,30 +44,30 @@ const cart = (props) => {
 
   const directToProduct = (productId) => {
     return (event) => {
-      props.history.push(`/products/${productId}`);
+      props.push(`/products/${productId}`);
     };
   };
 
-  const [allCartItemsArray, setAllCartItemsArray] = useState([]);
+  const [allcartProductsArray, setAllcartProductsArray] = useState([]);
 
-  let cartItemsLi;
-  if (allCartItemsArray.length > 0) {
-    cartItemsLi = allCartItemsArray.map((item) => {
+  let cartProductsLi;
+  if (allcartProductsArray.length > 0) {
+    cartProductsLi = allcartProductsArray.map((product) => {
       return (
-        <li key={item.id}>
-          <div className="item-info">
-            <div className="item-pic-title">
+        <li key={product.id}>
+          <div className="product-info">
+            <div className="product-pic-title">
               <img
-                src={item.imageUrls[0]}
-                onClick={directToProduct(item.productId)}
+                src={product.imageUrls[0]}
+                onClick={directToProduct(product.productId)}
               />
               <div>
-                <p onClick={directToProduct(item.productId)}>
-                  {item.productName}
+                <p onClick={directToProduct(product.productId)}>
+                  {product.productName}
                 </p>
                 <button
                   className="clicky"
-                  onClick={() => removeCartItem(item.id)}
+                  onClick={() => removecartProduct(product.id)}
                 >
                   <i className="Hit Me!" aria-hidden="true"></i>
                 </button>
@@ -76,35 +77,35 @@ const cart = (props) => {
             <div>
               <input
                 type="number"
-                value={item.quantity}
+                value={product.quantity}
                 onChange={(e) =>
-                  updateCartItem({ id: item.id, quantity: e.target.value })
+                  updatecartProduct({ id: product.id, quantity: e.target.value })
                 }
               />
             </div>
             <div className="price-column">
-              <h4>USD {item.price * item.quantity}</h4>
-              <p>USD {item.price} each</p>
+              <h4>USD {product.price * product.quantity}</h4>
+              <p>USD {product.price} each</p>
             </div>
           </div>
         </li>
       );
     });
   } else {
-    cartItemsLi = <div>Your cart is empty</div>;
+    cartProductsLi = <div>Your cart is empty</div>;
   }
 
   return (
-    <div className="cart-items-checkout">
-      <ul className="cart-items-list">
-        <h2>{allCartItemsArray.length} item(s) in your cart</h2>
-        {cartItemsLi}
+    <div className="cart-products-checkout">
+      <ul className="cart-products-list">
+        <h2>{allcartProductsArray.length} product(s) in your cart</h2>
+        {cartProductsLi}
       </ul>
 
       <ul className="checkout">
-        <div className="items-total">
+        <div className="product-total">
           <li>
-            <span>Item(s) total</span>
+            <span>Product(s) total</span>
             <span>USD {calculateTotalPrice()}</span>
           </li>
         </div>
