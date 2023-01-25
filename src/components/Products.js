@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById } from "../api/auth";
+import {useStateValue} from "../Helpers/StateProvider"
 
-const Products = ({selectedProduct, setSelectedProduct}) => {
+const Products = ({selectedProduct, setSelectedProduct, id, title, image, price, review}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  // const [cart, setCart] = useState([]);
+  const [{ cart }, dispatch] = useStateValue();
+  
 
   useEffect(() => {
     const productsArr = async () => {
@@ -15,6 +19,19 @@ const Products = ({selectedProduct, setSelectedProduct}) => {
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 
+  const addToCart = () => {
+    // dispatch the item into the data layer
+    dispatch({
+      type: "ADD_TO_CART",
+      product: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        review: review,
+      },
+    });
+  };
   const handleClick = async (productId) => {
     const singleProduct = await getProductById(productId)
     setSelectedProduct(singleProduct[0])
@@ -37,6 +54,7 @@ const Products = ({selectedProduct, setSelectedProduct}) => {
           <p>Quantity: {product.quantity}</p> */}
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>
+          <button onClick={addToCart}> Add to Cart</button>
           <br></br>
         </div>
       ))}

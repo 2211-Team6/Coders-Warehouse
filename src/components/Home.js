@@ -14,6 +14,8 @@ const Home = ({token}) => {
         Register!
       </Link>
       <br></br>
+      <Link to="/cart"> Checkout here!</Link>
+      <br></br>
       {selectedProduct.id ? (
       <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct}/> 
       ) : (

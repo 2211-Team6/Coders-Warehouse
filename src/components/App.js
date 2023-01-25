@@ -5,6 +5,7 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import Cart from "./Cart"
 import ReviewForm from "./ReviewForm";
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review-form" element={<ReviewForm />} />
+        <Route path="/cart" element={<Cart/>} />
       </Routes>
     </div>
   );

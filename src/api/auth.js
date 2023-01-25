@@ -199,3 +199,59 @@ export const getReviews = async () => {
     });
     return await response.json();
   }
+
+
+  //************ CART ************//
+
+  export async function fetchCartProducts(cartProduct) {
+     try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            body: JSON.stringify(cartProduct),
+          },
+        }
+      );
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  export async function updateCartProduct(cartProduct){
+    try {
+      const response = await fetch(`/api/cart/${cartProduct.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartProduct),
+      });
+      if(response.ok) {
+        fetchcartProducts();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export async function removeCartProduct(cartProductId){
+    try {
+      const response = await fetch(`/api/cart/${cartProductId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if(response.ok) {
+        fetchcartProducts();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
