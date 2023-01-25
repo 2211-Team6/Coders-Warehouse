@@ -6,12 +6,12 @@ import { useStateValue } from "../Helpers/StateProvider";
 const cart = (props) => {
   const [{ cart }, dispatch] = useStateValue();
 
-  const fetchCartProducts = () => {
-    fetchCartProducts().then((items) => {
-      console.log(items);
-      setAllCartProductsArray(items);
-    });
-  };
+  // const fetchCartProducts = () => {
+  //   fetchCartProducts().then((items) => {
+  //     console.log(items);
+  //     setAllcartProductsArray(items);
+  //   });
+  // };
 
   useEffect(() => {
     fetchCartProducts();
@@ -108,7 +108,7 @@ const cart = (props) => {
   return (
     <div className="cart-container">
     <ul className="cart-products-list">
-    <h2>{allCartProductsArray.length} product(s) in your cart</h2>
+    <h2>{allcartProductsArray.length} product(s) in your cart</h2>
     {cartProductsLi}
     </ul>
     <div className="cart-total">
