@@ -6,7 +6,7 @@ const {
     getProductById, 
     updateProduct, 
     deleteProduct
-} = require("../db");
+} = require("../db/models/products");
 const {requireUser} = require("./utils"
 )
 
@@ -77,4 +77,5 @@ productsRouter.delete("/:productId", async (req, res, next) => {
     }
 })
 
+module.exports = productsRouter;
 

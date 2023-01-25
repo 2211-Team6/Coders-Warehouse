@@ -1,8 +1,7 @@
 const {
   client,
-  // declare your model imports here
-  // for example, User
 } = require('./');
+const { createProduct } = require('./models/products');
 const {createUser} = require("./models/user")
 
 // drop tables in correct order
@@ -13,7 +12,6 @@ async function dropTables() {
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS product_tags;
   DROP TABLE IF EXISTS tags;
-  DROP TABLE IF EXISTS categories;
   DROP TABLE IF EXISTS cart_items;
   DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS users;
@@ -79,20 +77,26 @@ async function createTables() {
 
 async function populateInitialData() {
   try {
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-    // const user1 = await User.createUser({ ...user info goes here... })
     const usersToCreate = [
       { username: "albert", password: "bertie99", email: "albert9@hotmail.com" },
       { username: "sandra", password: "sandra123", email: "sandy3@MSN.com" },
       { username: "glamgal", password: "glamgal123", email:"glamgal@AOL.com" },
     ];
-    console.log("tf is this", usersToCreate)
     const user = await Promise.all(usersToCreate.map(createUser))
-
     console.log('Users created');
     console.log(user);
     console.log("Finished creating users!")
+
+    const productsToCreate = [
+      { title: "Air Force 1", description: "Brand new pair of blue AF1", price: 180, quantity: 3},
+      { title: "Coffee", description: "1lb bag of organic Colombian coffee beans", price: 16, quantity: 18},
+      { title: "Pens", description: "Pack of 5 black ink pens", price: 7, quantity: 42},
+    ]
+    console.log("creating initial products")
+    const products = await Promise.all(productsToCreate.map(createProduct))
+    console.log("Here are the products", products)
+    console.log("Finished creating initial products")
+    
   } catch (error) {
     throw error;
   }

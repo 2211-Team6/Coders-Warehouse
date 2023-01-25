@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
+import Products from "./Products";
 
-const Home = () => {
+const Home = ({token}) => {
   return (
     <div>
-      <Link to="/login">Need to log in? Click Here and get going!</Link>
+      <Link to="/login">Log in!</Link>
       <br></br>
       <Link to="/register">
-        Not signed up yet? Click Here to get registered!
+        Register!
       </Link>
+      <br></br>
+      <Products/>
     </div>
   );
 };
