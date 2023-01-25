@@ -6,7 +6,7 @@ const Home = ({token}) => {
     <div>
       <Link to="/login">Log in!</Link>
       <br></br>
-      <Link to="/register" className="nav">
+      <Link to="/register">
         Register!
       </Link>
       <br></br>
