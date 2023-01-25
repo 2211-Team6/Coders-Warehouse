@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById } from "../api/auth";
 import {useStateValue} from "../Helpers/StateProvider"
 
-const Products = ({selectedProduct, setSelectedProduct}) => {
+const Products = ({selectedProduct, setSelectedProduct, id, title, image, price, review}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   // const [cart, setCart] = useState([]);
