@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../api/auth";
+import { getAllProducts, getProductById } from "../api/auth";
 import {useStateValue} from "../Helpers/StateProvider"
 
-const Products = ({id, title, image, price, review }) => {
+const Products = ({selectedProduct, setSelectedProduct}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   // const [cart, setCart] = useState([]);
@@ -12,11 +12,9 @@ const Products = ({id, title, image, price, review }) => {
   useEffect(() => {
     const productsArr = async () => {
       const data = await getAllProducts();
-      console.log("here is the data", data)
       setProducts(data);
     };
     productsArr();
-    console.log("Here are the products from products line 15", products)
   }, []);
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
@@ -34,6 +32,10 @@ const Products = ({id, title, image, price, review }) => {
       },
     });
   };
+  const handleClick = async (productId) => {
+    const singleProduct = await getProductById(productId)
+    setSelectedProduct(singleProduct[0])
+  }
 
   return (
     <div>
@@ -46,15 +48,18 @@ const Products = ({id, title, image, price, review }) => {
         ></input>
       {filteredProducts.map((product) => (
         <div key={product.id}>
-          <p>Name: {product.title}</p>
+          <p>{product.title}</p>
           <p>Description: {product.description}</p>
-          <p>Price: {product.price}</p>
-          <p>Quantity: {product.quantity}</p>
+          {/* <p>Price: {product.price}</p>
+          <p>Quantity: {product.quantity}</p> */}
+          <button onClick={() => handleClick(product.id)}>View Product</button>
+          <br></br>
           <button onClick={addToCart}> Add to Cart</button>
           <br></br>
         </div>
       ))}
     </div>
+    
   );
 };
 

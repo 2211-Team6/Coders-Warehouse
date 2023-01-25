@@ -39,7 +39,6 @@ async function getProductById(id){
         SELECT *
         FROM products
         WHERE id = ${id}
-        RETURNING *
         `);
         return rows;
     } catch (error) {

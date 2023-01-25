@@ -20,6 +20,20 @@ productsRouter.get("/", async (req, res, next) => {
     }
   });
 
+  // GET /api/products/:productId
+productsRouter.get("/:id", async (req, res, next) => {
+  console.log("here's the req.params from api", req.params)
+  const { id } = req.params
+  console.log("here's the id from api", id)
+  try {
+      const product = await getProductById(id) 
+      console.log("here's the product from api", product)
+      res.send(product);
+  } catch (error) {
+    next(error)
+  }
+})
+
 // POST /api/products
 productsRouter.post("/", async (req, res, next) => {
     const {title, description, price, quantity} = req.body

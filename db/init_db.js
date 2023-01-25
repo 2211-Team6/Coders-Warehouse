@@ -88,9 +88,15 @@ async function populateInitialData() {
     console.log("Finished creating users!")
 
     const productsToCreate = [
-      { title: "Air Force 1", description: "Brand new pair of blue AF1", price: 180, quantity: 3},
-      { title: "Coffee", description: "1lb bag of organic Colombian coffee beans", price: 16, quantity: 18},
-      { title: "Pens", description: "Pack of 5 black ink pens", price: 7, quantity: 42},
+      { title: "Air Force 1", description: "Brand new pair of blue AF1", price: 18099, quantity: 3},
+      { title: "Colombian Coffee", description: "1lb bag of organic Colombian coffee beans", price: 1601, quantity: 18},
+      { title: "Black Pens", description: "Pack of 5 black ink pens", price: 715, quantity: 42},
+      { title: "Coffee Mug", description: "Blue ceramic coffee mug", price: 2295, quantity: 1},
+      { title: "Whistlepig", description: "750 mL bottle of whistlepig whiskey. Aged 10 year. Small Batch Rye", price: 7499, quantity: 21},
+      { title: "Iphone 14 Pro Max", description: "Apple's newest Iphone. Better than your android.", price: 119999, quantity: 50},
+      { title: "PS5", description: "Sony's next generation Playstation. In Stock soon!", price: 49999, quantity: 0},
+      { title: "XBox Series X", description: "Next generation XBox. In Stock! Inventory sells out quickly. Act now!!!", price: 49999, quantity: 1},
+
     ]
     console.log("creating initial products")
     const products = await Promise.all(productsToCreate.map(createProduct))
