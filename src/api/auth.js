@@ -74,7 +74,7 @@ export const getAllProducts = async () => {
   };
 
 
-  export const createProduct = async (token, title, description, price) => {
+  export const createProduct = async (token, title, description, price, quantity) => {
     try {
       const response = await fetch(
         "/api/products",
@@ -88,6 +88,7 @@ export const getAllProducts = async () => {
             title,
             description,
             price,
+            quantity,
           }),
         }
       );
@@ -99,7 +100,7 @@ export const getAllProducts = async () => {
   };
 
 
-  export const updateProduct = async (token, title, description, price, id) => {
+  export const updateProduct = async (token, title, description, price, quantity, id) => {
     try {
       const response = await fetch(
         `/api/products/${id}`,
@@ -113,6 +114,7 @@ export const getAllProducts = async () => {
             title,
             description,
             price,
+            quantity,
           }),
         }
       );
