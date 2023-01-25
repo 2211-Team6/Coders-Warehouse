@@ -1,13 +1,14 @@
 import React from 'react';
 
-const SingleProduct = ({singleProduct}) => {
+const SingleProduct = ({singleProduct, setSelectedProduct}) => {
     return (
-        <div className="App">
+        <div>
           {console.log("this is single product.title", singleProduct.title)}
           <h3>{singleProduct.title}</h3>
-          <p>{singleProduct.description}</p>
-          <p>{singleProduct.price}</p>
-          <p>{singleProduct.quantity}</p>
+          <p>Description: {singleProduct.description}</p>
+          <p>Price: ${singleProduct.price}</p>
+          <p>Quantity: {singleProduct.quantity}</p>
+          <button onClick={() => setSelectedProduct({})}>View all products</button>
         </div>
       );
 };

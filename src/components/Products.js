@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById } from "../api/auth";
-import SingleProduct from "./SingleProduct";
 
-const Products = () => {
+const Products = ({selectedProduct, setSelectedProduct}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
@@ -18,17 +17,7 @@ const Products = () => {
 
   const handleClick = async (productId) => {
     const singleProduct = await getProductById(productId)
-    console.log("Here is the single product", singleProduct)
-    return (
-      <div className="App">
-        {console.log("this is single product.title", singleProduct[0].title)}
-        <h3>{singleProduct[0].title}</h3>
-        <p>{singleProduct[0].description}</p>
-        <p>{singleProduct[0].price}</p>
-        <p>{singleProduct[0].quantity}</p>
-      </div>
-    );
-    // return <SingleProduct singleProduct={singleProduct}/>
+    setSelectedProduct(singleProduct[0])
   }
 
   return (
