@@ -31,11 +31,12 @@ const Products = ({selectedProduct, setSelectedProduct}) => {
         ></input>
       {filteredProducts.map((product) => (
         <div key={product.id}>
-          <p>Name: {product.title}</p>
+          <p>{product.title}</p>
           <p>Description: {product.description}</p>
-          <p>Price: {product.price}</p>
-          <p>Quantity: {product.quantity}</p>
+          {/* <p>Price: {product.price}</p>
+          <p>Quantity: {product.quantity}</p> */}
           <button onClick={() => handleClick(product.id)}>View Product</button>
+          <br></br>
           <br></br>
         </div>
       ))}
