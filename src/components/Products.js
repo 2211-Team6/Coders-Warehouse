@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts } from "../api/auth";
+import { getAllProducts, getProductById } from "../api/auth";
 
-const Products = () => {
+const Products = ({selectedProduct, setSelectedProduct}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const productsArr = async () => {
       const data = await getAllProducts();
-      console.log("here is the data", data)
       setProducts(data);
     };
     productsArr();
-    console.log("Here are the products from products line 15", products)
   }, []);
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 
+  const handleClick = async (productId) => {
+    const singleProduct = await getProductById(productId)
+    setSelectedProduct(singleProduct[0])
+  }
 
   return (
     <div>
@@ -29,14 +31,17 @@ const Products = () => {
         ></input>
       {filteredProducts.map((product) => (
         <div key={product.id}>
-          <p>Name: {product.title}</p>
+          <p>{product.title}</p>
           <p>Description: {product.description}</p>
-          <p>Price: {product.price}</p>
-          <p>Quantity: {product.quantity}</p>
+          {/* <p>Price: {product.price}</p>
+          <p>Quantity: {product.quantity}</p> */}
+          <button onClick={() => handleClick(product.id)}>View Product</button>
+          <br></br>
           <br></br>
         </div>
       ))}
     </div>
+    
   );
 };
 
