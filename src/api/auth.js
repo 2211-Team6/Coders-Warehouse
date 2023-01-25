@@ -197,3 +197,48 @@ export const getReviews = async () => {
     });
     return await response.json();
   }
+
+
+  //************ CART ************//
+
+  export const fetchCartItems = () => {
+    fetch("/api/cart_items")
+      .then((response) => response.json())
+      .then((data) => setAllCartItemsArray(data))
+      .catch((error) => console.log(error));
+  };
+
+  export const updateCartItem = async (cartItem) => {
+    try {
+      const response = await fetch(`/api/cart_items/${cartItem.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartItem),
+      });
+      if(response.ok) {
+        fetchCartItems();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ export const removeCartItem = async (cartItemId) => {
+    try {
+      const response = await fetch(`/api/cart_items/${cartItemId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if(response.ok) {
+        fetchCartItems();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  

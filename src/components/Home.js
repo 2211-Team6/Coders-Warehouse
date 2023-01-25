@@ -8,6 +8,8 @@ const Home = () => {
       <Link to="/register">
         Not signed up yet? Click Here to get registered!
       </Link>
+      <br></br>
+      <Link to="/cart"> Checkout here!</Link>
     </div>
   );
 };
