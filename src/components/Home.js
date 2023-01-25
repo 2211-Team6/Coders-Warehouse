@@ -10,6 +10,8 @@ const Home = ({token}) => {
         Register!
       </Link>
       <br></br>
+      <Link to="/cart"> Checkout here!</Link>
+      <br></br>
       <Products/>
     </div>
   );
