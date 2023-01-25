@@ -5,6 +5,7 @@ import {useStateValue} from "../Helpers/StateProvider"
 const Products = ({id, title, image, price, review }) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  // const [cart, setCart] = useState([]);
   const [{ cart }, dispatch] = useStateValue();
   
 

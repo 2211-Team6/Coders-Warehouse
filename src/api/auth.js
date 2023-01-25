@@ -204,7 +204,7 @@ export const getReviews = async () => {
 
   //************ CART ************//
 
-  export async function fetchcartProducts(cartProduct) {
+  export async function fetchCartProducts(cartProduct) {
      try {
       const response = await fetch(
         "/api/cart",
@@ -222,7 +222,7 @@ export const getReviews = async () => {
     }
   };
 
-  export async function updatecartProduct(cartProduct){
+  export async function updateCartProduct(cartProduct){
     try {
       const response = await fetch(`/api/cart/${cartProduct.id}`, {
         method: "PATCH",
@@ -239,7 +239,7 @@ export const getReviews = async () => {
     }
   };
 
-  export async function removecartProduct(cartProductId){
+  export async function removeCartProduct(cartProductId){
     try {
       const response = await fetch(`/api/cart/${cartProductId}`, {
         method: "DELETE",
