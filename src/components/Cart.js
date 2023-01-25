@@ -1,34 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { updateCartProduct, removeCartProduct, fetchCartProducts} from "../api/auth"
-import { useStateValue } from "../Helpers/StateProvider";
 
 const cart = (props) => {
-  const [{ cart }, dispatch] = useStateValue();
-
-  // const fetchCartProducts = () => {
-  //   fetchCartProducts().then((items) => {
-  //     console.log(items);
-  //     setAllcartProductsArray(items);
-  //   });
-  // };
+  // const allCartPurchases = useState({});
+  
+  const [allCartPurchases , setallCartPurchases ] = useState({});
 
   useEffect(() => {
     fetchCartProducts();
   }, []);
 
-  // const fetchcartProducts = () => {
-  //   e.preventDefault();
-  //   fetchcartProducts().then((items) => {
-  //     console.log(items)
-  //     setAllcartProductsArray(items);
-  //   });
-  // };
-
   const updatecartProduct = (product) => {
     fetchCartProducts(product.id, product.quantity)
       .then((products) => {
-        setAllcartProductsArray(products);
+        setallCartPurchases (products);
       })
       .catch((error) => console.log(error));
   };
@@ -36,15 +22,15 @@ const cart = (props) => {
   const removeCartProduct = (cartProductId) => {
     updatecartProduct(cartProductId)
       .then((products) => {
-        setAllcartProductsArray(products);
+        setallCartPurchases (products);
       })
       .catch((error) => console.log(error));
   };
 
   const calculateTotalPrice = () => {
     let price = 0;
-    if (Array.isArray(allcartProductsArray)) {
-      allcartProductsArray.forEach((product) => {
+    if (Array.isArray(allCartPurchases )) {
+      allCartPurchases .forEach((product) => {
         price += product.quantity * product.price;
       });
     }
@@ -58,11 +44,10 @@ const cart = (props) => {
     };
   };
 
-  const [allcartProductsArray, setAllcartProductsArray] = useState([]);
 
   let cartProductsLi;
-  if (allcartProductsArray.length > 0) {
-    cartProductsLi = allcartProductsArray.map((product) => {
+  if (allCartPurchases .length > 0) {
+    cartProductsLi = allCartPurchases .map((product) => {
       return (
         <li key={product.id}>
           <div className="product-info">
@@ -70,7 +55,7 @@ const cart = (props) => {
               <img
                 src={product.imageUrls[0]}
                 onClick={directToProduct(product.productId)}
-              />
+                />
               <div>
                 <p onClick={directToProduct(product.productId)}>
                   {product.productName}
@@ -78,7 +63,7 @@ const cart = (props) => {
                 <button
                   className="clicky"
                   onClick={() => removeCartProduct(product.id)}
-                >
+                  >
                   <i className="Hit Me!" aria-hidden="true"></i>
                 </button>
               </div>
@@ -91,7 +76,7 @@ const cart = (props) => {
                 onChange={(e) =>
                   updatecartProduct({ id: product.id, quantity: e.target.value })
                 }
-              />
+                />
             </div>
             <div className="price-column">
               <h4>USD {product.price * product.quantity}</h4>
@@ -104,11 +89,12 @@ const cart = (props) => {
   } else {
     cartProductsLi = <div>Your cart is empty</div>;
   }
-
+  console.log("here it is", allCartPurchases)
+  
   return (
     <div className="cart-container">
     <ul className="cart-products-list">
-    <h2>{allcartProductsArray.length} product(s) in your cart</h2>
+    <h2>{allCartPurchases .length} product(s) in your cart</h2>
     {cartProductsLi}
     </ul>
     <div className="cart-total">
