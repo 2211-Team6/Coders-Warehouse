@@ -3,6 +3,7 @@ import { getAllProducts } from "../api/auth";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const productsArr = async () => {
@@ -14,9 +15,19 @@ const Products = () => {
     console.log("Here are the products from products line 15", products)
   }, []);
 
+  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
+
+
   return (
     <div>
-      {products.map((product) => (
+      <input
+            className="search"
+            placeholder="Search"
+            value={searchInput}
+            type="text"
+            onChange={(e) => setSearchInput(e.target.value)}
+        ></input>
+      {filteredProducts.map((product) => (
         <div key={product.id}>
           <p>Name: {product.title}</p>
           <p>Description: {product.description}</p>
