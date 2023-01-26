@@ -51,7 +51,7 @@ export const getAllProducts = async () => {
       const result = await response.json();
       return result;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -221,6 +221,26 @@ export const getReviews = async () => {
     }
   };
 
+  export async function addCartPoduct(product_id, quantity) {
+    try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            body: JSON.stringify(product_id, quantity),
+          },
+        }
+      );
+      const newCartProduct = await response.json();
+      return newCartProduct;
+    } catch (error){
+      
+    }
+  };
+
   export async function updateCartProduct(cartProduct){
     try {
       const response = await fetch(`/api/cart/${cartProduct.id}`, {
@@ -229,7 +249,7 @@ export const getReviews = async () => {
         body: JSON.stringify(cartProduct),
       });
       if(response.ok) {
-        fetchcartProducts();
+        fetchCartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }
@@ -245,7 +265,7 @@ export const getReviews = async () => {
         headers: { "Content-Type": "application/json" },
       });
       if(response.ok) {
-        fetchcartProducts();
+        fetchCartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }
@@ -254,4 +274,42 @@ export const getReviews = async () => {
     }
   };
 
+  export const calculateTotalPrice = async (token) => {
+    try {
+        const response = await fetch(`/api/calculateTotalPrice`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        // console.log(error);
+    }
+};
+
+
   
+  //************ CHECKOUT ************//
+
+  export async function fetchCheckout(cartProduct, shippingDetails, billingDetails) {
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: cartProduct,
+          shippingDetails: shippingDetails,
+          billingDetails: billingDetails,
+        }),
+      });
+      const result = await response.json();
+      return result
+    } catch (error) {
+      console.log(error);
+    }
+  }
