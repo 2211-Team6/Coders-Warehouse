@@ -275,9 +275,6 @@ export async function deleteReview(id, token) {
     } catch (error) {
       console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
 }
 
 
