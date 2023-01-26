@@ -1,8 +1,9 @@
 const {
-  client,
+  client
 } = require('./');
 const { createProduct } = require('./models/products');
 const {createUser} = require("./models/user")
+const {createReview} = require("./models/reviews")
 
 // drop tables in correct order
 async function dropTables() {
@@ -66,6 +67,10 @@ async function createTables() {
       rating INTEGER,
       description TEXT NOT NULL
     );
+
+    CREATE TABLE product_reviews (
+      "productId" INTEGER REFERENCES products(id),
+    )
   `);
   }
    catch (error) {
@@ -102,7 +107,17 @@ async function populateInitialData() {
     const products = await Promise.all(productsToCreate.map(createProduct))
     console.log("Here are the products", products)
     console.log("Finished creating initial products")
-    
+
+    const reviewsToCreate = [
+      {username: "glamgal", productId: 1, rating: 2, description: "This shoe runs too small"},
+      {username: "sandra", productId: 4, rating: 10, description: "I got this as a gift and I absolutly love it!"},
+      {username: "glamgal", productId: 2, rating: 5, description: "I usually dont drink coffee but this will have me addicted"},
+    ]
+    console.log("creating initial reviews")
+    const reviews = await Promise.all(reviewsToCreate.map(createReview))
+    console.log("Here are the reviews", reviews)
+    console.log("Finished creating initial reviews")
+
   } catch (error) {
     throw error;
   }

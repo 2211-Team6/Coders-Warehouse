@@ -27,14 +27,15 @@ const addCartItem = async (product_id, quantity) => {
     }
 }
 
-const updateCartItem = async (id, product_id, quantity) => {
+const updateCartItem = async (id, quantity) => {
     try {
         const {rows} = await client.query(`
         UPDATE cart_items
-        SET product_id = $1, quantity = $2
-        WHERE id = $3
+        SET quantity = $1
+        WHERE id = $2
         RETURNING *;
-        ` [ id,product_id, quantity])
+        ` [ id, quantity])
+        return rows;
     } catch (error) {
         console.log(error)
         throw error;
