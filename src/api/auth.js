@@ -67,7 +67,8 @@ export const getAllProducts = async () => {
         }
       );
       const result = await response.json();
-      return result;
+      console.log("this is result prodId: ", result[1]);
+      return result[0];
     } catch (error) {
       console.log(error);
     }
@@ -199,3 +200,23 @@ export const getReviews = async () => {
     });
     return await response.json();
   }
+
+
+  export const getReviewsByProductId = async (id) => {
+    try {
+      const response = await fetch(
+        `/api/products/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log("this is response: ", response);
+      console.log("this is result: ", result);
+      return result[1];
+    } catch (error) {
+      console.log(error);
+    }
+  };

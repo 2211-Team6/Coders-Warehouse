@@ -3,9 +3,6 @@ import { useLocation } from "react-router-dom";
 import { getReviews } from "../api/auth";
 
 
-
-
-
 // Create a form for making a review
 const ReviewForm = () => {
     const { state } = useLocation();
@@ -17,7 +14,7 @@ const ReviewForm = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token")
-           const response = await fetch(getReviews, {
+           const response = await fetch("/api/reviews-form", {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
@@ -36,6 +33,7 @@ const ReviewForm = () => {
         } catch (error) {
             console.error(error)
         }
+        
     }
     return (
       <form onSubmit={handleSubmit} className="reviewForm">
