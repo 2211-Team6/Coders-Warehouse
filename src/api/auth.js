@@ -130,20 +130,6 @@ export const getAllProducts = async () => {
     }
   };
 
-export const getProductById = async (id) => {
-  try {
-    const response = await fetch(`/api/products/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const createProduct = async (
   token,
   title,
