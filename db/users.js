@@ -2,20 +2,22 @@ const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 const client = require("./client");
 
-async function createUser({ username, password }) {
+async function createUser({ username, password, email }) {
   try {
     const hashed = await hashPassword(password);
     const {
       rows: [user],
     } = await client.query(
       `
-      INSERT INTO users(username, password)
-      VALUES($1, $2)
-      RETURNING username, id;
+      INSERT INTO users(username, password, email)
+      VALUES($1, $2, $3)
+      RETURNING *;
       `,
-      [username, hashed]
-    );
 
+      [username, hashed, email]
+    );
+    delete user.password;
+    console.log("its me, the one and only!", user);
     return user;
   } catch (error) {
     throw error;
