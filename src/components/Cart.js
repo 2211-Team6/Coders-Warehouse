@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { updateCartProduct, removeCartProduct, fetchCartProducts} from "../api/auth"
+import { Link, useNavigate } from "react-router-dom";
+import Checkout from "./Checkout";
+import { updateCartProduct, removeCartProduct, fetchCartProducts, calculateTotalPrice} from "../api/auth"
 
 const cart = (props) => {
-  // const allCartPurchases = useState({});
+
   
   const [allCartPurchases , setallCartPurchases ] = useState({});
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate;
+  
+  const fetchCartProducts = async() => {
+    const products = await fetchCartProducts();
+    setallCartPurchases(products);
+  }
+  // useEffect(() => {
+  //   fetchCartProducts();
+  // }, [fetchCartProducts]);
 
-  useEffect(() => {
-    fetchCartProducts();
-  }, []);
+
+  const addProductToCart = (productId, quantity) => {
+    updateCartProduct(productId, quantity)
+      .then((updatedCart) => {
+        setCart(updatedCart);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const updatecartProduct = (product) => {
-    fetchCartProducts(product.id, product.quantity)
+    updateCartProduct(product.id, product.quantity)
       .then((products) => {
         setallCartPurchases (products);
       })
@@ -20,7 +36,7 @@ const cart = (props) => {
   };
 
   const removeCartProduct = (cartProductId) => {
-    updatecartProduct(cartProductId)
+    removeCartProduct(cartProductId)
       .then((products) => {
         setallCartPurchases (products);
       })
@@ -100,7 +116,7 @@ const cart = (props) => {
     <div className="cart-total">
     <h4>Total: USD {calculateTotalPrice()}</h4>
     <Link to="/checkout">
-    <button className="checkout-btn">Checkout</button>
+      <button className="checkout-btn">Checkout</button>
     </Link>
     </div>
     </div>

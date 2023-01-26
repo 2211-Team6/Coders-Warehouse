@@ -5,7 +5,6 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [cart, setCart] = useState([]);
-  // const [{ cart }, dispatch] = useStateValue();
   
 
   useEffect(() => {
@@ -18,19 +17,6 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 
-  // const addToCart = () => {
-  //   // dispatch the item into the data layer
-  //   dispatch({
-  //     type: "ADD_TO_CART",
-  //     product: {
-  //       id: id,
-  //       title: title,
-  //       image: image,
-  //       price: price,
-  //       review: review,
-  //     },
-  //   });
-  // };
 
   const addToCart = async (productId) => {
     const addedProduct = await getProductById(productId)
