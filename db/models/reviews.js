@@ -1,7 +1,7 @@
 const client = require('../client');
 
 
-async function createReview(userName, productId, rating, description) {
+async function createReview({userName, productId, rating, description}) {
     try {
         const { rows: [newReview] } = await client.query(`
         INSERT INTO reviews ("userName", "productId", rating, description)
@@ -24,8 +24,12 @@ async function getAllReviews() {
 }
 
 
-async function getReviewsByProductId() {
-
+async function getReviewsByProductId(id) {
+const { rows } = await client.query(`
+SELECT * FROM reviews
+WHERE "productId" = ${id};
+`)
+return rows;
 }
 
 
@@ -35,5 +39,6 @@ async function getReviewsByTags() {
 
 module.exports = {
     createReview,
-    getAllReviews
+    getAllReviews,
+    getReviewsByProductId
 }

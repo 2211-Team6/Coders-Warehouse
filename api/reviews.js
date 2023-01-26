@@ -16,15 +16,26 @@ router.get("/", async (req, res, next) => {
   });
 
 
+  router.get("/", async (req, res, next) => {
+    try {
+      const allReviews = await getAllReviews();
+  
+      res.send(allReviews);
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+  });
+
   
 // POST /api/reviews
-router.post("/", requireUser, async (req, res, next) => {
-    const { id, productId, rating } = req.body;
+router.post("/", async (req, res, next) => {
+    const { id, username, productId, rating, description } = req.body;
     const reviewsData = {};
     try {
       reviewsData.username = username;
       reviewsData.productId = productId;
       reviewsData.rating = rating;
+      reviewsData.description = description;
       reviewsData.id = req.user.id;
       if(req.user) {
         req.body.id = req.user.id;

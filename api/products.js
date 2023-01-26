@@ -1,4 +1,5 @@
-const express = require("express")
+const express = require("express");
+const { getReviewsByProductId } = require("../db/models/reviews");
 const productsRouter = express.Router();
 const {
     createProduct, 
@@ -27,8 +28,9 @@ productsRouter.get("/:id", async (req, res, next) => {
   console.log("here's the id from api", id)
   try {
       const product = await getProductById(id) 
-      console.log("here's the product from api", product)
-      res.send(product);
+      const review = await getReviewsByProductId(id)
+      console.log("here's the reveiw from api: ", review);
+      res.send([product, review]);
   } catch (error) {
     next(error)
   }
