@@ -79,57 +79,6 @@ export const getAllProducts = async () => {
   };
 
 
-  export const createProduct = async (token, title, description, price, quantity) => {
-    try {
-      const response = await fetch(
-        "/api/products",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title,
-            description,
-            price,
-            quantity,
-          }),
-        }
-      );
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  export const updateProduct = async (token, title, description, price, quantity, id) => {
-    try {
-      const response = await fetch(
-        `/api/products/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title,
-            description,
-            price,
-            quantity,
-          }),
-        }
-      );
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
 export const createProduct = async (
   token,
   title,
