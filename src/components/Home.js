@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
+import Checkout from "./Checkout";
+import cart from "./Cart";
 
 const Home = ({token, reviews, setReviews}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
@@ -15,6 +17,9 @@ const Home = ({token, reviews, setReviews}) => {
       </Link>
       <br></br>
       <Link to="/reviews">Product Reviews</Link>
+      <Link to="/cart"> Checkout here!</Link>
+      <br></br>
+      <Link to="/checkout"></Link>
       <br></br>
       {selectedProduct.id ? (
       <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 

@@ -51,7 +51,7 @@ export const getAllProducts = async () => {
       const result = await response.json();
       return result;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -202,6 +202,7 @@ export const getReviews = async () => {
   }
 
 
+
   export const getReviewsByProductId = async (id) => {
     try {
       const response = await fetch(
@@ -220,3 +221,117 @@ export const getReviews = async () => {
       console.log(error);
     }
   };
+
+  //************ CART ************//
+
+  export async function fetchCartProducts(cartProduct) {
+     try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            body: JSON.stringify(cartProduct),
+          },
+        }
+      );
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+  export async function addCartPoduct(product_id, quantity) {
+    try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            body: JSON.stringify(product_id, quantity),
+          },
+        }
+      );
+      const newCartProduct = await response.json();
+      return newCartProduct;
+    } catch (error){
+      
+    }
+  };
+
+  export async function updateCartProduct(cartProduct){
+    try {
+      const response = await fetch(`/api/cart/${cartProduct.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartProduct),
+      });
+      if(response.ok) {
+        fetchCartProducts();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export async function removeCartProduct(cartProductId){
+    try {
+      const response = await fetch(`/api/cart/${cartProductId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if(response.ok) {
+        fetchCartProducts();
+      } else {
+        console.log(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  export const calculateTotalPrice = async (token) => {
+    try {
+        const response = await fetch(`/api/calculateTotalPrice`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        // console.log(error);
+    }
+};
+
+
+  
+  //************ CHECKOUT ************//
+
+  export async function fetchCheckout(cartProduct, shippingDetails, billingDetails) {
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: cartProduct,
+          shippingDetails: shippingDetails,
+          billingDetails: billingDetails,
+        }),
+      });
+      const result = await response.json();
+      return result
+    } catch (error) {
+      console.log(error);
+    }
+  }
+

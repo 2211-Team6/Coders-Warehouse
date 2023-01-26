@@ -5,8 +5,10 @@ import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import Cart from "./Cart"
 import ReviewForm from "./ReviewForm";
 import AllReviews from "./Reviews";
+import Checkout from "./Checkout";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -31,6 +33,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/review-form" element={<ReviewForm />} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/checkout" element={<Checkout/>} />
       </Routes>
     </div>
   );
