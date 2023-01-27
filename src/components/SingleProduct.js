@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProductReview from './ProductReview';
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
     return (
@@ -21,17 +22,9 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
         <br></br>
         <div class="single-review">
           {console.log("Here are the reviews", reviews)}
-          {reviews ? (
-            <div>
-            <h2 className="title">Reviews</h2>
-              {reviews.map((review) => (
-                <div key={review.id}>
-                  <p>Description: {review.description}</p>
-                  <h3>Creator: {review.username}</h3>
-                  <b>Rating: {review.rating}</b>
-                </div>))}
-            </div>
-        ) : <p>"There are no Reviews"</p>}
+          {reviews.length > 0 ? (<ProductReview reviews={reviews}/>
+            ) : 
+            <p>"There are no Reviews"</p>}
         </div>
       </div>
       );
