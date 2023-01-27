@@ -67,10 +67,6 @@ async function createTables() {
       rating INTEGER,
       description TEXT NOT NULL
     );
-
-    CREATE TABLE product_reviews (
-      "productId" INTEGER REFERENCES products(id),
-    )
   `);
   }
    catch (error) {

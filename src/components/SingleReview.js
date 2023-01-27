@@ -12,16 +12,16 @@ const SingleReview = ({review, setReviews, reviews, singleProduct}) => {
       <div className="single-review">
         <h2 className="title">Reviews</h2>
         <p>Description: {review.description}</p>
-        <h3>Creator: {review.username}</h3>
+        <p>Creator: {review.username}</p>
         <b>Rating: {review.rating}</b>
-        {review.username ? (
+        {/* {review.username ? (
           <button onClick={() => handleDelete(review._id)}>Delete</button>
         ) : checkUserLoggedIn() ? (
         <Link to="</review-form>" state={{ id: review._id }}>
         <button type="button">Send Review</button>
         </Link>) :
         <div></div>
-        }
+        } */}
       </div>
     );
   };
