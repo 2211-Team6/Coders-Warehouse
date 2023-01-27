@@ -18,6 +18,7 @@ const cart = (props) => {
   //   fetchCartProducts();
   // }, [fetchCartProducts]);
 
+//a new start
 
   const addProductToCart = (productId, quantity) => {
     updateCartProduct(productId, quantity)
