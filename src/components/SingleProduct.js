@@ -7,6 +7,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setReviews})
     return (
         <div>
           {console.log("this is single product.title", singleProduct.title)}
+          <img src={singleProduct.url}/>
           <h3>{singleProduct.title}</h3>
           <p>Description: {singleProduct.description}</p>
           <p>Price: ${singleProduct.price/100}</p>
