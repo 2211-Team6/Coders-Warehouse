@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 
 const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
+  const navigate = useNavigate(); 
+
+  const handleLogin = async () => {
+    const newUser = await login(username, password);
+    console.log("This is the user", newUser)
+    navigate("/")
+  }
+
   return (
     <div>
       <form>
@@ -28,9 +36,8 @@ const Login = () => {
           onChange={(event) => setPassword(event.target.value)}
         ></input>
         <button
-          onClick={() => {
-            login(username, password);
-          }}
+          onClick={() => handleLogin()
+          }
           type="button"
           name="login_button"
           value="Login"
