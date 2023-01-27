@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleProduct = ({singleProduct, setSelectedProduct, reviews, }) => {
+const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
     return (
       <div>
         <div class="single-product-container">
@@ -20,15 +20,20 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, }) => {
         <br></br>
         <br></br>
         <div class="single-review">
+          {console.log("Here are the reviews", reviews)}
           {reviews ? (
             <div>
-          <h2 className="title">Reviews</h2>
-        <p>Description: {reviews.description}</p>
-        <h3>Creator: {reviews.username}</h3>
-        <b>Rating: {reviews.rating}</b>
-        </div>) : <p>"There are no Reviews"</p>}
+            <h2 className="title">Reviews</h2>
+              {reviews.map((review) => (
+                <div key={review.id}>
+                  <p>Description: {review.description}</p>
+                  <h3>Creator: {review.username}</h3>
+                  <b>Rating: {review.rating}</b>
+                </div>))}
+            </div>
+        ) : <p>"There are no Reviews"</p>}
         </div>
-        </div>
+      </div>
       );
 };
 
