@@ -176,8 +176,9 @@ export const deleteProduct = async (token, productId) => {
 
 export const addReview = async (userName, productId, rating, description) => {
   const token = localStorage.getItem("token");
+  console.log("This is the token in addReview", token)
   try {
-    const response = await fetch("/api/reviews", {
+    const response = await fetch("/api/reviews/reviews-form", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -190,8 +191,9 @@ export const addReview = async (userName, productId, rating, description) => {
         description,
       }),
     });
+    console.log("here is the response", response)
     const result = await response.json();
-    //   console.log("whyyyyyyyyyyyyy", result);
+      console.log("Anddd the result", result);
     return result;
   } catch (error) {
     throw error;

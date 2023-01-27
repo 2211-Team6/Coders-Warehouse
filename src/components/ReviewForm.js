@@ -1,36 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getReviews } from "../api/auth";
+import { addReview, getReviews, fetchMe } from "../api/auth";
 
 
 // Create a form for making a review
-const ReviewForm = () => {
+const ReviewForm = ({singleProduct, user}) => {
     const { state } = useLocation();
     const id = state?.id;
     // console.log(id)
-    const [content, setContent] = useState("")
+    const [rating, setRating] = useState("")
+    const [description, setDescription] = useState("")
+    const [currentUser, setCurrentUser] = useState({})
+
+    useEffect(() => {
+      const getMe = async () => {
+        const token = localStorage.getItem("token");
+        console.log("This is token", token);
+        const data = await fetchMe(token);
+        console.log("This is data", data);
+        setCurrentUser(data)
+      };
+        getMe();
+    }, []);
+    console.log("user", currentUser.username)
   
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const token = localStorage.getItem("token")
-           const response = await fetch("/api/reviews-form", {
-              method: "POST",
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-              body: JSON.stringify({
-                message: {
-                  content,
-             }
-          })
-        })
-        const newReview = await response.json();
+       try{
+        const userName = currentUser.username
+        const productId = singleProduct.id
+        console.log("productId", productId)
+        const newReview = await addReview(userName, productId, rating, description);
         console.log("this is the new review", newReview)
-        setContent("")
+        setRating("")
+        setDescription("")
         alert("Review sent!")
-        return newReview
+        navigate("/")
+        return newReview;
         } catch (error) {
             console.error(error)
         }
@@ -38,8 +44,26 @@ const ReviewForm = () => {
     }
     return (
       <form onSubmit={(e) => handleSubmit(e)} className="reviewForm">
-        Tell us about this product.
-        <input className="newReview" type="text" value={content} onChange={e => setContent(e.target.value)} placeholder="Type something here..."></input>
+        Leave your review here! 
+        <br></br>
+        <input 
+        className="newReview" 
+        name="Rating"
+        type="number" 
+        value={rating} 
+        placeholder="Rating? (out of 10)"
+        onChange={(e) => setRating(e.target.value)} >
+        </input>
+        <br></br>
+        <input 
+        name="Content"
+        className="newReview" 
+        type="text" 
+        value={description} 
+        placeholder="Type your review here"
+        onChange={(e) => setDescription(e.target.value)} >
+        </input>
+        <br></br>
         <button className="submit" type="submit">Send Review</button>
         </form>
     )
