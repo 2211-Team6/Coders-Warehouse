@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addReview, getReviews, fetchMe } from "../api/auth";
 
 
@@ -11,6 +11,7 @@ const ReviewForm = ({singleProduct, user}) => {
     const [rating, setRating] = useState("")
     const [description, setDescription] = useState("")
     const [currentUser, setCurrentUser] = useState({})
+    const navigate = useNavigate();
 
     useEffect(() => {
       const getMe = async () => {
