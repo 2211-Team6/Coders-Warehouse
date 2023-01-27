@@ -7,15 +7,15 @@ async function getAllUsers() {
   /* this adapter should fetch a list of users from your db */
 }
 
-async function createUser({ username, password, email }) {
+async function createUser({ username, password, email, isAdmin }) {
   
   try {
     const { rows: [user] } = await client.query(`
-    INSERT INTO users(username, password, email)
-    VALUES ($1, $2, $3)
+    INSERT INTO users(username, password, email, "isAdmin")
+    VALUES ($1, $2, $3, $4)
     ON CONFLICT (username) DO NOTHING
     RETURNING *;
-    `, [username, password, email]);
+    `, [username, password, email, isAdmin]);
     
     delete user.password;
     return user;
