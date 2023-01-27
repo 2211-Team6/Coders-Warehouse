@@ -4,6 +4,7 @@ import { registerUser } from "../api/auth";
 const Register = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   return (
     <div>
       <form>
@@ -26,9 +27,20 @@ const Register = () => {
           placeholder="password"
           onChange={(event) => setPassword(event.target.value)}
         ></input>
+        <label htmlFor="email">Email :</label>
+        <input
+          value={email}
+          type="email"
+          required
+          minLength={7}
+          placeholder="email"
+          onChange={(event) => setEmail(event.target.value)}
+        ></input>
         <button
-          onClick={() => {
-            registerUser(username, password);
+          onClick={(e) => {
+            e.preventDefault();
+            console.log(username, password, email);
+            registerUser(username, password, email);
           }}
           type="button"
           name="register_button"

@@ -7,14 +7,16 @@ const {
   getUserByUsername,
 } = require("../db/users");
 const jwt = require("jsonwebtoken");
+const { JWT_SECRET = "do not tell" } = process.env;
 
 usersRouter.post("/register", async (req, res, next) => {
-  const { username, password, name } = req.body;
-
+  const { username, password, email } = req.body;
+  console.log("hello there!", username, password, email);
   try {
     const _user = await getUserByUsername(username);
-
+    console.log("its me, Ya boi!", _user);
     if (_user) {
+      res.status(401);
       next({
         name: "UserExistsError",
         message: "A user by that username already exists",
@@ -30,27 +32,29 @@ usersRouter.post("/register", async (req, res, next) => {
     const user = await createUser({
       username,
       password,
-      name,
+      email,
     });
-
+    console.log("hey im right here!", user);
     const token = jwt.sign(
       {
         id: user.id,
-        username,
+        username: user.username,
+        email: user.email,
       },
-      process.env.JWT_SECRET,
+      JWT_SECRET,
       {
         expiresIn: "1w",
       }
     );
-
+    console.log("yo! I am a token!", token);
     res.send({
       user,
       message: "thank you for signing up",
       token,
     });
-  } catch ({ name, message }) {
-    next({ name, message });
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 });
 
@@ -84,4 +88,3 @@ usersRouter.post("/login", async (req, res, next) => {
 });
 
 module.exports = usersRouter;
-

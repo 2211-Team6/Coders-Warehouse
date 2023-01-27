@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getAllProducts, getProductById } from "../api/auth";
-import {useStateValue} from "../Helpers/StateProvider"
+import { getAllProducts, getProductById, getReviewsByProductId } from "../api/auth";
 
-const Products = ({selectedProduct, setSelectedProduct, id, title, image, price, review}) => {
+
+const Products = ({selectedProduct, setSelectedProduct, id, title, image, price, reviews, setReviews}) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  // const [cart, setCart] = useState([]);
-  const [{ cart }, dispatch] = useStateValue();
+  const [cart, setCart] = useState([]);
   
 
   useEffect(() => {
@@ -19,22 +18,19 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 
-  const addToCart = () => {
-    // dispatch the item into the data layer
-    dispatch({
-      type: "ADD_TO_CART",
-      product: {
-        id: id,
-        title: title,
-        image: image,
-        price: price,
-        review: review,
-      },
-    });
-  };
+
+  const addToCart = async (productId) => {
+    const addedProduct = await getProductById(productId)
+    setCart(addedProduct, ...cart)
+    console.log("item added", addedProduct)
+  }
+
   const handleClick = async (productId) => {
     const singleProduct = await getProductById(productId)
+    const singleReview = await getReviewsByProductId(productId)
     setSelectedProduct(singleProduct[0])
+    console.log("this is single Review: ", singleReview[0])
+    setReviews(singleReview[0])
   }
 
   return (
@@ -54,7 +50,7 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
           <p>Quantity: {product.quantity}</p> */}
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>
-          <button onClick={addToCart}> Add to Cart</button>
+          <button onClick={() => addToCart(product.id)}> Add to Cart</button>
           <br></br>
         </div>
       ))}

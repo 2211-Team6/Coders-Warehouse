@@ -1,44 +1,48 @@
-export const registerUser = async (username, password) => {
-    try {
-      const response = await fetch("/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
-      const result = await response.json();
-      return result.token;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  export const login = async (username, password) => {
-    try {
-      const verify = await fetch(`/api/users/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await verify.json();
-      console.log(data);
-      // right here put the returned data.token into localStorage so that we can use it across our app.
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("username", data.user.username);
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const registerUser = async (username, password, email) => {
+  try {
+    console.log(username, password, email);
+    const response = await fetch("/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result.token;
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const login = async (username, password) => {
+  try {
+    const verify = await fetch(`/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await verify.json();
+    console.log(data);
+    // right here put the returned data.token into localStorage so that we can use it across our app.
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.user.username);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 //************ PRODUCTS ************//
 
 export const getAllProducts = async () => {
+
     try {
       const response = await fetch(
         "/api/products",
@@ -51,7 +55,7 @@ export const getAllProducts = async () => {
       const result = await response.json();
       return result;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -67,139 +71,154 @@ export const getAllProducts = async () => {
         }
       );
       const result = await response.json();
-      return result;
+      console.log("this is result prodId: ", result[1]);
+      return result[0];
     } catch (error) {
       console.log(error);
     }
   };
 
 
-  export const createProduct = async (token, title, description, price, quantity) => {
-    try {
-      const response = await fetch(
-        "/api/products",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title,
-            description,
-            price,
-            quantity,
-          }),
-        }
-      );
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const createProduct = async (
+  token,
+  title,
+  description,
+  price,
+  quantity
+) => {
+  try {
+    const response = await fetch("/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        price,
+        quantity,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+export const updateProduct = async (
+  token,
+  title,
+  description,
+  price,
+  quantity,
+  id
+) => {
+  try {
+    const response = await fetch(`/api/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        price,
+        quantity,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  export const updateProduct = async (token, title, description, price, quantity, id) => {
-    try {
-      const response = await fetch(
-        `/api/products/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            title,
-            description,
-            price,
-            quantity,
-          }),
-        }
-      );
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  export const deleteProduct = async (token, productId) => {
-    try {
-      const response = await fetch(
-        `/api/products/${productId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-//************ REVIEWS ************//
-
-export const addReview = async (userName, productId, rating, description) => {
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(
-        "/api/reviews",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            userName,
-            productId,
-            rating,
-            description
-          }),
-        }
-      );
-      const result = await response.json();
-    //   console.log("whyyyyyyyyyyyyy", result);
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  
-export const getReviews = async () => {
-    try {
-      const response = await fetch(
-        "/api/reviews"
-      );
-      const data = await response.json();
-      // console.log(data);
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
-  export async function deleteReview(id, token) {
-    const response = await fetch(`/api/reviews/${id}`, {
+export const deleteProduct = async (token, productId) => {
+  try {
+    const response = await fetch(`/api/products/${productId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
-    return await response.json();
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
   }
+};
 
+//************ REVIEWS ************//
+
+export const addReview = async (userName, productId, rating, description) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch("/api/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userName,
+        productId,
+        rating,
+        description,
+      }),
+    });
+    const result = await response.json();
+    //   console.log("whyyyyyyyyyyyyy", result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const getReviews = async () => {
+  try {
+    const response = await fetch("/api/reviews");
+    const data = await response.json();
+    // console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export async function deleteReview(id, token) {
+  const response = await fetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await response.json();
+}
+
+ export const getReviewsByProductId = async (id) => {
+    try {
+      const response = await fetch(
+        `/api/products/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const result = await response.json();
+      console.log("this is response: ", response);
+      console.log("this is result: ", result);
+      return result[1];
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
 
   //************ CART ************//
 
@@ -221,6 +240,26 @@ export const getReviews = async () => {
     }
   };
 
+  export async function addCartPoduct(product_id, quantity) {
+    try {
+      const response = await fetch(
+        "/api/cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            body: JSON.stringify(product_id, quantity),
+          },
+        }
+      );
+      const newCartProduct = await response.json();
+      return newCartProduct;
+    } catch (error){
+      
+    }
+  };
+
   export async function updateCartProduct(cartProduct){
     try {
       const response = await fetch(`/api/cart/${cartProduct.id}`, {
@@ -229,14 +268,15 @@ export const getReviews = async () => {
         body: JSON.stringify(cartProduct),
       });
       if(response.ok) {
-        fetchcartProducts();
+        fetchCartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }
     } catch (error) {
       console.log(error);
     }
-  };
+}
+
 
   export async function removeCartProduct(cartProductId){
     try {
@@ -245,7 +285,7 @@ export const getReviews = async () => {
         headers: { "Content-Type": "application/json" },
       });
       if(response.ok) {
-        fetchcartProducts();
+        fetchCartProducts();
       } else {
         console.log(`Error: ${response.status}`);
       }
@@ -254,4 +294,43 @@ export const getReviews = async () => {
     }
   };
 
+  export const calculateTotalPrice = async (token) => {
+    try {
+        const response = await fetch(`/api/calculateTotalPrice`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            }
+        });
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        // console.log(error);
+    }
+};
+
+
   
+  //************ CHECKOUT ************//
+
+  export async function fetchCheckout(cartProduct, shippingDetails, billingDetails) {
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: cartProduct,
+          shippingDetails: shippingDetails,
+          billingDetails: billingDetails,
+        }),
+      });
+      const result = await response.json();
+      return result
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
