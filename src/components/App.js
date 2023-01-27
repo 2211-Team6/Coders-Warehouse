@@ -41,7 +41,7 @@ const App = () => {
         <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/review-form" element={<ReviewForm />} />
+        <Route path="/review-form" element={<ReviewForm user={user}/>} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/checkout" element={<Checkout/>} />

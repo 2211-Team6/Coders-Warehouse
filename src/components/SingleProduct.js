@@ -16,7 +16,6 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
             <p>Price: ${singleProduct.price/100}</p>
             <p>Quantity: {singleProduct.quantity}</p>
             <button onClick={() => setSelectedProduct({})}>View all products</button>
-            <button onClick={() => navigate("/review-form")}>Leave A Review</button>
           </div>
         </div>
         <br></br>
@@ -24,7 +23,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
         <div class="single-review">
           {console.log("Here are the reviews", reviews)}
           {reviews.length > 0 ? 
-          (<ProductReview reviews={reviews}/>
+          (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
             ) : 
             <p>"There are no Reviews"</p>}
         </div>
