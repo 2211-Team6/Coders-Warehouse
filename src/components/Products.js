@@ -46,8 +46,6 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
         <div key={product.id}>
           <p>{product.title}</p>
           <p>Description: {product.description}</p>
-          {/* <p>Price: {product.price}</p>
-          <p>Quantity: {product.quantity}</p> */}
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>
           <button onClick={() => addToCart(product.id)}> Add to Cart</button>
