@@ -31,6 +31,8 @@ const AllReviews = ({reviews, setReviews}) => {
     const reviewsToDisplay = searchTerm.length ? filteredReviews : reviews; //display all the reviews 
     return (
       <>
+      <Link to="/">Back to Home</Link>
+      <br></br>
         <input className="searchBar" type="text" placeholder="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input>
         {console.log(reviews)}
         {reviewsToDisplay.map((review) => {

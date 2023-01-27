@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import { fetchMe } from "../api/auth";
+import { Link } from "react-router-dom";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
@@ -34,6 +35,7 @@ const App = () => {
   return (
     <div className="app-container">
       <h1>Hello, {user?.username}!</h1>
+
 
       <Routes>
         <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} />} />

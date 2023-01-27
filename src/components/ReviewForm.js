@@ -26,6 +26,7 @@ const ReviewForm = () => {
              }
           })
         })
+
         const newReview = await response.json();
         console.log("this is the new review", newReview)
         setContent("")

@@ -17,6 +17,7 @@ const Home = ({token, reviews, setReviews}) => {
       </Link>
       <br></br>
       <Link to="/reviews">Product Reviews</Link>
+      <br></br>
       <Link to="/cart"> Checkout here!</Link>
       <br></br>
       <Link to="/checkout"></Link>
