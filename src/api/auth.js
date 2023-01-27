@@ -26,13 +26,33 @@ export const login = async (username, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, }),
     });
     const data = await verify.json();
     console.log(data);
     // right here put the returned data.token into localStorage so that we can use it across our app.
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.user.username);
+    return data.token;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const fetchMe = async (token) => {
+  try {
+    console.log("this is the token auth.js line 44", token)
+    const response = await fetch(
+      `/api/users/me`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+      console.log("This is the response", response)
+    const data = await response.json();
+    console.log("This is the data", data)
     return data;
   } catch (error) {
     console.error(error);

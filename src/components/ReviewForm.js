@@ -14,20 +14,21 @@ const ReviewForm = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token")
-           const response = await fetch("/api/review-form", {
-  method: "POST",
-  headers: {
-    'Content-Type': 'application/json',
-    // 'Authorization': `Bearer ${token}`
-  },
-  body: JSON.stringify({
-    message: {
-      content,
-    }
-  })
-  })
+           const response = await fetch("/api/reviews-form", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                message: {
+                  content,
+             }
+          })
+        })
+
         const newReview = await response.json();
-        // console.log(newReview)
+        console.log("this is the new review", newReview)
         setContent("")
         alert("Review sent!")
         return newReview
@@ -37,7 +38,7 @@ const ReviewForm = () => {
         
     }
     return (
-      <form onSubmit={handleSubmit} className="reviewForm">
+      <form onSubmit={(e) => handleSubmit(e)} className="reviewForm">
         Tell us about this product.
         <input className="newReview" type="text" value={content} onChange={e => setContent(e.target.value)} placeholder="Type something here..."></input>
         <button className="submit" type="submit">Send Review</button>

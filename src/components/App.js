@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
+import { fetchMe } from "../api/auth";
 import { Link } from "react-router-dom";
 import "../style/App.css";
 import Register from "./Register.js";
@@ -14,13 +15,27 @@ const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [APIHealth, setAPIHealth] = useState("");
   const [reviews, setReviews] = useState([])
+  const [user, setUser] = useState({})
 
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getMe = async () => {
+      const token = localStorage.getItem("token");
+      console.log("This is token", token);
+      const data = await fetchMe(token);
+      console.log("This is data", data);
+      setUser(data);
+      console.log("This is user line 30", user);
+    };
+    if (token) {
+      getMe();
+    }
+  }, [token]);
 
   return (
     <div className="app-container">
-      <Link to="/"><h1>Hello, World!</h1></Link>
+      <h1>Hello, {user?.username}!</h1>
+
 
       <Routes>
         <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} />} />
