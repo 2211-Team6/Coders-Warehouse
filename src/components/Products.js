@@ -30,7 +30,8 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
     const singleReview = await getReviewsByProductId(productId)
     setSelectedProduct(singleProduct[0])
     console.log("this is single Review: ", singleReview[0])
-    setReviews(singleReview[0])
+    setReviews(singleReview)
+    console.log("this is single review on products.js", singleReview)
   }
 
   return (
@@ -45,6 +46,7 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
       {filteredProducts.map((product) => (
         <div key={product.id}>
           <p>{product.title}</p>
+          <img src={product.url} className="productImg"/>
           <p>Description: {product.description}</p>
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>

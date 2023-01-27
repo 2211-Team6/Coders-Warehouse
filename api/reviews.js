@@ -28,11 +28,12 @@ router.get("/", async (req, res, next) => {
 
   
 // POST /api/reviews
-router.post("/", async (req, res, next) => {
-    const { id, username, productId, rating, description } = req.body;
+router.post("/reviews-form", async (req, res, next) => {
+    const { userName, productId, rating, description } = req.body;
     const reviewsData = {};
+    console.log("trying to make a review")
     try {
-      reviewsData.username = username;
+      reviewsData.userName = userName;
       reviewsData.productId = productId;
       reviewsData.rating = rating;
       reviewsData.description = description;
@@ -41,11 +42,15 @@ router.post("/", async (req, res, next) => {
         req.body.id = req.user.id;
       }
       const review = await createReview(reviewsData);
+      console.log("Here is the review and data", review, reviewsData)
       res.send(review);
     } catch ({ name, message }) {
       next({ name, message });
     }
   });
+
+  // POST /api/reviews-form
+
 
 
   module.exports = router

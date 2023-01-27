@@ -1,34 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ReviewForm from './ReviewForm';
-import SingleReview from './SingleReview';
+import { Link, useNavigate } from "react-router-dom";
+import ProductReview from './ProductReview';
 
-const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setReviews}) => {
+const SingleProduct = ({singleProduct, setSelectedProduct, reviews}) => {
+  const navigate = useNavigate();
     return (
-        <div>
-          {console.log("this is single product.title", singleProduct.title)}
-          <img src={singleProduct.url}/>
-          <h3>{singleProduct.title}</h3>
-          <p>Description: {singleProduct.description}</p>
-          <p>Price: ${singleProduct.price/100}</p>
-          <p>Quantity: {singleProduct.quantity}</p>
-          <button onClick={() => setSelectedProduct({})}>View all products</button>
-          <Link to="/review-form">Leave A Review</Link>
+      <div>
+        <div class="single-product-container">
+          <div>
+            <img src={singleProduct.url}/>
+          </div>
+          <div>
+            <h3>{singleProduct.title}</h3>
+            <p>Description: {singleProduct.description}</p>
+            <p>Price: ${singleProduct.price/100}</p>
+            <p>Quantity: {singleProduct.quantity}</p>
+            <button onClick={() => setSelectedProduct({})}>View all products</button>
+          </div>
+        </div>
         <br></br>
         <br></br>
-        <div>
-          {/* <SingleReview reviews={reviews} setReviews={setReviews} singleProduct={singleProduct}/> */}
-          {console.log("this is single reviewswewe: ", reviews)}
-          {reviews ? (
-            <div>
-          <h2 className="title">Reviews</h2>
-        <p>Description: {reviews.description}</p>
-        <h3>Creator: {reviews.username}</h3>
-        <b>Rating: {reviews.rating}</b>
-        </div>) : <p>"There are no Reviews"</p>}
+        <div class="single-review">
+          {console.log("Here are the reviews", reviews)}
+          {reviews.length > 0 ? 
+          (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
+            ) : 
+            <p>"There are no Reviews"</p>}
         </div>
-        </div>
-        
+      </div>
       );
 };
 

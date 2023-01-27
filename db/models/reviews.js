@@ -6,7 +6,7 @@ async function createReview({userName, productId, rating, description}) {
         const { rows: [newReview] } = await client.query(`
         INSERT INTO reviews ("userName", "productId", rating, description)
         VALUES ($1, $2, $3, $4)
-      RETURNING *;
+        RETURNING *;
       `, [userName, productId, rating, description]);
 
         return newReview

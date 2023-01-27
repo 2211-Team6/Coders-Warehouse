@@ -1,4 +1,5 @@
 const express = require("express");
+const {requireUser} = require("./utils")
 const usersRouter = express.Router();
 const {
   createUser,
@@ -6,6 +7,7 @@ const {
   getUserById,
   getUserByUsername,
 } = require("../db/users");
+
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET = "do not tell" } = process.env;
 
@@ -68,7 +70,7 @@ usersRouter.post("/login", async (req, res, next) => {
           id: user.id,
           username,
         },
-        process.env.JWT_SECRET,
+        JWT_SECRET,
         {
           expiresIn: "1w",
         }
@@ -81,6 +83,18 @@ usersRouter.post("/login", async (req, res, next) => {
         message: "Username or password is incorrect",
       });
     }
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+//  GET /api/users/me
+
+usersRouter.get("/me", async (req, res, next) => {
+  try {
+    console.log("hit the backend API");
+    res.send(req.user)
   } catch (error) {
     console.log(error);
     next(error);
