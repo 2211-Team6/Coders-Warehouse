@@ -14,11 +14,11 @@ const ReviewForm = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token")
-           const response = await fetch("/api/reviews-form", {
+           const response = await fetch("/api/review-form", {
   method: "POST",
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
+    // 'Authorization': `Bearer ${token}`
   },
   body: JSON.stringify({
     message: {
@@ -30,6 +30,7 @@ const ReviewForm = () => {
         // console.log(newReview)
         setContent("")
         alert("Review sent!")
+        return newReview
         } catch (error) {
             console.error(error)
         }
