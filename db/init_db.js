@@ -34,7 +34,8 @@ async function createTables() {
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    "isAdmin" BOOLEAN DEFAULT FALSE
 );
     CREATE TABLE products (
     id SERIAL PRIMARY KEY,
@@ -67,10 +68,6 @@ async function createTables() {
       rating INTEGER,
       description TEXT NOT NULL
     );
-
-    CREATE TABLE product_reviews (
-      "productId" INTEGER REFERENCES products(id),
-    )
   `);
   }
    catch (error) {
@@ -83,9 +80,10 @@ async function createTables() {
 async function populateInitialData() {
   try {
     const usersToCreate = [
-      { username: "albert", password: "bertie99", email: "albert9@hotmail.com" },
-      { username: "sandra", password: "sandra123", email: "sandy3@MSN.com" },
-      { username: "glamgal", password: "glamgal123", email:"glamgal@AOL.com" },
+      { username: "albert", password: "bertie99", email: "albert9@hotmail.com", isAdmin: false },
+      { username: "sandra", password: "sandra123", email: "sandy3@MSN.com", isAdmin: false },
+      { username: "glamgal", password: "glamgal123", email:"glamgal@AOL.com", isAdmin: false },
+      { username: "admin", password: "team62022", email: "doesn'tmatter@yahoo.com", isAdmin: true}
     ];
     const user = await Promise.all(usersToCreate.map(createUser))
     console.log('Users created');
