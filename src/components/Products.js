@@ -45,6 +45,7 @@ const Products = ({selectedProduct, setSelectedProduct, id, title, image, price,
       {filteredProducts.map((product) => (
         <div key={product.id}>
           <p>{product.title}</p>
+          <img src={product.url} className="productImg"/>
           <p>Description: {product.description}</p>
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>
