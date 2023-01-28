@@ -29,7 +29,6 @@ export const login = async (username, password) => {
       body: JSON.stringify({ username, password, }),
     });
     const data = await verify.json();
-    console.log(data);
     // right here put the returned data.token into localStorage so that we can use it across our app.
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.user.username);
@@ -41,7 +40,6 @@ export const login = async (username, password) => {
 
 export const fetchMe = async (token) => {
   try {
-    console.log("this is the token auth.js line 44", token)
     const response = await fetch(
       `/api/users/me`, {
         headers: {
@@ -50,9 +48,7 @@ export const fetchMe = async (token) => {
         },
       }
     );
-      console.log("This is the response", response)
     const data = await response.json();
-    console.log("This is the data", data)
     return data;
   } catch (error) {
     console.error(error);
@@ -91,7 +87,6 @@ export const getAllProducts = async () => {
         }
       );
       const result = await response.json();
-      console.log("this is result prodId: ", result[1]);
       return result[0];
     } catch (error) {
       console.log(error);
@@ -176,7 +171,6 @@ export const deleteProduct = async (token, productId) => {
 
 export const addReview = async (userName, productId, rating, description) => {
   const token = localStorage.getItem("token");
-  console.log("This is the token in addReview", token)
   try {
     const response = await fetch("/api/reviews/reviews-form", {
       method: "POST",
@@ -191,9 +185,7 @@ export const addReview = async (userName, productId, rating, description) => {
         description,
       }),
     });
-    console.log("here is the response", response)
     const result = await response.json();
-      console.log("Anddd the result", result);
     return result;
   } catch (error) {
     throw error;
@@ -234,8 +226,6 @@ export async function deleteReview(id, token) {
         }
       );
       const result = await response.json();
-      console.log("this is response: ", response);
-      console.log("this is result: ", result);
       return result[1];
     } catch (error) {
       console.log(error);

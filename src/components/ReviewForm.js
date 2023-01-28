@@ -16,24 +16,18 @@ const ReviewForm = ({singleProduct, user}) => {
     useEffect(() => {
       const getMe = async () => {
         const token = localStorage.getItem("token");
-        console.log("This is token", token);
         const data = await fetchMe(token);
-        console.log("This is data", data);
         setCurrentUser(data)
       };
         getMe();
     }, []);
-    console.log("user", currentUser.username)
   
     const handleSubmit = async (e) => {
         e.preventDefault();
        try{
         const userName = currentUser.username
         const productId = singleProduct.id
-        console.log("productId", productId)
         const newReview = await addReview(userName, productId, rating, description);
-
-        console.log("this is the new review", newReview)
         setRating("")
         setDescription("")
         alert("Review sent!")

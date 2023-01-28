@@ -5,9 +5,8 @@ import SingleProduct from "./SingleProduct";
 import Checkout from "./Checkout";
 import cart from "./Cart";
 
-const Home = ({token, reviews, setReviews}) => {
+const Home = ({token, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
-
   return (
     <div>
       <Link to="/login">Log in!</Link>
@@ -23,7 +22,14 @@ const Home = ({token, reviews, setReviews}) => {
       <Link to="/checkout"></Link>
       <br></br>
       {selectedProduct.id ? (
-      <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
+      <SingleProduct 
+      singleProduct={selectedProduct} 
+      setSelectedProduct={setSelectedProduct} 
+      cartItems={cartItems}
+      setCartItems={setCartItems}
+      addToCart={addToCart}
+      reviews={reviews} 
+      setReviews={setReviews}/> 
       ) : (
         <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
     </div>
