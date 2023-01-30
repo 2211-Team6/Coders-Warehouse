@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ProductReview from './ProductReview';
+import ReviewForm from './ReviewForm';
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
@@ -27,7 +28,12 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
           {reviews.length > 0 ? 
           (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
             ) : 
-            <p>"There are no Reviews"</p>}
+            (<div>
+            <p>There are no Reviews</p>
+            <p><em>Be the first to leave a Review</em></p>
+            <ReviewForm singleProduct={singleProduct}/>
+            </div>)
+            }
         </div>
       </div>
       );
