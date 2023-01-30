@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
+import Checkout from "./Checkout";
 
 //a new start
 
@@ -9,6 +10,7 @@ const Cart = ({cartItems, setCartItems, addToCart}) => {
   const taxPrice = itemsPrice * 0.053;
   const shippingPrice = itemsPrice > 35 ? 0 : 10;
   const totalPrice = itemsPrice + taxPrice + shippingPrice
+  const navigate = useNavigate();
 
   const removeFromCart = (item) => {
     const exists = cartItems.find((product) => product.id === item.id)
@@ -24,6 +26,9 @@ const Cart = ({cartItems, setCartItems, addToCart}) => {
 
   return (
     <div>
+      <NavLink to="/">
+          Home
+        </NavLink>
       <h1>Cart Items</h1>
       <div>
         {cartItems.length === 0 && <div>Your cart is empty</div>}
@@ -56,6 +61,7 @@ const Cart = ({cartItems, setCartItems, addToCart}) => {
       <div>
         <h2>Total: ${totalPrice.toFixed(2)}</h2>
       </div>
+      <button onClick={() => navigate("/checkout")}>Checkout</button>
       </>
       )}
     </div>
