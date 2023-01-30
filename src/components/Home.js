@@ -8,13 +8,11 @@ import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
 
 
-const Home = ({token, setToken, reviews, setReviews}) => {
+const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()
-
-const Home = ({token, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
-  const [selectedProduct, setSelectedProduct] = useState({})
+  
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
        <nav style={{display: "block"}}>
