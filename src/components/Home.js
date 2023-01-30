@@ -1,31 +1,37 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
 import Checkout from "./Checkout";
 import cart from "./Cart";
+import "../style/Home.css"
 
 const Home = ({token, reviews, setReviews}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
 
   return (
-    <div>
-      <Link to="/login">Log in!</Link>
+    <div style={{display: "flex", flexDirection: "column"}}>
+       <nav style={{display: "block"}}>
+
+      <NavLink to="/login">Log in!</NavLink>
       <br></br>
-      <Link to="/register">
+      <NavLink to="/register">
         Register!
-      </Link>
+      </NavLink>
       <br></br>
-      <Link to="/reviews">Product Reviews</Link>
+      <NavLink to="/reviews">Product Reviews</NavLink>
       <br></br>
-      <Link to="/cart"> Checkout here!</Link>
+      <NavLink to="/cart"> Checkout here!</NavLink>
       <br></br>
-      <Link to="/checkout"></Link>
+      <NavLink to="/checkout"></NavLink>
       <br></br>
+      <nav>
       {selectedProduct.id ? (
-      <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
-      ) : (
-        <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
+        <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
+        ) : (
+          <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
+          </nav>
+          </nav>
     </div>
   );
 };
