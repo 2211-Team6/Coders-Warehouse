@@ -6,9 +6,8 @@ import Checkout from "./Checkout";
 import cart from "./Cart";
 import "../style/Home.css"
 
-const Home = ({token, reviews, setReviews}) => {
+const Home = ({token, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
-
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
        <nav style={{display: "block"}}>
@@ -27,11 +26,25 @@ const Home = ({token, reviews, setReviews}) => {
       <br></br>
       <nav>
       {selectedProduct.id ? (
-        <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
-        ) : (
-          <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
-          </nav>
-          </nav>
+        <SingleProduct 
+      singleProduct={selectedProduct} 
+      setSelectedProduct={setSelectedProduct} 
+      cartItems={cartItems}
+      setCartItems={setCartItems}
+      addToCart={addToCart}
+      reviews={reviews} 
+      setReviews={setReviews}/> 
+      ) : (
+        <Products 
+        selectedProduct={selectedProduct} 
+        setSelectedProduct={setSelectedProduct} 
+        reviews={reviews} 
+        setReviews={setReviews} 
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        addToCart={addToCart} />)}
+        </nav>
+        </nav>
     </div>
   );
 };
