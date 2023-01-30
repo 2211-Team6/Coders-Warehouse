@@ -17,7 +17,7 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
     <div style={{display: "flex", flexDirection: "column"}}>
        <nav style={{display: "block"}}>
 
-<header className="header">
+    <header className="header">
             <Link to="/" className="logo">
             <div id="Buyitup">Buy It Up!</div>
         </Link>
@@ -41,7 +41,8 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
          setToken(null);
          location.pathname = "/";
          navigate("/login");
-       }}>Logout</button>) : (
+       }}>Logout</button> 
+       </div>) : (
        <div>
       <NavLink to="/login">Log in!</NavLink>
       <br></br>
