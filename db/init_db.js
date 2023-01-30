@@ -66,7 +66,7 @@ async function createTables() {
       id SERIAL PRIMARY KEY,
       "userName" VARCHAR(255) REFERENCES users(username),
       "productId" INTEGER REFERENCES products(id),
-      rating INTEGER,
+      rating NUMERIC,
       description TEXT NOT NULL
     );
   `);
