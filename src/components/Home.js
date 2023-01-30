@@ -1,87 +1,86 @@
 import React, {useState} from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
 import Checkout from "./Checkout";
 import cart from "./Cart";
+import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
 
 
 const Home = ({token, setToken, reviews, setReviews}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
+const Home = ({token, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
+  const [selectedProduct, setSelectedProduct] = useState({})
   return (
-    // <div>
-    //   <Link to="/login">Log in!</Link>
-    //   <br></br>
-    //   <Link to="/register">
-    //     Register!
-    //   </Link>
-    //   <br></br>
-    //   <Link to="/reviews">Product Reviews</Link>
-    //   <br></br>
-    //   <Link to="/cart"> Checkout here!</Link>
-    //   <br></br>
-    //   <Link to="/checkout"></Link>
-    //   <br></br>
-    //   {selectedProduct.id ? (
-    //   <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
-    //   ) : (
-    //     <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
-    // </div>
-    <header className="header">
+    <div style={{display: "flex", flexDirection: "column"}}>
+       <nav style={{display: "block"}}>
+
+<header className="header">
             <Link to="/" className="logo">
             <div id="Buyitup">Buy It Up!</div>
         </Link>
         <br/>
       {checkUserLoggedIn() ?
-        <div>
+        (<div>
             {/* <b className="welcome">Welcome, {username}!</b>
             <br/><hr/> */}
-            <Link className="navlink" to="/">
+            <NavLink className="navlink" to="/">
           Home
-        </Link>
+        </NavLink>
         <br></br>
-        <Link to="/reviews">Product Reviews</Link>
+        <NavLink to="/reviews">Product Reviews</NavLink>
        <br></br>
-       <Link to="/cart"> Checkout here!</Link>
+       <NavLink to="/cart"> Checkout here!</NavLink>
        <br></br>
-       <Link to="/checkout"></Link>
+       <NavLink to="/checkout"></NavLink>
        <br></br>
        <button type="button" className="header-button logout" onClick={() => {
          localStorage.removeItem('token');
          setToken(null);
          location.pathname = "/";
          navigate("/login");
-       }}>Logout</button>
-       {selectedProduct.id ? (
-      <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
+       }}>Logout</button>) : (
+       <div>
+      <NavLink to="/login">Log in!</NavLink>
+      <br></br>
+      <NavLink to="/register">
+        Register!
+      </NavLink>
+      <br></br>
+      <NavLink to="/reviews">Product Reviews</NavLink>
+      <br></br>
+      <NavLink to="/cart"> Checkout here!</NavLink>
+      <br></br>
+      <NavLink to="/checkout"></NavLink>
+      <br></br>
+      <nav>
+      </div>)}
+      </header>
+      {selectedProduct.id ? (
+        <SingleProduct 
+      singleProduct={selectedProduct} 
+      setSelectedProduct={setSelectedProduct} 
+      cartItems={cartItems}
+      setCartItems={setCartItems}
+      addToCart={addToCart}
+      reviews={reviews} 
+      setReviews={setReviews}/> 
       ) : (
-        <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
-        </div>
-        :
-        <div>
-        <Link to="/login">Log in!</Link>
-       <br></br>
-    <Link to="/register">
-         Register!
-       </Link>
-    <br></br>
-       <Link to="/reviews">Product Reviews</Link>
-    <br></br>
-       <Link to="/cart"> Checkout here!</Link>
-       <br></br>
-       <Link to="/checkout"></Link>
-       <br></br>
-       {selectedProduct.id ? (
-      <SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews}/> 
-      ) : (
-        <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
-        </div>
-        }   
-        </header>
+        <Products 
+        selectedProduct={selectedProduct} 
+        setSelectedProduct={setSelectedProduct} 
+        reviews={reviews} 
+        setReviews={setReviews} 
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        addToCart={addToCart} />)}
+        </nav>
+        </nav>
+    </div>
   );
 };
 
