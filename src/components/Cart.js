@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+//a new start
 
 const Cart = ({cartItems, setCartItems, addToCart}) => {
   console.log("This is cart Items", cartItems)
