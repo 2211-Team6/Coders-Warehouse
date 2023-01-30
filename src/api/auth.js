@@ -252,7 +252,7 @@ export async function deleteReview(id, token) {
     }
   };
 
-  export async function addCartPoduct(product_id, quantity) {
+  export async function addCartProduct(product_id, quantity) {
     try {
       const response = await fetch(
         "/api/cart",
