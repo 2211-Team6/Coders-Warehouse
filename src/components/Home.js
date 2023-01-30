@@ -55,9 +55,9 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       <br></br>
       <NavLink to="/checkout"></NavLink>
       <br></br>
-      <nav>
       </div>)}
       </header>
+       <nav>
       {selectedProduct.id ? (
         <SingleProduct 
       singleProduct={selectedProduct} 
