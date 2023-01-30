@@ -4,7 +4,7 @@ import { addReview, getReviews, fetchMe } from "../api/auth";
 
 
 // Create a form for making a review
-const ReviewForm = ({singleProduct, user}) => {
+const ReviewForm = ({singleProduct}) => {
     const { state } = useLocation();
     const id = state?.id;
     // console.log(id)

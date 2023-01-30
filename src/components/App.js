@@ -17,7 +17,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
 
-
+  
   useEffect(() => {
     const getMe = async () => {
       const token = localStorage.getItem("token");
@@ -31,15 +31,22 @@ const App = () => {
   
   const addToCart = (singleProduct) => {
     const exists = cartItems.find((product) => product.id === singleProduct.id)
+    if(singleProduct.quantity > 0){
+      console.log("Here's the quantity", singleProduct.quantity)
       if (exists){
         setCartItems(
           cartItems.map((product) =>  
           product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
         )
         );
+        singleProduct.quantity -=1;
       } else {
         setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
+        singleProduct.quantity -=1;
       }
+    } else{
+      alert("Out of stock")
+    }
     };
 
 

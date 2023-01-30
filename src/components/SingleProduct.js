@@ -1,23 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ProductReview from './ProductReview';
+import ReviewForm from './ReviewForm';
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
   console.log("This is cart items in singleProduct", cartItems)
-
-  // const addToCart = (singleProduct) => {
-  //   const exists = cartItems.find((product) => product.id === singleProduct.id)
-  //     if (exists){
-  //       setCartItems(
-  //         cartItems.map((product) =>  
-  //         product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
-  //       )
-  //       );
-  //     } else {
-  //       setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
-  //     }
-  //   };
   
     return (
       <div>
@@ -40,7 +28,12 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
           {reviews.length > 0 ? 
           (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
             ) : 
-            <p>"There are no Reviews"</p>}
+            (<div>
+            <p>There are no Reviews</p>
+            <p><em>Be the first to leave a Review</em></p>
+            <ReviewForm singleProduct={singleProduct}/>
+            </div>)
+            }
         </div>
       </div>
       );
