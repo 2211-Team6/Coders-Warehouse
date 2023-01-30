@@ -93,7 +93,6 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.get("/me", async (req, res, next) => {
   try {
-    console.log("hit the backend API");
     res.send(req.user)
   } catch (error) {
     console.log(error);

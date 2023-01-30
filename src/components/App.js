@@ -13,24 +13,35 @@ import Checkout from "./Checkout";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [APIHealth, setAPIHealth] = useState("");
   const [reviews, setReviews] = useState([])
   const [user, setUser] = useState({})
+  const [cartItems, setCartItems] = useState([])
 
 
   useEffect(() => {
     const getMe = async () => {
       const token = localStorage.getItem("token");
-      console.log("This is token", token);
       const data = await fetchMe(token);
-      console.log("This is data", data);
       setUser(data);
-      console.log("This is user line 30", user);
     };
     if (token) {
       getMe();
     }
   }, [token]);
+  
+  const addToCart = (singleProduct) => {
+    const exists = cartItems.find((product) => product.id === singleProduct.id)
+      if (exists){
+        setCartItems(
+          cartItems.map((product) =>  
+          product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
+        )
+        );
+      } else {
+        setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
+      }
+    };
+
 
   return (
     <div className="app-container">
@@ -38,12 +49,12 @@ const App = () => {
 
 
       <Routes>
-        <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} />} />
+        <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
         <Route path="/checkout" element={<Checkout/>} />
       </Routes>
     </div>
