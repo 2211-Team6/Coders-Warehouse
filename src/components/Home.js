@@ -31,7 +31,14 @@ const Home = ({token, reviews, setReviews, cartItems, setCartItems, addToCart}) 
       reviews={reviews} 
       setReviews={setReviews}/> 
       ) : (
-        <Products selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} reviews={reviews} setReviews={setReviews} />)}
+        <Products 
+        selectedProduct={selectedProduct} 
+        setSelectedProduct={setSelectedProduct} 
+        reviews={reviews} 
+        setReviews={setReviews} 
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        addToCart={addToCart} />)}
     </div>
   );
 };

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById, getReviewsByProductId } from "../api/auth";
 
 
-const Products = ({ setSelectedProduct, setReviews }) => {
+const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart }) => {
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [cart, setCart] = useState([]);
   
+  console.log("This is cart items in products", cartItems)
+
 
   useEffect(() => {
     const productsArr = async () => {
@@ -44,7 +45,7 @@ const Products = ({ setSelectedProduct, setReviews }) => {
           <p>Description: {product.description}</p>
           <button onClick={() => handleClick(product.id)}>View Product</button>
           <br></br>
-          <button onClick={() => addToCart(product.id)}> Add to Cart</button>
+          <button onClick={() => addToCart(product)}> Add to Cart</button>
           <br></br>
         </div>
       ))}

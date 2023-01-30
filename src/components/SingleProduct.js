@@ -5,19 +5,6 @@ import ProductReview from './ProductReview';
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
   console.log("This is cart items in singleProduct", cartItems)
-
-  // const addToCart = (singleProduct) => {
-  //   const exists = cartItems.find((product) => product.id === singleProduct.id)
-  //     if (exists){
-  //       setCartItems(
-  //         cartItems.map((product) =>  
-  //         product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
-  //       )
-  //       );
-  //     } else {
-  //       setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
-  //     }
-  //   };
   
     return (
       <div>
