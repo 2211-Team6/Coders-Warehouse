@@ -52,6 +52,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
       <h1>Hello, {user?.username}!</h1>
 
 
