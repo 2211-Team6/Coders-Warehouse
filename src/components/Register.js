@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { registerUser, fetchMe } from "../api/auth";
 import { useNavigate } from "react-router-dom"
 
-const Register = ({setUser}) => {
+const Register = ({setUser, setToken}) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +18,15 @@ const Register = ({setUser}) => {
       getMe();
     }
   }, []);
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    console.log(username, password, email);
+    const token = await registerUser(username, password, email);
+    setToken(token);
+    localStorage.setItem("token", token);
+    navigate("/");
+  }
 
   return (
     <div>
@@ -51,12 +60,8 @@ const Register = ({setUser}) => {
           onChange={(event) => setEmail(event.target.value)}
         ></input>
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(username, password, email);
-            registerUser(username, password, email);
-            navigate("/");
-          }}
+          onClick={(e) => handleClick(e)
+          }
           type="button"
           name="register_button"
           value="Register"
