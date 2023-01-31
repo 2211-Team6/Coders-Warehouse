@@ -1,17 +1,21 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { getCartByUserId, addProductToCart, deleteProductFromCart, } = require("../db/models/cart")
+const { getCartByUserId, addProductToCart, deleteProductFromCart, attachProductsToCart, } = require("../db/models/cart")
 
 // GET / api/cartProducts
 
 cartRouter.get("/:id", async (req, res, next) => {
     console.log("getting the cart")
-    const { id } = req.params;
+    const { id } = req.params
     try {
         console.log("This is the req.params id", id)
-        const cartProducts = await getCartByUserId(id);
-        console.log("Here's what I got from cart API", cartProducts)
-        res.send([cartProducts])
+        const cart = await getCartByUserId(id);
+        console.log("Here's what I got from cart API", cart)
+        const cartIds = cart.map((product) => product.productId)
+        console.log("Here is the cart IDs", cartIds)
+        const cartProducts = await Promise.all(cartIds.map(attachProductsToCart))
+        console.log("Here are the cartProducts ", cartProducts)
+        res.send(cartProducts);
     } catch (error) {
         next(error)
     }

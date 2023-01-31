@@ -66,6 +66,21 @@ async function getCartByUserId(id) {
     }
   }
 
+  async function attachProductsToCart(productId) {
+    try {
+      const { rows: [products] } = await client.query(`
+      SELECT products.* FROM products
+      JOIN cart ON cart."productId" = products.id
+      WHERE "productId" = $1
+      `, [productId])
+      console.log("these are the attached products", products)
+      return products;
+    } catch (error) {
+      console.error("error attaching product to cart");
+      throw error;
+    }
+  }
+
 
 // const addCartItem = async (product_id, quantity) => {
 //     try {
@@ -115,6 +130,7 @@ module.exports = {
     addProductToCart,
     getCartByUserId,
     deleteProductFromCart,
+    attachProductsToCart,
     // addCartItem,
     // updateCartItem,
     // deleteCartItem

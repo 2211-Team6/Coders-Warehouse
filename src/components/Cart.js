@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
-import { fetchCart, fetchMe } from "../api/auth";
+import { fetchCart, fetchMe, getProductById } from "../api/auth";
 import Checkout from "./Checkout";
 
 //a new start
@@ -32,7 +32,7 @@ useEffect(() => {
       console.log("this is the id", id)
       const data = await fetchCart(id);
       console.log("This is data in cart.js", data)
-      // setCartItems(data);
+      setCartItems(data);
     };
     myCart();
   }, []);
