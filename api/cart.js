@@ -4,9 +4,10 @@ const { getcartProducts, addcartProduct, updatecartProduct, deletecartProduct, }
 
 
 // GET / api/cartProducts
-cartRouter.get ("/", async (req, res) => {
+cartRouter.get ("/", async (req, res, next) => {
+    const { product_id } = req.params;
     try {
-        const cartProducts = await getcartProducts()
+        const cartProducts = await getcartProducts({ id: product_id});
         res.send({ cartProducts })
     } catch (error) {
         next({error})

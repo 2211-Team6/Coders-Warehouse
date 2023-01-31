@@ -26,7 +26,10 @@ export const login = async (username, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password, }),
+      body: JSON.stringify({  user: {
+        username,
+        password,
+      } }),
     });
     const data = await verify.json();
     // right here put the returned data.token into localStorage so that we can use it across our app.
