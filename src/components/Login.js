@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 
@@ -8,15 +8,15 @@ const Login = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const getMe = async () => {
-      const token = localStorage.getItem("token");
       const data = await fetchMe(token);
       setUser(data);
     };
     if (token) {
       getMe();
     }
-  }, [token]);
+  }, []);
   
   const handleLogin = async () => {
     console.log("This is username and password", username, password)

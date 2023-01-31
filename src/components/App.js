@@ -45,7 +45,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register setUser={setUser}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />

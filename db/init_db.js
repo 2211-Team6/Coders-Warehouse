@@ -3,6 +3,7 @@ const {createUser} = require("./models/user")
 const {createReview} = require("./models/reviews")
 const {addProductToCart, getCartByUserId, deleteProductFromCart} = require("./models/cart")
 const client = require("./client");
+const {getAllUsers} = require("./users")
 
 
 // drop tables in correct order
@@ -33,8 +34,8 @@ async function createTables() {
     CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
     "isAdmin" BOOLEAN DEFAULT FALSE
 );
     CREATE TABLE products (
@@ -133,6 +134,8 @@ async function populateInitialData() {
     deleteProductFromCart(5)
     const myNewCart = await getCartByUserId(2)
     console.log("Here's the cart post-delete", myNewCart)
+    const users = await getAllUsers();
+    console.log("Here are all of the users", users)
   } catch (error) {
     throw error;
   }

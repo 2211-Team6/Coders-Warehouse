@@ -39,7 +39,7 @@ async function getCartByUserId(id) {
       WHERE id = ${id}
     `
       );
-    //   console.log("Here's your cart", cart)
+      console.log("Here's your cart", cart)
       return cart;
     } catch (error) {
       console.error("error getting cart by Id");

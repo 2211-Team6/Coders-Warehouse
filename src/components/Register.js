@@ -1,12 +1,24 @@
-import React, { useState } from "react";
-import { registerUser } from "../api/auth";
+import React, { useState, useEffect } from "react";
+import { registerUser, fetchMe } from "../api/auth";
 import { useNavigate } from "react-router-dom"
 
-const Register = () => {
+const Register = ({setUser}) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate(); 
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, []);
+
   return (
     <div>
       <form>

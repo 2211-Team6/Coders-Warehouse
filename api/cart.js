@@ -4,14 +4,14 @@ const { getCartByUserId, addProductToCart, deleteProductFromCart, } = require(".
 
 // GET / api/cartProducts
 
-cartRouter.get("/", async (req, res) => {
+cartRouter.get("/:id", async (req, res, next) => {
     console.log("getting the cart")
+    const { id } = req.params;
     try {
-        const {id} = req.body;
-        console.log("This is the req.body id", id)
+        console.log("This is the req.params id", id)
         const cartProducts = await getCartByUserId(id);
         console.log("Here's what I got from cart API", cartProducts)
-        res.send(cartProducts)
+        res.send([cartProducts])
     } catch (error) {
         next(error)
     }

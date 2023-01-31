@@ -19,8 +19,9 @@ export const registerUser = async (username, password, email) => {
     console.error(error);
   }
 };
+
 export const login = async (username, password) => {
-  console.log("Here is your username and password", username, password)
+  console.log("Here is your username and password in authjs", username, password)
   try {
     const verify = await fetch(`/api/users/login`, {
       method: "POST",
@@ -235,18 +236,19 @@ export async function deleteReview(id, token) {
 
   //************ CART ************//
 
-  export async function fetchCart(id) {
+  export const fetchCart = async (id) => {
     console.log("This is the id in fetchcart auth.js", id)
      try {
       const response = await fetch(
-        "/api/cart",
+        `/api/cart/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
-            body: JSON.stringify({id}),
           },
-        }
-      );
+            // body: JSON.stringify({
+            //   id
+            // }),
+        });
       console.log("Here is the response in fetchcart auth.js", response)
       const result = await response.json();
       console.log("Here is the result in fetchcart auth.js", result)

@@ -2,6 +2,8 @@
 const express = require("express");
 const server = express();
 const router = express.Router();
+require("dotenv").config();
+
 
 
 // enable cross-origin resource sharing to proxy api requests
