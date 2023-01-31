@@ -1,23 +1,23 @@
-const {
-  client
-} = require('./');
 const { createProduct } = require('./models/products');
 const {createUser} = require("./models/user")
 const {createReview} = require("./models/reviews")
+const {addProductToCart, getCartByUserId, deleteProductFromCart} = require("./models/cart")
+const client = require("./client");
+
 
 // drop tables in correct order
 async function dropTables() {
   console.log("Dropping All Tables...")
   try {
     await client.query(`
+  DROP TABLE IF EXISTS cart;
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS product_tags;
   DROP TABLE IF EXISTS tags;
-  DROP TABLE IF EXISTS cart_items;
   DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS users;
   `);
-  console.log("finishin dropTables")
+  console.log("finishing dropTables")
   } catch (error) {
     console.error("Error dropping tables!");
     throw error;
@@ -45,9 +45,9 @@ async function createTables() {
     quantity INTEGER NOT NULL,
     url TEXT NOT NULL
 );
-    CREATE TABLE cart_items (
-    id SERIAL PRIMARY KEY,
-    product_id INTEGER NOT NULL,
+    CREATE TABLE cart (
+    id INTEGER REFERENCES users(id),
+    "productId" INTEGER REFERENCES products(id),
     quantity INTEGER NOT NULL
 );
 
@@ -117,6 +117,22 @@ async function populateInitialData() {
     console.log("Here are the reviews", reviews)
     console.log("Finished creating initial reviews")
 
+    const cartStuffToCreate = [
+      {id: 1, productId: 1, quantity: 3},
+      {id: 2, productId: 4, quantity: 5},
+      {id: 1, productId: 6, quantity: 1},
+      {id: 2, productId: 5, quantity: 2},
+      {id: 2, productId: 3, quantity: 6},
+      {id: 3, productId: 7, quantity: 9},
+    ]
+    console.log("creating cart Stuff")
+    const cartStuff = await Promise.all(cartStuffToCreate.map(addProductToCart))
+    console.log("Here's the cart stuff", cartStuff)
+    const myCart = await getCartByUserId(2)
+    console.log("this is my Cart", myCart)
+    deleteProductFromCart(5)
+    const myNewCart = await getCartByUserId(2)
+    console.log("Here's the cart post-delete", myNewCart)
   } catch (error) {
     throw error;
   }
