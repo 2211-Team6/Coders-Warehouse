@@ -20,6 +20,7 @@ export const registerUser = async (username, password, email) => {
   }
 };
 export const login = async (username, password) => {
+  console.log("Here is your username and password", username, password)
   try {
     const verify = await fetch(`/api/users/login`, {
       method: "POST",
@@ -234,25 +235,29 @@ export async function deleteReview(id, token) {
 
   //************ CART ************//
 
-  export async function fetchCartProducts(cartProduct) {
+  export async function fetchCart(id) {
+    console.log("This is the id in fetchcart auth.js", id)
      try {
       const response = await fetch(
         "/api/cart",
         {
           headers: {
             "Content-Type": "application/json",
-            body: JSON.stringify(cartProduct),
+            body: JSON.stringify({id}),
           },
         }
       );
+      console.log("Here is the response in fetchcart auth.js", response)
       const result = await response.json();
+      console.log("Here is the result in fetchcart auth.js", result)
       return result;
     } catch (error) {
       // console.log(error);
     }
   };
 
-  export async function addCartProduct(product_id, quantity) {
+  export async function addCartProduct(id, productId, quantity) {
+    console.log("Here is the id, PId, Q in addCartProduct auth.js", id, productId, quantity)
     try {
       const response = await fetch(
         "/api/cart",
@@ -261,11 +266,17 @@ export async function deleteReview(id, token) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-            body: JSON.stringify(product_id, quantity),
           },
-        }
+            body: JSON.stringify({ 
+              id, 
+              productId, 
+              quantity,
+            }),
+          },
       );
+      console.log("Here is the response in addCartProduct", response)
       const newCartProduct = await response.json();
+      console.log("Here is the result in addCartProduct", result)
       return newCartProduct;
     } catch (error){
       
@@ -291,6 +302,7 @@ export async function deleteReview(id, token) {
 
 
   export async function removeCartProduct(cartProductId){
+    console.log("Here is the product Id in remove auth.js", cartProductId)
     try {
       const response = await fetch(`/api/cart/${cartProductId}`, {
         method: "DELETE",
@@ -301,6 +313,7 @@ export async function deleteReview(id, token) {
       } else {
         console.log(`Error: ${response.status}`);
       }
+      console.log("This is the response in removeCartProduct", response)
     } catch (error) {
       console.log(error);
     }

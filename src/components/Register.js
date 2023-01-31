@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { registerUser } from "../api/auth";
+import { useNavigate } from "react-router-dom"
 
 const Register = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate(); 
   return (
     <div>
       <form>
@@ -41,6 +43,7 @@ const Register = () => {
             e.preventDefault();
             console.log(username, password, email);
             registerUser(username, password, email);
+            navigate("/");
           }}
           type="button"
           name="register_button"

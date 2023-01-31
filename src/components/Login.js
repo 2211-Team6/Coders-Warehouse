@@ -7,7 +7,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); 
 
+  useEffect(() => {
+    const getMe = async () => {
+      const token = localStorage.getItem("token");
+      const data = await fetchMe(token);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, [token]);
+  
   const handleLogin = async () => {
+    console.log("This is username and password", username, password)
     const newUser = await login(username, password);
     console.log("This is the user", newUser)
     navigate("/")
