@@ -10,6 +10,8 @@ import Cart from "./Cart";
 import ReviewForm from "./ReviewForm";
 import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
+import SingleProduct from "./SingleProduct";
+import Products from "./Products";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -52,17 +54,16 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>Hello, {user?.username}!</h1>
-
 
       <Routes>
-        <Route path="/" element={<Home token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
+        <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
         <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
         <Route path="/checkout" element={<Checkout/>} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </div>
   );
