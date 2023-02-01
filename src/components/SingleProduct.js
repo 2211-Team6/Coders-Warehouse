@@ -2,10 +2,15 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ProductReview from './ProductReview';
 import ReviewForm from './ReviewForm';
+import "../style/SingleProduct.css"
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
   console.log("This is cart items in singleProduct", cartItems)
+
+  const handleSizeClick = (event) => {
+    $(event.target).toggleClass('focus').siblings().removeClass('focus');
+  }
   
     return (
       <div>
@@ -13,13 +18,16 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
           <div>
             <img src={singleProduct.url}/>
           </div>
-          <div>
-            <h3>{singleProduct.title}</h3>
-            <p>Description: {singleProduct.description}</p>
-            <p>Price: ${singleProduct.price/100}</p>
+          <div class="product">
+            <h1>{singleProduct.title}</h1>
+            <h2>Price: ${singleProduct.price/100}</h2>
+            <p class="description">Description: {singleProduct.description}</p>
             <p>Quantity: {singleProduct.quantity}</p>
-            <button onClick={() => addToCart(singleProduct)}> Add to Cart</button>
-            <button onClick={() => setSelectedProduct({})}>View all products</button>
+            <div class="buttons">
+            <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
+            <br></br>
+            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            </div>
           </div>
         </div>
         <br></br>

@@ -12,6 +12,8 @@ import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
 import SingleProduct from "./SingleProduct";
 import Products from "./Products";
+import Navbar from "./Navbar";
+
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -54,6 +56,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+        <Navbar/>
 
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
