@@ -20,18 +20,6 @@ const App = () => {
   const [reviews, setReviews] = useState([])
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
-
-  
-  useEffect(() => {
-    const getMe = async () => {
-      const token = localStorage.getItem("token");
-      const data = await fetchMe(token);
-      setUser(data);
-    };
-    if (token) {
-      getMe();
-    }
-  }, [token]);
   
   const addToCart = (singleProduct) => {
     const exists = cartItems.find((product) => product.id === singleProduct.id)
@@ -60,11 +48,11 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />
+        <Route path="/login" element={<Login setToken={setToken}/>} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} user={user}/>} />
         <Route path="/checkout" element={<Checkout/>} />
         <Route path="/products" element={<Products />} />
       </Routes>

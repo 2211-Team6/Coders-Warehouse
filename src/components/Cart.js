@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import { fetchCart, fetchMe, getProductById } from "../api/auth";
 import Checkout from "./Checkout";
 
 //a new start
 
-const Cart = ({cartItems, setCartItems, addToCart}) => {
+const Cart = ({cartItems, setCartItems, addToCart, user}) => {
   console.log("This is cart Items", cartItems)
   const itemsPrice = cartItems.reduce((a, c) => a + c.price/100 * c.quantity, 0);
   const taxPrice = itemsPrice * 0.053;
@@ -23,6 +24,18 @@ const Cart = ({cartItems, setCartItems, addToCart}) => {
       )
     }
   }
+console.log("This is the user in cart.js", user)
+
+useEffect(() => {
+    const myCart = async () => {
+      const id = user.id
+      console.log("this is the id", id)
+      const data = await fetchCart(id);
+      console.log("This is data in cart.js", data)
+      setCartItems(data);
+    };
+    myCart();
+  }, []);
 
   return (
     <div>

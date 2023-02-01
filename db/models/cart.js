@@ -39,7 +39,7 @@ async function getCartByUserId(id) {
       WHERE id = ${id}
     `
       );
-    //   console.log("Here's your cart", cart)
+      console.log("Here's your cart", cart)
       return cart;
     } catch (error) {
       console.error("error getting cart by Id");
@@ -62,6 +62,21 @@ async function getCartByUserId(id) {
       return cart;
     } catch (error) {
       console.error("error deleting product from cart");
+      throw error;
+    }
+  }
+
+  async function attachProductsToCart(productId) {
+    try {
+      const { rows: [products] } = await client.query(`
+      SELECT products.* FROM products
+      JOIN cart ON cart."productId" = products.id
+      WHERE "productId" = $1
+      `, [productId])
+      console.log("these are the attached products", products)
+      return products;
+    } catch (error) {
+      console.error("error attaching product to cart");
       throw error;
     }
   }
@@ -115,6 +130,7 @@ module.exports = {
     addProductToCart,
     getCartByUserId,
     deleteProductFromCart,
+    attachProductsToCart,
     // addCartItem,
     // updateCartItem,
     // deleteCartItem

@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import "../style/Login.css";
 
-const Login = () => {
+const Login = ({setToken}) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, []);
+  
   const handleLogin = async () => {
-    const newUser = await login(username, password);
-    console.log("This is the user", newUser);
-    navigate("/");
-  };
+    console.log("This is username and password", username, password)
+    const token = await login(username, password);
+    console.log("This is the user", token)
+    setToken(token)
+    localStorage.setItem("token", token)
+    navigate("/")
+  }
 
   return (
     <div>
