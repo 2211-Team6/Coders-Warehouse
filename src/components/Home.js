@@ -1,15 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
-import Checkout from "./Checkout";
-import cart from "./Cart";
 import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
 import { fetchMe } from "../api/auth";
 
 
-const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser}) => {
+const Home = ({ setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()

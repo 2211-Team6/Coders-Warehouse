@@ -3,11 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { addReview, getReviews, fetchMe } from "../api/auth";
 
 
-// Create a form for making a review
 const ReviewForm = ({singleProduct}) => {
     const { state } = useLocation();
     const id = state?.id;
-    // console.log(id)
     const [rating, setRating] = useState("")
     const [description, setDescription] = useState("")
     const [currentUser, setCurrentUser] = useState({})

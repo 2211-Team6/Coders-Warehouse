@@ -6,7 +6,6 @@ const client = require("./client");
 const {getAllUsers} = require("./users")
 
 
-// drop tables in correct order
 async function dropTables() {
   console.log("Dropping All Tables...")
   try {
@@ -26,7 +25,6 @@ async function dropTables() {
   console.log("All Tables Dropped!")
 }
 
-// create all tables, in the correct order
 async function createTables() {
   console.log("Starting to build tables...")
   try {

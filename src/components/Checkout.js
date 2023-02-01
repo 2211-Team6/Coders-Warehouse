@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {Link, useNavigate } from "react-router-dom";
-import { fetchCheckout, calculateTotalPrice } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { fetchCheckout } from "../api/auth";
 
 const Checkout = () => {
   const [name, setName] = useState("");

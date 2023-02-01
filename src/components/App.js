@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import { addCartProduct, fetchMe, updateCartProduct } from "../api/auth";
-import { Link } from "react-router-dom";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
@@ -10,7 +9,6 @@ import Cart from "./Cart";
 import ReviewForm from "./ReviewForm";
 import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
-import SingleProduct from "./SingleProduct";
 import Products from "./Products";
 
 const App = () => {

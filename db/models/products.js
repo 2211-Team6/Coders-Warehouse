@@ -71,7 +71,6 @@ async function updateProduct({id, ...fields}){
     }
 }
 
-// Probably needs to be updated based on where product is attached?
 async function deleteProduct(id){
     try {
         const { rows : { product }} = await client.query(

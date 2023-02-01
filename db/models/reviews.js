@@ -33,10 +33,6 @@ return rows;
 }
 
 
-async function getReviewsByTags() {
-
-}
-
 module.exports = {
     createReview,
     getAllReviews,

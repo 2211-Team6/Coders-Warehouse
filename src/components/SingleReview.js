@@ -1,12 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { deleteReview } from "../api/auth";
-import { checkUserLoggedIn } from "./Login";
 
-
-
-
-const SingleReview = ({review, setReviews, reviews, singleProduct}) => {
+const SingleReview = ({review, setReviews, reviews}) => {
     const handleDelete = (id) => {deleteReview(id, {setReviews, reviews})}
     return (
       <div className="single-review">
@@ -14,14 +9,6 @@ const SingleReview = ({review, setReviews, reviews, singleProduct}) => {
         <p>Description: {review.description}</p>
         <p>Creator: {review.username}</p>
         <b>Rating: {review.rating}</b>
-        {/* {review.username ? (
-          <button onClick={() => handleDelete(review._id)}>Delete</button>
-        ) : checkUserLoggedIn() ? (
-        <Link to="</review-form>" state={{ id: review._id }}>
-        <button type="button">Send Review</button>
-        </Link>) :
-        <div></div>
-        } */}
       </div>
     );
   };
