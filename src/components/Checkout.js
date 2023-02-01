@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Link, useNavigate } from "react-router-dom";
 import { fetchCheckout, calculateTotalPrice } from "../api/auth";
+import '../style/Checkout.css';
 
 const Checkout = () => {
   const [name, setName] = useState("");
