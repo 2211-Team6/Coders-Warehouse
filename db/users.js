@@ -2,6 +2,18 @@ const bcrypt = require("bcrypt");
 const SALT_COUNT = 10;
 const client = require("./client");
 
+async function getAllUsers(){
+  try {
+    const {rows} = await client.query(`
+    SELECT * FROM users;
+    `)
+    return rows
+  } catch (error) {
+    console.log("Error getting all users")
+    throw(error)
+  }
+}
+
 async function createUser({ username, password, email }) {
   try {
     const hashed = await hashPassword(password);
@@ -26,7 +38,9 @@ async function createUser({ username, password, email }) {
 
 async function getUser({ username, password }) {
   try {
+    console.log("this is username and password in db", username, password)
     const userData = await getUserByUsername(username);
+    console.log("this is the userData", userData)
     const hashedPassword = userData.password;
     let passwordsMatch = await bcrypt.compare(password, hashedPassword);
     if (passwordsMatch) {
@@ -98,4 +112,5 @@ module.exports = {
   getUser,
   getUserById,
   getUserByUsername,
+  getAllUsers,
 };
