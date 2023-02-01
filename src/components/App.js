@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import { fetchMe } from "../api/auth";
+import { addCartProduct, fetchMe, updateCartProduct } from "../api/auth";
 import { Link } from "react-router-dom";
 import "../style/App.css";
 import Register from "./Register.js";
@@ -19,7 +19,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
   
-  const addToCart = (singleProduct) => {
+  const addToCart = async (singleProduct) => {
     const exists = cartItems.find((product) => product.id === singleProduct.id)
     if(singleProduct.quantity > 0){
       console.log("Here's the quantity", singleProduct.quantity)
@@ -27,17 +27,39 @@ const App = () => {
         setCartItems(
           cartItems.map((product) =>  
           product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
-        )
-        );
+          )
+          );
+          const id = user.id
+          const productId = singleProduct.id
+          const quantity = exists.quantity + 1
+          console.log("This is update fields line 35", id, productId, quantity)
+          const updatedProduct = await updateCartProduct(id, productId, quantity)
+          console.log("This is the added product", updatedProduct)
         singleProduct.quantity -=1;
       } else {
         setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
         singleProduct.quantity -=1;
+        const id = user.id
+          const productId = singleProduct.id
+          const quantity = 1
+          const addedProduct = await addCartProduct(id, productId, quantity)
+          console.log("Here's the added Product", addedProduct)
       }
     } else{
       alert("Out of stock")
     }
     };
+
+    useEffect(() => {
+      const getMe = async () => {
+        const token = localStorage.getItem("token");
+        const data = await fetchMe(token);
+        setUser(data);
+      };
+      if (token) {
+        getMe();
+      }
+    }, [token]);
 
 
   return (
