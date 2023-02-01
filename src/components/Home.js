@@ -13,17 +13,6 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()
-  
-  useEffect(() => {
-    const getMe = async () => {
-      const token = localStorage.getItem("token");
-      const data = await fetchMe(token);
-      setUser(data);
-    };
-    if (token) {
-      getMe();
-    }
-  }, [token]);
 
   return (
     <div style={{display: "flex", flexDirection: "column"}}>

@@ -73,13 +73,30 @@ async function getCartByUserId(id) {
       JOIN cart ON cart."productId" = products.id
       WHERE "productId" = $1
       `, [productId])
-      console.log("these are the attached products", products)
       return products;
     } catch (error) {
       console.error("error attaching product to cart");
       throw error;
     }
   }
+
+  async function updateCartQuantity(id, productId, quantity){
+    console.log("Hit the db function")
+    console.log("here are the params", id, productId, quantity)
+        try {
+            const { rows } = await client.query(`
+            UPDATE cart
+            SET quantity = $3
+            WHERE id = $1 AND "productId" = $2
+            `, [ id, productId, quantity ])
+            console.log("this is rows", rows)
+            return rows;
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
+    
 
 
 // const addCartItem = async (product_id, quantity) => {
@@ -126,12 +143,10 @@ async function getCartByUserId(id) {
 // }
 
 module.exports = {
-    // getCartItems,
     addProductToCart,
     getCartByUserId,
     deleteProductFromCart,
     attachProductsToCart,
-    // addCartItem,
-    // updateCartItem,
-    // deleteCartItem
+    updateCartQuantity,
+   
 }

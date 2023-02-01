@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
-import { fetchCart, fetchMe, getProductById } from "../api/auth";
+import { fetchCart, fetchMe, getProductById, removeCartProduct, updateCartProduct } from "../api/auth";
 import Checkout from "./Checkout";
 
 //a new start
 
 const Cart = ({cartItems, setCartItems, addToCart, user}) => {
   console.log("This is cart Items", cartItems)
+  // const [quantity, setQuantity] = useState([])
   const itemsPrice = cartItems.reduce((a, c) => a + c.price/100 * c.quantity, 0);
   const taxPrice = itemsPrice * 0.053;
   const shippingPrice = itemsPrice > 35 ? 0 : 10;
   const totalPrice = itemsPrice + taxPrice + shippingPrice
   const navigate = useNavigate();
 
-  const removeFromCart = (item) => {
+  const removeFromCart = async (item) => {
     const exists = cartItems.find((product) => product.id === item.id)
     if(exists.quantity === 1){
       setCartItems(cartItems.filter((product) => product.id !== item.id))
+      const removedItem = await removeCartProduct(item.id)
+      console.log("Here's the removed item", removedItem)
     }else {
       setCartItems(
         cartItems.map((product) => 
         product.id === item.id ? { ...exists, quantity: exists.quantity -1 } : product)
       )
+      const id = user.id
+      const productId = item.id
+      const quantity = item.quantity - 1
+      console.log("Here's the id, productId and quantity", id, productId, quantity)
+      const updatedItem = await updateCartProduct(id, productId, quantity)
+      console.log("Here's the updated item", updatedItem)
     }
   }
 console.log("This is the user in cart.js", user)
@@ -32,11 +41,20 @@ useEffect(() => {
       console.log("this is the id", id)
       const data = await fetchCart(id);
       console.log("This is data in cart.js", data)
-      setCartItems(data);
+      console.log("this is data.cartProducts", data.cartProducts)
+      console.log("Andddd data.cartQuantities", data.cartQuantities)
+      for(let i = 0; i < data.cartQuantities.length; i++){
+        data.cartProducts[i].quantity = data.cartQuantities[i]
+      }
+      // console.log("quantity at 0", data.cartProducts[1].quantity)
+      // data.cartProducts[1].quantity = data.cartQuantities[1]
+      console.log("this is data.cartProducts NOW", data.cartProducts)
+      setCartItems(data.cartProducts);
+      // setQuantity(data.cartQuantities)
     };
     myCart();
-  }, []);
-
+  }, [user]);
+  
   return (
     <div>
       <NavLink to="/">
@@ -55,7 +73,10 @@ useEffect(() => {
             <button onClick={() => removeFromCart(item)}>-</button>
           </div>
           <div>
-            {item.quantity} x ${item.price/100}
+            {/* {for(let i = 0; i < cartItems.length; i++){
+              item.quantity = quantity[i]
+            }} */}
+              {item.quantity} x ${item.price/100}
           </div>
         </div>
       ))}
