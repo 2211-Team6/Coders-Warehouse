@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
@@ -6,13 +6,14 @@ import Checkout from "./Checkout";
 import cart from "./Cart";
 import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
+import { fetchMe } from "../api/auth";
 
 
-const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart}) => {
+const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()
-  
+
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
        <nav style={{display: "block"}}>
@@ -29,9 +30,7 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         <br/>
       {checkUserLoggedIn() ?
         (<div>
-            {/* <b className="welcome">Welcome, {username}!</b>
-            <br/><hr/> */}
-            <NavLink className="navlink" to="/">
+            <NavLink to="/">
           Home
         </NavLink>
         <br></br>
@@ -64,7 +63,10 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       </div>)}
       </header>
        <nav>
+       <h1>Hello, {user?.username}!</h1>
+       <br></br>
       {selectedProduct.id ? (
+       <div>
         <SingleProduct 
       singleProduct={selectedProduct} 
       setSelectedProduct={setSelectedProduct} 
@@ -73,7 +75,9 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       addToCart={addToCart}
       reviews={reviews} 
       setReviews={setReviews}/> 
+      </div>
       ) : (
+        <div>
         <Products 
         selectedProduct={selectedProduct} 
         setSelectedProduct={setSelectedProduct} 
@@ -81,7 +85,9 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         setReviews={setReviews} 
         cartItems={cartItems}
         setCartItems={setCartItems}
-        addToCart={addToCart} />)}
+        
+        addToCart={addToCart} />
+        </div>)}
         </nav>
         </nav>
     </div>

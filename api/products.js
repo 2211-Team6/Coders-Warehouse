@@ -23,6 +23,7 @@ productsRouter.get("/", async (req, res, next) => {
 
   // GET /api/products/:productId
 productsRouter.get("/:id", async (req, res, next) => {
+  console.log("I actually work")
   const { id } = req.params
   try {
       const product = await getProductById(id) 
