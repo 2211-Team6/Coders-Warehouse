@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById, getReviewsByProductId } from "../api/auth";
 
 
-const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart }) => {
-  const [products, setProducts] = useState([]);
+const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts }) => {
   const [searchInput, setSearchInput] = useState("");
   
   console.log("This is cart items in products", cartItems)

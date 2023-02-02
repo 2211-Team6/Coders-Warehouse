@@ -7,13 +7,15 @@ import cart from "./Cart";
 import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
 import { fetchMe } from "../api/auth";
+import Admin from "./Admin";
 
 
-const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser}) => {
+const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser, products, setProducts}) => {
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()
-
+ 
+  
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
        <nav style={{display: "block"}}>
@@ -28,7 +30,8 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         </ul>
         </nav>
         <br/>
-      {checkUserLoggedIn() ?
+        
+      {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
         (<div>
             <NavLink to="/">
           Home
@@ -85,8 +88,9 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         setReviews={setReviews} 
         cartItems={cartItems}
         setCartItems={setCartItems}
-        
-        addToCart={addToCart} />
+        addToCart={addToCart} 
+        products={products}
+        setProducts={setProducts}/>
         </div>)}
         </nav>
         </nav>
