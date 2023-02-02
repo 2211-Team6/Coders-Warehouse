@@ -24,6 +24,11 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
             <Link to="/" className="logo">
             <div id="Buyitup">Buy It Up!</div>
         </Link>
+        <nav class="main-nav">
+        <ul class="horizontal nav-list full-width">
+        <li><a href=""><i class="material-icons">shopping_cart</i></a></li>
+        </ul>
+        </nav>
         <br/>
         
       {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
