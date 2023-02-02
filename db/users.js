@@ -3,11 +3,13 @@ const SALT_COUNT = 10;
 const client = require("./client");
 
 async function getAllUsers(){
+  console.log("made it to the database")
   try {
-    const {rows} = await client.query(`
+    const {rows: users} = await client.query(`
     SELECT * FROM users;
     `)
-    return rows
+    console.log("here are the rows", users)
+    return users
   } catch (error) {
     console.log("Error getting all users")
     throw(error)

@@ -12,13 +12,18 @@ import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
 import SingleProduct from "./SingleProduct";
 import Products from "./Products";
+import Admin from "./Admin";
+import AllUsers from "./Admin_Functions/AllUsers";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [reviews, setReviews] = useState([])
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
+  const [products, setProducts] = useState([]);
   
+  console.log("Here's the user in app.js", user)
+
   const addToCart = async (singleProduct) => {
     const exists = cartItems.find((product) => product.id === singleProduct.id)
     if(singleProduct.quantity > 0){
@@ -64,9 +69,10 @@ const App = () => {
 
   return (
     <div className="app-container">
+      {/* <Admin /> */}
 
       <Routes>
-        <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
+        <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />
         <Route path="/login" element={<Login setToken={setToken}/>} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
@@ -74,6 +80,8 @@ const App = () => {
         <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} user={user}/>} />
         <Route path="/checkout" element={<Checkout/>} />
         <Route path="/products" element={<Products />} />
+        <Route path="/admin" element={<Admin token={token} setToken={setToken} products={products} setProducts={setProducts} user={user} setUser={setUser}/>} />
+        <Route path="/allUsers" element={<AllUsers user={user}/>} />
       </Routes>
     </div>
   );
