@@ -99,78 +99,7 @@ export const getAllProducts = async () => {
   };
 
 
-export const createProduct = async (
-  token,
-  title,
-  description,
-  price,
-  quantity
-) => {
-  try {
-    const response = await fetch(`${BASE_URL}/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        price,
-        quantity,
-      }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const updateProduct = async (
-  token,
-  title,
-  description,
-  price,
-  quantity,
-  id
-) => {
-  try {
-    const response = await fetch(`${BASE_URL}/products/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        price,
-        quantity,
-      }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const deleteProduct = async (token, productId) => {
-  try {
-    const response = await fetch(`${BASE_URL}/products/${productId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 //************ REVIEWS ************//
 
@@ -358,7 +287,7 @@ export async function deleteReview(id, token) {
   export async function getAllUsers(user) {
     if(user.isAdmin === true){
       try {
-        const response = await fetch("/api/admin", {
+        const response = await fetch(`${BASE_URL}/admin`, {
           header: {
             "Content-Type": "application/json",
           },
@@ -388,7 +317,7 @@ export async function deleteReview(id, token) {
     if(user.isAdmin === true){
       try {
         console.log("attempting to make a product")
-        const response = await fetch("/api/admin/newProduct", {
+        const response = await fetch(`${BASE_URL}/admin/newProduct`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -425,7 +354,7 @@ export async function deleteReview(id, token) {
   ) => {
     console.log("Hit the auth.js")
     try {
-      const response = await fetch(`/api/admin/${id}`, {
+      const response = await fetch(`${BASE_URL}/admin/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -450,7 +379,7 @@ export async function deleteReview(id, token) {
   
   export const deleteProduct = async (productId) => {
     try {
-      const response = await fetch(`/api/admin/${productId}`, {
+      const response = await fetch(`${BASE_URL}/admin/${productId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
