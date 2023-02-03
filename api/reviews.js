@@ -27,11 +27,10 @@ router.get("/", async (req, res, next) => {
   });
 
   
-// POST /api/reviews
+// POST /api/reviews/reviews-form
 router.post("/reviews-form", async (req, res, next) => {
     const { userName, productId, rating, description } = req.body;
     const reviewsData = {};
-    console.log("trying to make a review")
     try {
       reviewsData.userName = userName;
       reviewsData.productId = productId;
@@ -42,14 +41,12 @@ router.post("/reviews-form", async (req, res, next) => {
         req.body.id = req.user.id;
       }
       const review = await createReview(reviewsData);
-      console.log("Here is the review and data", review, reviewsData)
       res.send(review);
     } catch ({ name, message }) {
       next({ name, message });
     }
   });
 
-  // POST /api/reviews-form
 
 
 

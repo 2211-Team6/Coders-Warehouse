@@ -9,7 +9,7 @@ const {
 } = require("../db/users");
 
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET = "do not tell" } = process.env;
+const { JWT_SECRET } = process.env;
 
 usersRouter.post("/register", async (req, res, next) => {
   const { username, password, email } = req.body;
@@ -23,7 +23,7 @@ usersRouter.post("/register", async (req, res, next) => {
         name: "UserExistsError",
         message: "A user by that username already exists",
       });
-    } else if (password.length < 8) {
+    }if (password.length < 8) {
       res.status(401);
       next({
         name: "PasswordLengthError",
@@ -50,9 +50,9 @@ usersRouter.post("/register", async (req, res, next) => {
     );
     console.log("yo! I am a token!", token);
     res.send({
-      user,
+      user: user,
       message: "thank you for signing up",
-      token,
+      token: token,
     });
   } catch (error) {
     console.error(error);
@@ -61,19 +61,21 @@ usersRouter.post("/register", async (req, res, next) => {
 });
 
 usersRouter.post("/login", async (req, res, next) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    next({
+      name: "MissingCredentialsError",
+      message: "Please supply both a username and password",
+    });
+  }
+
   try {
-    const { username, password } = req.body;
-    const user = await getUser({ username, password });
-    if (user) {
+    console.log("Here is the username and password in API", username, password)
+    const user = await getUserByUsername( username );
+    if (user && user.password == password) {
       const token = jwt.sign(
-        {
-          id: user.id,
-          username,
-        },
-        JWT_SECRET,
-        {
-          expiresIn: "1w",
-        }
+        user, JWT_SECRET
       );
 
       return res.send({ message: "you're logged in!", token, user });
@@ -93,7 +95,6 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.get("/me", async (req, res, next) => {
   try {
-    console.log("hit the backend API");
     res.send(req.user)
   } catch (error) {
     console.log(error);

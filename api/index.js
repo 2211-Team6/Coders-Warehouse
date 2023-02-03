@@ -3,7 +3,7 @@ const express = require("express");
 const apiRouter = express.Router();
 const { getUserById } = require("../db/users");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET = "do not tell" } = process.env;
+const { JWT_SECRET } = process.env;
 
 
 // Authorization
@@ -71,6 +71,9 @@ apiRouter.use("/products", productsRouter);
 
 //ROUTER: /api/cart
 const cartRouter = require("./cart");
-apiRouter.use("./cart", cartRouter);
+apiRouter.use("/cart", cartRouter);
+
+const adminRouter = require("./admin");
+apiRouter.use("/admin", adminRouter)
 
 module.exports = apiRouter;

@@ -1,10 +1,33 @@
-import React, { useState } from "react";
-import { registerUser } from "../api/auth";
+import React, { useState, useEffect } from "react";
+import { registerUser, fetchMe } from "../api/auth";
+import { useNavigate } from "react-router-dom"
 
-const Register = () => {
+const Register = ({setUser, setToken}) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const getMe = async () => {
+      const data = await fetchMe(token);
+      setUser(data);
+    };
+    if (token) {
+      getMe();
+    }
+  }, []);
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    console.log(username, password, email);
+    const token = await registerUser(username, password, email);
+    setToken(token);
+    localStorage.setItem("token", token);
+    navigate("/");
+  }
+
   return (
     <div>
       <form>
@@ -37,11 +60,8 @@ const Register = () => {
           onChange={(event) => setEmail(event.target.value)}
         ></input>
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(username, password, email);
-            registerUser(username, password, email);
-          }}
+          onClick={(e) => handleClick(e)
+          }
           type="button"
           name="register_button"
           value="Register"
