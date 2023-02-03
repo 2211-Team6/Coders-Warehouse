@@ -22,7 +22,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             <h1>{singleProduct.title}</h1>
             <h2>Price: ${singleProduct.price/100}</h2>
             <p class="description">Description: {singleProduct.description}</p>
-            <p>Quantity: {singleProduct.quantity}</p>
+            <p class='quantity'>Quantity: {singleProduct.quantity}</p>
             <div class="buttons">
             <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
             <br></br>

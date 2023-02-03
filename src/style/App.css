@@ -1,35 +1,54 @@
 .app-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  background: linear-gradient(to top, #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%);
 }
 
 .app-container h1 {
-  color: var(--green);
+  color: #030f0786;
   padding: 1rem;
-  display: flex; 
+  display: flex;
+  font-family: 'Art Deco', sans-serif;
+  text-shadow: 1px 1px #ccc;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row !important;
+  width: 100%;
+  font-size: 15px;
 }
 
 img {
   width: 300px; 
   height: 300px; 
+  border-radius: 50%;
+  box-shadow: 1px 1px #ccc;
 }
 
 .productImg{
   width: 200px !important; 
   height: 200px !important; 
+  border-radius: 50%;
+  box-shadow: 1px 1px #ccc;
 }
 
 .single-product-container{
   display: flex; 
   flex-direction: row;
-  left: -500px; 
+  margin-left: 50px;
   gap: 100px; 
 }
 
 .single-review{
   align-self: flex-end;
+  font-style: italic;
+  font-family: 'Art Deco', sans-serif;
 }

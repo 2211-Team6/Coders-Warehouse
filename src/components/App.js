@@ -12,6 +12,9 @@ import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
 import SingleProduct from "./SingleProduct";
 import Products from "./Products";
+import Navbar from "./Navbar";
+import "../style/Navbar.css"
+
 
 
 const App = () => {
@@ -51,6 +54,16 @@ const App = () => {
     }
     };
 
+
+    const checkUserLoggedIn = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        return true;
+      }
+      return false;
+    };
+    
+
     useEffect(() => {
       const getMe = async () => {
         const token = localStorage.getItem("token");
@@ -65,7 +78,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-
+      <Navbar checkUserLoggedIn={checkUserLoggedIn} setToken={setToken} className="navbar" />
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />

@@ -16,20 +16,25 @@
 }
 
 .single-product-container {
+  top: -10%;
   position: relative;
   margin: auto;
   overflow: hidden;
-  width: 520px;
-  height: 350px;
+  width: 560px;
+  height: 515px;
   background: white;
   box-shadow: 5px 5px 15px rgba(#ff69b4, 0.5);
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 p {
   font-size: 1em;
   color: #000000;
   letter-spacing: 1px;
+}
+
+.quantity {
+  margin-bottom: -10px;
 }
 
 h1 {
@@ -80,9 +85,9 @@ img {
     width: 40%;
     height: auto;
     position: absolute;
-    top: 10%;
+    /* top: 10%; */
     left: 60%;
-    padding: 10px;
+    /* padding: 10px; */
     box-sizing: border-box;
   }
   

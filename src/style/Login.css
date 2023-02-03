@@ -4,13 +4,13 @@
     box-sizing: border-box;
   }
   
-  /* body {
+  body {
     background-color: #212121;
     color: #fff;
     font-family: monospace, serif;
     letter-spacing: 0.05em;
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 37%, rgba(0,212,255,1) 94%);
-  } */
+  }
   
   h1 {
     font-size: 23px;
@@ -45,16 +45,19 @@
   
   .form .btn {
     width: 100%;
-    display: block;
+    display: table-cell;
     padding: 14px 16px;
     background: transparent;
     outline: none;
     border: 0;
-    color: #fff;
+    color: #640404;
     letter-spacing: 0.1em;
     font-weight: bold;
     font-family: monospace;
     font-size: 16px;
+    vertical-align: middle;
+    text-align: center;
+
   }
   
   .block-cube {
@@ -159,4 +162,5 @@
     .block-cube-hover:focus,
     .block-cube-hover:hover .bg .bg-inner {
     top: 100%;
+    background: black;
     }

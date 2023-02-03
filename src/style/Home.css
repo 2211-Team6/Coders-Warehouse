@@ -1,4 +1,4 @@
-.navlink {
+/* .navlink {
     border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -23,7 +23,7 @@
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.282);
     padding: 20px;
     width: 75vw;
-}
+} */

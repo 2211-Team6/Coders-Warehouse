@@ -7,6 +7,7 @@ import cart from "./Cart";
 import "../style/Home.css";
 import { checkUserLoggedIn } from "./Login";
 import { fetchMe } from "../api/auth";
+// import Navbar from "./Navbar";
 
 const Home = ({
   token,
@@ -25,38 +26,6 @@ const Home = ({
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-    <nav style={{ display: "block" }}>
-      <header className="header">
-        <Link to="/" className="logo">
-          <div id="Buyitup">Buy It Up!</div>
-        </Link>
-        {checkUserLoggedIn() ? (
-          <div>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/reviews">Product Reviews</NavLink>
-            <NavLink to="/cart">Checkout</NavLink>
-            <button
-              type="button"
-              className="header-button logout"
-              onClick={() => {
-                localStorage.removeItem("token");
-                setToken(null);
-                navigate("/login");
-              }}
-            >
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
-            <NavLink to="/reviews">Product Reviews</NavLink>
-            <NavLink to="/cart">Checkout</NavLink>
-          </div>
-        )}
-      </header>
-      <nav>
         <h1>Hello, {user?.username}!</h1>
         {selectedProduct.id ? (
           <SingleProduct
@@ -79,8 +48,7 @@ const Home = ({
             addToCart={addToCart}
           />
         )}
-      </nav>
-    </nav>
+
   </div>
   );
 };

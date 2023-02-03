@@ -91,7 +91,6 @@ const Login = ({setToken}) => {
           <div class='text'>
       Login
     </div>
-          Login
         </button>
       </form>
     </div>
