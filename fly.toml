@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [deploy]
-  release_command = "npm run seed"
+  release_command = "npm run db:build"
 
 [env]
 PORT = 8080
