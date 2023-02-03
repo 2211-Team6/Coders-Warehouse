@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import { addCartProduct, fetchMe, updateCartProduct } from "../api/auth";
 import "../style/App.css";
@@ -19,7 +19,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
   const [products, setProducts] = useState([]);
-  
+  const navigate = useNavigate(); 
   console.log("Here's the user in app.js", user)
 
   const addToCart = async (singleProduct) => {
@@ -63,6 +63,7 @@ const App = () => {
         getMe();
       }
     }, [token]);
+
 
 
   return (

@@ -56,9 +56,6 @@ async function updateProduct(id, ...fields){
   if (setString.length === 0) {
     return;
   }
-  console.log("Made it to the db for updated. Here's the fields", fields)
-  console.log("object.keys and .values", Object.keys(fields[0]), Object.values(fields[0]))
-  console.log("here's the setString", setString)
     try {
         const { rows : [ product ]} = await client.query(
             `
@@ -69,7 +66,6 @@ async function updateProduct(id, ...fields){
             `, 
             Object.values(fields[0])
         );
-        console.log("here is the updated product", product)
         return product;
     } catch (error) {
         console.log("Error updating Product")
@@ -79,14 +75,12 @@ async function updateProduct(id, ...fields){
 
 async function deleteProduct(id){
     try {
-        console.log("Hit the DB for delete")
         const { rows : { product }} = await client.query(
             `
             DELETE FROM products
             WHERE id = $1
             `, [id]
         );
-        console.log("Going, going, gone!")
         return product;
     } catch (error) {
         console.log("Error deleting Product")
