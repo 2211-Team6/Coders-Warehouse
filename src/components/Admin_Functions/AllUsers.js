@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { getAllUsers } from '../../api/auth';
+import { useNavigate } from 'react-router-dom'
 
 const AllUsers = ({user}) => {
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
 useEffect(() => {
     const getTheUsers = async () => {
@@ -17,6 +19,7 @@ useEffect(() => {
 console.log("this is users", users)
     return (
         <div>
+        <button onClick={()=> navigate("/")}>Home</button>
             <h1>Here are the users!</h1>
             {users.map((user) => (
                 <div key={user.id}>
