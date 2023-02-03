@@ -304,9 +304,7 @@ export async function deleteReview(id, token) {
             "Content-Type": "application/json",
           },
         });
-        console.log("here is the response in auth.js for get all users", response)
         const result = await response.json();
-        console.log("here is the result in auth.js for get all users", result)
         return result
       }catch (error) {
         console.log(error);
@@ -328,7 +326,6 @@ export async function deleteReview(id, token) {
     console.log("hit the auth js call")
     if(user.isAdmin === true){
       try {
-        console.log("attempting to make a product")
         const response = await fetch("/api/admin/newProduct", {
           method: "POST",
           headers: {
@@ -343,9 +340,7 @@ export async function deleteReview(id, token) {
             url,
           }),
         });
-        console.log("Here's the response", response)
         const result = await response.json();
-        console.log("Here's the result", result)
         return result;
       } catch (error) {
         console.log(error);
@@ -380,9 +375,7 @@ export async function deleteReview(id, token) {
           url,
         }),
       });
-      console.log("Here is the response", response)
       const result = await response.json();
-      console.log("Here is the result", result)
       return result;
     } catch (error) {
       console.log(error);

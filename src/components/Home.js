@@ -61,7 +61,7 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       <br></br>
       <NavLink to="/cart"> Checkout here!</NavLink>
       <br></br>
-      <NavLink to="/checkout"></NavLink>
+      <NavLink to="/checkout" ></NavLink>
       <br></br>
       </div>)}
       </header>
