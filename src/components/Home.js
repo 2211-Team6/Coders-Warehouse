@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 import Products from "./Products";
 import SingleProduct from "./SingleProduct";
-import Checkout from "./Checkout";
-import cart from "./Cart";
 import "../style/Home.css"
 import { checkUserLoggedIn } from "./Login";
-import { fetchMe } from "../api/auth";
 import Admin from "./Admin";
 
 
@@ -49,6 +46,7 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
          location.pathname = "/";
          navigate("/login");
        }}>Logout</button> 
+        <h1>Hello, {user?.username}!</h1>
        </div>) : (
        <div>
       <NavLink to="/login">Log in!</NavLink>
@@ -63,10 +61,10 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       <br></br>
       <NavLink to="/checkout"></NavLink>
       <br></br>
+       <h1>Hello, Stranger!</h1>
       </div>)}
       </header>
        <nav>
-       <h1>Hello, {user?.username}!</h1>
        <br></br>
       {selectedProduct.id ? (
        <div>

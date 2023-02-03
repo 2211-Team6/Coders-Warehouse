@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import { addCartProduct, fetchMe, updateCartProduct } from "../api/auth";
-import { Link } from "react-router-dom";
 import "../style/App.css";
 import Register from "./Register.js";
 import Login from "./Login.js";
@@ -10,7 +9,6 @@ import Cart from "./Cart";
 import ReviewForm from "./ReviewForm";
 import AllReviews from "./Reviews";
 import Checkout from "./Checkout";
-import SingleProduct from "./SingleProduct";
 import Products from "./Products";
 import Admin from "./Admin";
 import AllUsers from "./Admin_Functions/AllUsers";
@@ -70,7 +68,6 @@ const App = () => {
   return (
     <div className="app-container">
       <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
-      <h1>Hello, {user?.username}!</h1>
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />
