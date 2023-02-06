@@ -16,7 +16,6 @@ export const registerUser = async (username, password, email) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
     return result.token;
   } catch (error) {
     console.error(error);
@@ -36,10 +35,12 @@ export const login = async (username, password) => {
         password,
       } }),
     });
+    console.log("Here is result", verify)
     const data = await verify.json();
-    // right here put the returned data.token into localStorage so that we can use it across our app.
+    console.log("Here is data", data)
     localStorage.setItem("token", data.token);
     localStorage.setItem("username", data.user.username);
+    console.log("Here is data.token", data.token)
     return data.token;
   } catch (error) {
     console.error(error);
@@ -179,7 +180,7 @@ throw error;
     console.log("This is the id in fetchcart auth.js", id)
      try {
       const response = await fetch(
-        `${BASE_URL}/cart`,
+        `${BASE_URL}/cart/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -218,7 +219,7 @@ throw error;
       );
       console.log("Here is the response in addCartProduct", response)
       const newCartProduct = await response.json();
-      console.log("Here is the result in addCartProduct", result)
+      console.log("Here is the result in addCartProduct", newCartProduct)
       return newCartProduct;
     } catch (error){
       console.log(error);
@@ -228,7 +229,7 @@ throw error;
   export async function updateCartProduct(id, productId, quantity){
     console.log("trying to call the api for updatedCartProduct")
     try {
-      const response = await fetch(`${BASE_URL}/cart/${cartProduct.id}`, {
+      const response = await fetch(`${BASE_URL}/cart/patch`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json",
        },
@@ -251,7 +252,7 @@ throw error;
   export async function removeCartProduct(productId){
     console.log("Here is the product Id in remove auth.js", productId)
     try {
-      const response = await fetch(`${BASE_URL}/cart/${cartProductId}`, {
+      const response = await fetch(`${BASE_URL}/cart/${productId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });

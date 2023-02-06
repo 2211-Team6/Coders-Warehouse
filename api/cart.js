@@ -18,7 +18,7 @@ cartRouter.get("/:id", async (req, res, next) => {
 })
 
 // POST /api/cart
-    cartRouter.post("/add", async (req, res, next) => {
+    cartRouter.post("/", async (req, res, next) => {
         try {
             const {id, productId, quantity} = req.body;
             const cartProduct = await addProductToCart({id, productId, quantity})

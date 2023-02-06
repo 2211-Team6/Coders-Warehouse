@@ -62,3 +62,12 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
 };
 
 export default SingleProduct;
+
+{/* <div>
+            <h3>{singleProduct.title}</h3>
+            <p>Description: {singleProduct.description}</p>
+            <p>Price: ${singleProduct.price}</p>
+            <p>Quantity: {singleProduct.quantity}</p>
+            <button onClick={() => addToCart(singleProduct)}> Add to Cart</button>
+            <button onClick={() => setSelectedProduct({})}>View all products</button>
+          </div> */}

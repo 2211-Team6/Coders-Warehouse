@@ -25,7 +25,6 @@ const App = () => {
   const [cartItems, setCartItems] = useState([])
   const [products, setProducts] = useState([]);
   const navigate = useNavigate(); 
-  console.log("Here's the user in app.js", user)
 
   const addToCart = async (singleProduct) => {
     const exists = cartItems.find((product) => product.id === singleProduct.id)
