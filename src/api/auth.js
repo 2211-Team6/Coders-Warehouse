@@ -1,10 +1,10 @@
-const BASE_URL = "coders-warehouse-6.fly.dev/api";
+const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
 // const BASE_URL = "/api"
 
 export const registerUser = async (username, password, email) => {
   try {
     console.log(username, password, email);
-    const response = await fetch(`/api/users/register`, {
+    const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -139,6 +139,7 @@ export const getReviews = async () => {
 };
 
 export async function deleteReview(id, token) {
+  try{
   const response = await fetch(`${BASE_URL}/reviews/${id}`, {
     method: "DELETE",
     headers: {
@@ -147,6 +148,9 @@ export async function deleteReview(id, token) {
     },
   });
   return await response.json();
+} catch (error) {
+throw error;
+};
 }
 
  export const getReviewsByProductId = async (id) => {

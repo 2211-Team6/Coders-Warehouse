@@ -5,16 +5,16 @@ import { getAllProducts, getProductById, getReviewsByProductId } from "../api/au
 const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts }) => {
   const [searchInput, setSearchInput] = useState("");
   
-  console.log("This is cart items in products", cartItems)
+  // console.log("This is cart items in products", cartItems)
 
 
-  useEffect(() => {
-    const productsArr = async () => {
-      const data = await getAllProducts();
-      setProducts(data);
-    };
-    productsArr();
-  }, []);
+  // useEffect(() => {
+  //   const productsArr = async () => {
+  //     const data = await getAllProducts();
+  //     setProducts(data);
+  //   };
+  //   productsArr();
+  // }, []);
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 

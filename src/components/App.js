@@ -12,6 +12,7 @@ import Checkout from "./Checkout";
 import Products from "./Products";
 import Admin from "./Admin";
 import AllUsers from "./Admin_Functions/AllUsers";
+import { getAllProducts } from "../api/auth";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -64,6 +65,14 @@ const App = () => {
       }
     }, [token]);
 
+    useEffect(() => {
+      const productsArr = async () => {
+        const data = await getAllProducts();
+        setProducts(data);
+      };
+      productsArr();
+    }, []);
+
 
 
   return (
@@ -77,7 +86,7 @@ const App = () => {
         <Route path="/reviews" element={<AllReviews reviews={reviews} setReviews={setReviews}/>} />
         <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} user={user}/>} />
         <Route path="/checkout" element={<Checkout/>} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products products={products} setProducts={setProducts}/>} />
         <Route path="/admin" element={<Admin token={token} setToken={setToken} products={products} setProducts={setProducts} user={user} setUser={setUser}/>} />
         <Route path="/allUsers" element={<AllUsers user={user}/>} />
       </Routes>
