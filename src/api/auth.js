@@ -1,5 +1,5 @@
-const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
-// const BASE_URL = "/api"
+// const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
+const BASE_URL = "/api"
 
 export const registerUser = async (username, password, email) => {
   try {
@@ -30,10 +30,10 @@ export const login = async (username, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({  user: {
+      body: JSON.stringify({ 
         username,
         password,
-      } }),
+       }),
     });
     console.log("Here is result", verify)
     const data = await verify.json();
