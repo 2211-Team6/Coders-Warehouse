@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById, getReviewsByProductId } from "../api/auth";
-import './Products.css'
+import "../style/Products.css"
 
 
 const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts }) => {

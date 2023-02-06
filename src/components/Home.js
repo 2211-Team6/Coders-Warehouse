@@ -19,14 +19,14 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
        <nav style={{display: "block"}}>
 
     <header className="header">
-            <Link to="/" className="logo">
+            {/* <Link to="/" className="logo">
             <div id="Buyitup">Buy It Up!</div>
         </Link>
         <nav className="main-nav">
         <ul className="horizontal nav-list full-width">
         <li><a href=""><i className="material-icons">shopping_cart</i></a></li>
         </ul>
-        </nav>
+        </nav> */}
         <br/>
         
       {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :

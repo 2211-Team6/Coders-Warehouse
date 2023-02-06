@@ -37,9 +37,9 @@ useEffect(() => {
       const id = user.id
       console.log("this is the id", id)
       const data = await fetchCart(id);
-      console.log("This is data in cart.js", data)
-      console.log("this is data.cartProducts", data.cartProducts)
-      console.log("Andddd data.cartQuantities", data.cartQuantities)
+      // console.log("This is data in cart.js", data)
+      // console.log("this is data.cartProducts", data.cartProducts)
+      // console.log("Andddd data.cartQuantities", data.cartQuantities)
       for(let i = 0; i < data.cartQuantities.length; i++){
         data.cartProducts[i].quantity = data.cartQuantities[i]
       }
