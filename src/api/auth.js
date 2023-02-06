@@ -1,10 +1,10 @@
 const BASE_URL = "coders-warehouse-6.fly.dev/api";
-
+// const BASE_URL = "/api"
 
 export const registerUser = async (username, password, email) => {
   try {
     console.log(username, password, email);
-    const response = await fetch(`${BASE_URL}/users/register`, {
+    const response = await fetch(`/api/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
