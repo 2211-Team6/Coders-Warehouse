@@ -42,7 +42,7 @@ async function createTables() {
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    price INTEGER NOT NULL,
+    price NUMERIC NOT NULL,
     quantity INTEGER NOT NULL,
     url TEXT NOT NULL
 );

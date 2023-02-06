@@ -1,7 +1,10 @@
+const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
+// const BASE_URL = "/api"
+
 export const registerUser = async (username, password, email) => {
   try {
     console.log(username, password, email);
-    const response = await fetch("/api/users/register", {
+    const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +26,7 @@ export const registerUser = async (username, password, email) => {
 export const login = async (username, password) => {
   console.log("Here is your username and password in authjs", username, password)
   try {
-    const verify = await fetch(`/api/users/login`, {
+    const verify = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +49,7 @@ export const login = async (username, password) => {
 export const fetchMe = async (token) => {
   try {
     const response = await fetch(
-      `/api/users/me`, {
+      `${BASE_URL}/users/me`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -66,7 +69,7 @@ export const getAllProducts = async () => {
 
     try {
       const response = await fetch(
-        "/api/products",
+        `${BASE_URL}/products`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -84,7 +87,7 @@ export const getAllProducts = async () => {
   export const getProductById = async (id) => {
     try {
       const response = await fetch(
-        `/api/products/${id}`,
+        `${BASE_URL}/products/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -99,85 +102,14 @@ export const getAllProducts = async () => {
   };
 
 
-export const createProduct = async (
-  token,
-  title,
-  description,
-  price,
-  quantity
-) => {
-  try {
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        price,
-        quantity,
-      }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const updateProduct = async (
-  token,
-  title,
-  description,
-  price,
-  quantity,
-  id
-) => {
-  try {
-    const response = await fetch(`/api/products/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        price,
-        quantity,
-      }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const deleteProduct = async (token, productId) => {
-  try {
-    const response = await fetch(`/api/products/${productId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 //************ REVIEWS ************//
 
 export const addReview = async (userName, productId, rating, description) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch("/api/reviews/reviews-form", {
+    const response = await fetch(`${BASE_URL}/reviews/reviews-form`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -200,7 +132,7 @@ export const addReview = async (userName, productId, rating, description) => {
 
 export const getReviews = async () => {
   try {
-    const response = await fetch("/api/reviews");
+    const response = await fetch(`${BASE_URL}/reviews`);
     const data = await response.json();
     // console.log(data);
     return data;
@@ -210,7 +142,8 @@ export const getReviews = async () => {
 };
 
 export async function deleteReview(id, token) {
-  const response = await fetch(`/api/reviews/${id}`, {
+  try{
+  const response = await fetch(`${BASE_URL}/reviews/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -218,12 +151,15 @@ export async function deleteReview(id, token) {
     },
   });
   return await response.json();
+} catch (error) {
+throw error;
+};
 }
 
  export const getReviewsByProductId = async (id) => {
     try {
       const response = await fetch(
-        `/api/products/${id}`,
+        `${BASE_URL}/products/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -243,7 +179,7 @@ export async function deleteReview(id, token) {
     console.log("This is the id in fetchcart auth.js", id)
      try {
       const response = await fetch(
-        `/api/cart/${id}`,
+        `${BASE_URL}/cart`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -266,7 +202,7 @@ export async function deleteReview(id, token) {
     const token = localStorage.getItem("token")
     try {
       const response = await fetch(
-        "/api/cart/add",
+        `${BASE_URL}/cart`,
         {
           method: "POST",
           headers: {
@@ -292,7 +228,7 @@ export async function deleteReview(id, token) {
   export async function updateCartProduct(id, productId, quantity){
     console.log("trying to call the api for updatedCartProduct")
     try {
-      const response = await fetch(`/api/cart/patch`, {
+      const response = await fetch(`${BASE_URL}/cart/${cartProduct.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json",
        },
@@ -315,7 +251,7 @@ export async function deleteReview(id, token) {
   export async function removeCartProduct(productId){
     console.log("Here is the product Id in remove auth.js", productId)
     try {
-      const response = await fetch(`/api/cart/${productId}`, {
+      const response = await fetch(`${BASE_URL}/cart/${cartProductId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -328,29 +264,13 @@ export async function deleteReview(id, token) {
     }
   };
 
-//   export const calculateTotalPrice = async (token) => {
-//     try {
-//         const response = await fetch(`/api/calculateTotalPrice`, {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 Authorization: `Bearer ${token}`,
-//             }
-//         });
-//         const result = await response.json();
-//         return result;
-//     } catch (error) {
-//         // console.log(error);
-//     }
-// };
-
 
   
 //   //************ CHECKOUT ************//
 
   export async function fetchCheckout(cartProduct, shippingDetails, billingDetails) {
     try {
-      const response = await fetch("/api/checkout", {
+      const response = await fetch(`${BASE_URL}/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -368,3 +288,108 @@ export async function deleteReview(id, token) {
     }
   }
 
+
+  //   //************ ADMIN ************//
+
+  export async function getAllUsers(user) {
+    if(user.isAdmin === true){
+      try {
+        const response = await fetch(`${BASE_URL}/admin`, {
+          header: {
+            "Content-Type": "application/json",
+          },
+        });
+        const result = await response.json();
+        return result
+      }catch (error) {
+        console.log(error);
+      }
+  } else {
+    return (alert("404: Unauthorized"))
+  }
+  }
+
+  export const createProduct = async (
+    token,
+    title,
+    description,
+    price,
+    quantity,
+    url,
+    user
+  ) => {
+    console.log("hit the auth js call")
+    if(user.isAdmin === true){
+      try {
+        console.log("attempting to make a product")
+        const response = await fetch(`${BASE_URL}/admin/newProduct`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title,
+            description,
+            price,
+            quantity,
+            url,
+          }),
+        });
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
+  }else{
+    return (alert("404: Unauthorized"))
+  }
+  };
+  
+  export const updateProduct = async (
+    id, 
+    token,
+    title,
+    description,
+    price,
+    quantity,
+    url
+  ) => {
+    console.log("Hit the auth.js")
+    try {
+      const response = await fetch(`${BASE_URL}/admin/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          price,
+          quantity,
+          url,
+        }),
+      });
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  export const deleteProduct = async (productId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/admin/${productId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  

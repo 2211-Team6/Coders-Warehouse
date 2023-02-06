@@ -1,19 +1,32 @@
 import React from 'react';
+import { useReducer } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ProductReview from './ProductReview';
 import ReviewForm from './ReviewForm';
+import { useState, useEffect } from 'react';
+import { fetchMe } from '../api/auth';
+import EditProduct from './Admin_Functions/EditProduct';
 import "../style/SingleProduct.css"
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
-  console.log("This is cart items in singleProduct", cartItems)
+  const [me, setMe] = useState({})
 
-  const handleSizeClick = (event) => {
-    $(event.target).toggleClass('focus').siblings().removeClass('focus');
-  }
-  
+  useEffect(() => {
+    const getMe = async () => {
+      const token = localStorage.getItem("token");
+      const data = await fetchMe(token);
+      console.log("here is your data", data)
+      setMe(data);
+    };
+      getMe();
+      console.log("Here's the user", me)
+  }, []);
+
     return (
       <div>
+            {me.isAdmin ? <EditProduct singleProduct={singleProduct}/> : (
+        <div>
         <div class="single-product-container">
           <div>
             <img src={singleProduct.url}/>
@@ -43,6 +56,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             </div>)
             }
         </div>
+        </div>)}
       </div>
       );
 };
