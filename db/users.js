@@ -18,7 +18,7 @@ async function getAllUsers(){
 
 async function createUser({ username, password, email }) {
   try {
-    const hashed = await hashPassword(password);
+    // const hashed = await hashPassword(password);
     const {
       rows: [user],
     } = await client.query(
@@ -28,7 +28,7 @@ async function createUser({ username, password, email }) {
       RETURNING *;
       `,
 
-      [username, hashed, email]
+      [username, password, email]
     );
     delete user.password;
     console.log("its me, the one and only!", user);
