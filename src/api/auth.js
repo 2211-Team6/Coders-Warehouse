@@ -113,8 +113,9 @@ export const getAllProducts = async () => {
 
 //************ REVIEWS ************//
 
-export const addReview = async (userName, productId, rating, description) => {
+export const addReview = async (name, userName, productId, rating, description) => {
   const token = localStorage.getItem("token");
+  console.log("here is name in auth.js", name)
   try {
     const response = await fetch(`${BASE_URL}/reviews/reviews-form`, {
       method: "POST",
@@ -123,6 +124,7 @@ export const addReview = async (userName, productId, rating, description) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
+        name,
         userName,
         productId,
         rating,

@@ -13,7 +13,7 @@ const SingleReview = ({review, setReviews, reviews, singleProduct}) => {
       <div className="single-review">
         <h2 className="title">{review.name}</h2>
         <p className="review-description">Description: {review.description}</p>
-        <p className="review-creator">Creator: {review.username}</p>
+        <p className="review-creator">Creator: {review.userName}</p>
         <b className="review-rating">Rating: {review.rating}</b>
         {/* {review.username ? (
           <button onClick={() => handleDelete(review._id)}>Delete</button>

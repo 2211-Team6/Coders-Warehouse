@@ -2,6 +2,7 @@ const client = require('../client');
 
 
 async function createReview({name, userName, productId, rating, description}) {
+    console.log("here is name in db", name)
     try {
         const { rows: [newReview] } = await client.query(`
         INSERT INTO reviews (name, "userName", "productId", rating, description)
