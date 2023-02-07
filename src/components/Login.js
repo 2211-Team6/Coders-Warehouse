@@ -23,9 +23,15 @@ const Login = ({setToken}) => {
     console.log("This is username and password", username, password)
     const token = await login(username, password);
     console.log("This is the user", token)
+    if(token === undefined){
+      localStorage.removeItem("token")
+      navigate("/login")
+    }
+    else{
     setToken(token)
     localStorage.setItem("token", token)
     navigate("/")
+    }
   }
 
   return (

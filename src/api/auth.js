@@ -36,6 +36,10 @@ export const login = async (username, password) => {
        }),
     });
     console.log("Here is result", verify)
+    if(verify.status === 500){
+      alert("Username or password is incorrect")
+      return;
+    }
     const data = await verify.json();
     console.log("Here is data", data)
     localStorage.setItem("token", data.token);
