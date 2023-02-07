@@ -16,22 +16,24 @@ router.get("/", async (req, res, next) => {
   });
 
 
-  router.get("/", async (req, res, next) => {
-    try {
-      const allReviews = await getAllReviews();
+  // router.get("/", async (req, res, next) => {
+  //   try {
+  //     const allReviews = await getAllReviews();
   
-      res.send(allReviews);
-    } catch ({ name, message }) {
-      next({ name, message });
-    }
-  });
+  //     res.send(allReviews);
+  //   } catch ({ name, message }) {
+  //     next({ name, message });
+  //   }
+  // });
 
   
 // POST /api/reviews/reviews-form
 router.post("/reviews-form", async (req, res, next) => {
-    const { userName, productId, rating, description } = req.body;
+    const { name, userName, productId, rating, description } = req.body;
     const reviewsData = {};
+    console.log("this is name from api back: ", name);
     try {
+      reviewsData.name = name;
       reviewsData.userName = userName;
       reviewsData.productId = productId;
       reviewsData.rating = rating;

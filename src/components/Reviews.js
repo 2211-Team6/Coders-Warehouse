@@ -28,12 +28,10 @@ const AllReviews = ({reviews, setReviews}) => {
 
     // console.log("this is review mataches: ", reviewMatches)
   
-    // const filteredReviews = reviews.filter(review => reviewMatches(review, searchTerm)); //filter through each review that has text
+    const filteredReviews = reviews.filter(review => reviewMatches(review, searchTerm)); //filter through each review that has text
     const reviewsToDisplay = searchTerm.length ? filteredReviews : reviews; //display all the reviews 
     return (
       <>
-      <Link to="/">Back to Home</Link>
-      <br></br>
         <input className="searchBar" type="text" placeholder="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input>
         {console.log(reviews)}
         <div className="review-body">

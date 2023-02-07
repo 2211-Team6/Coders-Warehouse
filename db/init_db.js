@@ -115,9 +115,9 @@ async function populateInitialData() {
     console.log("Finished creating initial products")
 
     const reviewsToCreate = [
-      {name: "Air Force 1", username: "glamgal", productId: 1, rating: 2, description: "This shoe runs too small"},
-      {name: "Coffee Mug", username: "sandra", productId: 4, rating: 10, description: "I got this as a gift and I absolutly love it!"},
-      {name: "Colombian Coffee", username: "glamgal", productId: 2, rating: 5, description: "I usually dont drink coffee but this will have me addicted"},
+      {name: "Air Force 1", userName: "glamgal", productId: 1, rating: 2, description: "This shoe runs too small"},
+      {name: "Coffee Mug", userName: "sandra", productId: 4, rating: 10, description: "I got this as a gift and I absolutly love it!"},
+      {name: "Colombian Coffee", userName: "glamgal", productId: 2, rating: 5, description: "I usually dont drink coffee but this will have me addicted"},
     ]
     console.log("creating initial reviews")
     const reviews = await Promise.all(reviewsToCreate.map(createReview))
