@@ -3,6 +3,7 @@ import { deleteReview, getReviews } from "../api/auth";
 import { Link, useLocation } from "react-router-dom";
 import { checkUserLoggedIn } from "./Login";
 import SingleReview from "./SingleReview";
+import "../style/reviews.css";
 
 
 
@@ -35,9 +36,11 @@ const AllReviews = ({reviews, setReviews}) => {
       <br></br>
         <input className="searchBar" type="text" placeholder="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input>
         {console.log(reviews)}
+        <div className="review-body">
         {reviewsToDisplay.map((review) => {
           return <SingleReview key={review.id} review={review} reviews={reviews} setReviews={setReviews} />;
-        })}
+          })}
+          </div>
       </>
     );
   };

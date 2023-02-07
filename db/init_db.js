@@ -40,7 +40,7 @@ async function createTables() {
 );
     CREATE TABLE products (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) UNIQUE NOT NULL,
     description TEXT NOT NULL,
     price NUMERIC NOT NULL,
     quantity INTEGER NOT NULL,
@@ -65,6 +65,7 @@ async function createTables() {
 
     CREATE TABLE reviews (
       id SERIAL PRIMARY KEY,
+      name VARCHAR(255) REFERENCES products(title),
       "userName" VARCHAR(255) REFERENCES users(username),
       "productId" INTEGER REFERENCES products(id),
       rating NUMERIC,
@@ -109,9 +110,9 @@ async function populateInitialData() {
     console.log("Finished creating initial products")
 
     const reviewsToCreate = [
-      {username: "glamgal", productId: 1, rating: 2, description: "This shoe runs too small"},
-      {username: "sandra", productId: 4, rating: 10, description: "I got this as a gift and I absolutly love it!"},
-      {username: "glamgal", productId: 2, rating: 5, description: "I usually dont drink coffee but this will have me addicted"},
+      {name: "Air Force 1", username: "glamgal", productId: 1, rating: 2, description: "This shoe runs too small"},
+      {name: "Coffee Mug", username: "sandra", productId: 4, rating: 10, description: "I got this as a gift and I absolutly love it!"},
+      {name: "Colombian Coffee", username: "glamgal", productId: 2, rating: 5, description: "I usually dont drink coffee but this will have me addicted"},
     ]
     console.log("creating initial reviews")
     const reviews = await Promise.all(reviewsToCreate.map(createReview))

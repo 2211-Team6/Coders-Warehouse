@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addReview, getReviews, fetchMe } from "../api/auth";
+import StarRating from "./StarRating";
 
 
 // Create a form for making a review
@@ -59,6 +60,8 @@ const ReviewForm = ({singleProduct}) => {
         placeholder="Type your review here"
         onChange={(e) => setDescription(e.target.value)} >
         </input>
+        <br></br>
+          <StarRating totalStars={10}/>
         <br></br>
         <button className="submit" type="submit">Send Review</button>
         </form>
