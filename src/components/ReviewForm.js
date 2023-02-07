@@ -27,9 +27,9 @@ const ReviewForm = ({singleProduct}) => {
         e.preventDefault();
        try{
         const userName = currentUser.username
+        const name = singleProduct.title;
+        console.log("this is name from form: ", name);
         const productId = singleProduct.id
-        const name = singleProduct.title
-        console.log("here is name in review form", name)
         const newReview = await addReview(name, userName, productId, rating, description);
         setRating("")
         setDescription("")
