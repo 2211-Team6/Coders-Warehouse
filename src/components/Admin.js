@@ -8,10 +8,8 @@ import { fetchMe } from '../api/auth';
 const Admin = ({token, setToken, user, products, setProducts, setUser, setSelectedProduct}) => {
     const navigate = useNavigate(); 
     const [authorized, setAuthorized] = useState({})
-    // const location = useLocation();
     
     const unauthorized = () => {
-        // alert("404 Unauthorized")
         navigate("/")
     }
     
@@ -23,7 +21,6 @@ const Admin = ({token, setToken, user, products, setProducts, setUser, setSelect
         }
         getMe();
     }, [token]);
-    console.log("here's the user in admin", authorized)
 
     return (
         <div>

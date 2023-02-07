@@ -1,0 +1,212 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #212121;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+}
+
+h1 {
+  font-size: 23px;
+}
+
+.form {
+  width: 300px;
+  padding: 64px 15px 24px;
+  margin: 0 auto;
+}
+
+.form .control {
+  margin: 0 0 24px;
+}
+
+.form .control input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+.form .control input:hover,
+.form .control input:focus {
+  outline: none;
+  border: 0;
+}
+
+.form .btn {
+  width: 100%;
+  display: table-cell;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #640404;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.registerContainer {
+  width: 300px;
+  padding: 64px 15px 24px;
+  margin: 0 auto;
+}
+
+.registerHeader {
+  font-size: 23px;
+}
+
+.inputContainer {
+  margin: 0 0 24px;
+}
+
+.inputLabel {
+  font-size: 16px;
+  color: #fff;
+}
+
+.inputField {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+.inputField:hover,
+.inputField:focus {
+  outline: none;
+  border: 0;
+}
+
+.inputBg {
+  position: relative;
+}
+
+.inputBg .bgTop {
+  position: absolute;
+  height: 10px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+  margin: 0;
+}
+
+.inputBg .bgRight {
+  position: absolute;
+  width: 10px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+  top: 5px;
+  bottom: -5px;
+  right: 0;
+  transform: skew(0, -45deg);
+  margin: 0;
+}
+
+.inputBg .inputBgInner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(52, 9, 121, 1) 37%,
+    rgba(0, 212, 255, 1) 94%
+  );
+  width: 100%;
+  height: 100%;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.inputField {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+}
+
+.inputField:hover,
+.inputField:focus {
+  outline: none;
+  border: 0;
+}
+
+.registerHeader {
+  font-size: 23px;
+  margin-bottom: 32px;
+}
+
+.registerBtn {
+  width: 100%;
+  display: table-cell;
+  padding: 14px 16px;
+  background: transparent;
+  outline: none;
+  border: 0;
+  color: #640404;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 16px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.registerContainer {
+  width: 300px;
+  padding: 64px 15px 24px;
+  margin: 0 auto;
+}

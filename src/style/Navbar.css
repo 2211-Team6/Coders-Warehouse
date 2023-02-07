@@ -1,33 +1,35 @@
-.navlink {
-  border-radius: 8px;
-border: 1px solid transparent;
-padding: 0.6em 1.2em;
-font-size: 1em;
-font-weight: 500;
-font-family: inherit;
-background-color: #1a1a1a;
-cursor: pointer;
-transition: border-color 0.25s;
-color: white;
-}
-
-.button:hover {
-  border-color: #17f8ed;
-}
-
-.navlink:focus,
-.navlink:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  width: 75vw;
-}
-
-.horizontal{
-  list-style: none;
-}
+.navbar .button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  height: 50px;
+  margin: 0;
+  outline: none;
+  padding: 0 20px;
+  position: relative;
+  transition: background-color 0.3s ease;
+  width: 100px;
+  }
+  
+  .navbar .button:hover {
+  background-color:	#e0c351;
+  color: #333;
+  cursor: pointer;
+  }
+  
+  .navbar .button::before {
+  background-color: #fff;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: transform 0.3s ease;
+  width: 4px;
+  z-index: -1;
+  }
+  
+  .navbar .button:hover::before {
+  transform: scaleX(1);
+  }

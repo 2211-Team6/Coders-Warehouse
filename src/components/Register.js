@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { registerUser, fetchMe } from "../api/auth";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import "../style/Register.css";
 
-const Register = ({setUser, setToken}) => {
+const Register = ({ setUser, setToken }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,50 +27,72 @@ const Register = ({setUser, setToken}) => {
     setToken(token);
     localStorage.setItem("token", token);
     navigate("/");
-  }
+  };
 
   return (
-    <div>
+    <div className="form">
       <form>
         <h1>Register</h1>
-        <label htmlFor="username">Username</label>
-        <input
-          value={username}
-          type="text"
-          required
-          minLength={5}
-          placeholder="username"
-          onChange={(event) => setUserName(event.target.value)}
-        ></input>
-        <label htmlFor="password">Password :</label>
-        <input
-          value={password}
-          type="password"
-          required
-          minLength={7}
-          placeholder="password"
-          onChange={(event) => setPassword(event.target.value)}
-        ></input>
-        <label htmlFor="email">Email :</label>
-        <input
-          value={email}
-          type="email"
-          required
-          minLength={7}
-          placeholder="email"
-          onChange={(event) => setEmail(event.target.value)}
-        ></input>
+        <div className="control">
+          <label htmlFor="username">Username</label>
+          <input
+            value={username}
+            type="text"
+            required
+            minLength={5}
+            placeholder="username"
+            onChange={(event) => setUserName(event.target.value)}
+          />
+          <div className="block-cube">
+            <div className="bg-top"></div>
+            <div className="bg-right"></div>
+            <div className="bg-bottom"></div>
+          </div>
+        </div>
+        <div className="control">
+          <label htmlFor="password">Password :</label>
+          <input
+            value={password}
+            type="password"
+            required
+            minLength={7}
+            placeholder="password"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <div className="block-cube">
+            <div className="bg-top"></div>
+            <div className="bg-right"></div>
+            <div className="bg-bottom"></div>
+          </div>
+        </div>
+        <div className="control">
+          <label htmlFor="email">Email :</label>
+          <input
+            value={email}
+            type="email"
+            required
+            minLength={7}
+            placeholder="email"
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <div className="block-cube">
+            <div className="bg-top"></div>
+            <div className="bg-right"></div>
+            <div className="bg-bottom"></div>
+          </div>
+        </div>
         <button
-          onClick={(e) => handleClick(e)
-          }
+          onClick={(e) => handleClick(e)}
           type="button"
           name="register_button"
           value="Register"
+          className="btn"
         >
           Register
         </button>
       </form>
     </div>
   );
+
 };
 export default Register;
