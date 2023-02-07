@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import {Link, useNavigate } from "react-router-dom";
 import { fetchCheckout, calculateTotalPrice } from "../api/auth";
 import '../style/Checkout.css';
+import OrderSummary from "./OrderSummary";
 
-const Checkout = () => {
+const Checkout = ({cartItems}) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -15,10 +16,10 @@ const Checkout = () => {
     event.preventDefault();
     fetchCheckout(name, address, city, state, zip)
       .then((response) => {
-        if (response.success) {
+        if (response) {
           alert("Your Order Has Been Placed!");
           setCartPurchases([]);
-          navigate.push("/");
+          navigate("/order-summary");
         } else {
           alert(
             "There was an issue processing your order. Please try again later"
@@ -62,12 +63,8 @@ const Checkout = () => {
           value={zip}
           onChange={(e) => setZip(e.target.value)}
         />
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={() => navigate("/order-summary")}>Place Order</button>
       </form>
-      <div>
-        <h3>Order Summary:</h3>
-        
-      </div>
     </div>
   );
 };

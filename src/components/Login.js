@@ -20,9 +20,7 @@ const Login = ({setToken}) => {
   }, []);
   
   const handleLogin = async () => {
-    console.log("This is username and password", username, password)
     const token = await login(username, password);
-    console.log("This is the user", token)
     if(token === undefined){
       localStorage.removeItem("token")
       navigate("/login")

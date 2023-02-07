@@ -273,7 +273,7 @@ throw error;
   
 //   //************ CHECKOUT ************//
 
-  export async function fetchCheckout(cartProduct, shippingDetails, billingDetails) {
+  export async function fetchCheckout(name, address, city, state, zip) {
     try {
       const response = await fetch(`${BASE_URL}/checkout`, {
         method: "POST",
@@ -281,9 +281,11 @@ throw error;
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          cart: cartProduct,
-          shippingDetails: shippingDetails,
-          billingDetails: billingDetails,
+          name: name,
+          address: address,
+          city: city,
+          state: state,
+          zip: zip,
         }),
       });
       const result = await response.json();
