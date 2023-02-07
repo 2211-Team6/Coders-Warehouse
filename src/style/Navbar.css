@@ -27,3 +27,7 @@ color: white;
   padding: 20px;
   width: 75vw;
 }
+
+.horizontal{
+  list-style: none;
+}
