@@ -1,5 +1,5 @@
-const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
-// const BASE_URL = "/api"
+// const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
+const BASE_URL = "/api"
 
 export const registerUser = async (username, password, email) => {
   try {
@@ -61,7 +61,9 @@ export const fetchMe = async (token) => {
         },
       }
     );
+    console.log("Here is the response", response)
     const data = await response.json();
+    console.log("Here is the data", data)
     return data;
   } catch (error) {
     console.error(error);

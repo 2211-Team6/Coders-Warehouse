@@ -8,7 +8,7 @@ import { fetchMe } from '../api/auth';
 import EditProduct from './Admin_Functions/EditProduct';
 import "../style/SingleProduct.css"
 
-const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
+const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart, checkUserLoggedIn}) => {
   const navigate = useNavigate();
   const [me, setMe] = useState({})
 
@@ -25,7 +25,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
 
     return (
       <div>
-            {me.isAdmin ? <EditProduct singleProduct={singleProduct}/> : (
+            {checkUserLoggedIn() ? me.isAdmin ? (<EditProduct singleProduct={singleProduct}/>) : (
         <div>
         <div class="single-product-container">
           <div>
@@ -56,7 +56,38 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             </div>)
             }
         </div>
-        </div>)}
+        </div>) :(
+        <div>
+        <div class="single-product-container">
+          <div>
+            <img src={singleProduct.url}/>
+          </div>
+          <div class="product">
+            <h1>{singleProduct.title}</h1>
+            <h2>Price: ${singleProduct.price/100}</h2>
+            <p class="description">Description: {singleProduct.description}</p>
+            <p class='quantity'>Quantity: {singleProduct.quantity}</p>
+            <div class="buttons">
+            <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
+            <br></br>
+            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            </div>
+          </div>
+        </div>
+        <br></br>
+        <br></br>
+        <div class="single-review">
+          {reviews.length > 0 ? 
+          (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
+            ) : 
+            (<div>
+            <p>There are no Reviews</p>
+            <p><em>Be the first to leave a Review</em></p>
+            <ReviewForm singleProduct={singleProduct}/>
+            </div>)
+            }
+        </div>
+        </div>) }
       </div>
       );
 };
