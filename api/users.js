@@ -18,7 +18,7 @@ usersRouter.post("/register", async (req, res, next) => {
     const _user = await getUserByUsername(username);
     console.log("its me, Ya boi!", _user);
     if (_user) {
-      res.status(401);
+      res.send(401);
       next({
         name: "UserExistsError",
         message: "A user by that username already exists",
@@ -62,6 +62,7 @@ usersRouter.post("/register", async (req, res, next) => {
 
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
+  console.log("Here is the username and password in API", username, password)
   if (!username || !password) {
     next({
       name: "MissingCredentialsError",
@@ -70,7 +71,6 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 
   try {
-    console.log("Here is the username and password in API", username, password)
     const user = await getUserByUsername( username );
     console.log("here is the user", user)
     if (user && user.password == password) {

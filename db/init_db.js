@@ -94,14 +94,19 @@ async function populateInitialData() {
     console.log("Finished creating users!")
 
     const productsToCreate = [
-      { title: "Air Force 1", description: "Brand new pair of blue AF1", price: 180.99, quantity: 3, url: "https://www.sneakerfiles.com/wp-content/uploads/2021/08/air-jordan-1-high-dark-marina-blue-555088-404-release-info.jpeg"},
-      { title: "Colombian Coffee", description: "1lb bag of organic Colombian coffee beans", price: 16.01, quantity: 18, url: "https://i5.walmartimages.com/asr/f2c34a4f-8874-4ad1-bc83-8e733874a9b8_1.833a64e0f36e8bea5fbe1fc1b3e41ca0.jpeg"},
-      { title: "Black Pens", description: "Pack of 8 black ink pens", price: 7.15, quantity: 42, url: "https://i5.walmartimages.com/asr/ccdd2273-3a13-4d2d-9123-c2b3fabdf396.23cbb880147069a22b93c92b86a9ca06.jpeg"},
-      { title: "Coffee Mug", description: "Set of 5 blue ceramic coffee mugs", price: 52.95, quantity: 89, url: "https://www.vicrays.com/wp-content/uploads/2021/06/1-mug-set-.jpg"},
-      { title: "Whistlepig", description: "750 mL bottle of whistlepig whiskey. Aged 10 year. Small Batch Rye", price: 74.99, quantity: 21, url: "https://www.abc.virginia.gov/library/product-images/july15-warehouse/whistle-pig-straight-rye-whiskey.jpg"},
-      { title: "Iphone 14 Pro Max", description: "Apple's newest Iphone. Better than your android.", price: 1199.99, quantity: 50, url: "https://m.media-amazon.com/images/I/315eB2+GolL._AC_SY580_.jpg"},
-      { title: "PS5", description: "Sony's next generation Playstation. In Stock soon!", price: 499.99, quantity: 0, url: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$"},
-      { title: "XBox Series X", description: "Next generation XBox. In Stock! Inventory sells out quickly. Act now!!!", price: 499.99, quantity: 1, url: "https://i5.walmartimages.com/asr/12870b37-2928-4748-8e87-868e44ed218d.89acba7601d9b7c641d3c880ce173893.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"},
+      { title: "Air Force 1", description: "Brand new pair of blue AF1", price: 18099, quantity: 3, url: "https://www.sneakerfiles.com/wp-content/uploads/2021/08/air-jordan-1-high-dark-marina-blue-555088-404-release-info.jpeg"},
+      { title: "Colombian Coffee", description: "1lb bag of organic Colombian coffee beans", price: 1601, quantity: 18, url: "https://i5.walmartimages.com/asr/f2c34a4f-8874-4ad1-bc83-8e733874a9b8_1.833a64e0f36e8bea5fbe1fc1b3e41ca0.jpeg"},
+      { title: "Black Pens", description: "Pack of 8 black ink pens", price: 715, quantity: 42, url: "https://i5.walmartimages.com/asr/ccdd2273-3a13-4d2d-9123-c2b3fabdf396.23cbb880147069a22b93c92b86a9ca06.jpeg"},
+      { title: "Coffee Mug", description: "Set of 5 blue ceramic coffee mugs", price: 5295, quantity: 89, url: "https://www.vicrays.com/wp-content/uploads/2021/06/1-mug-set-.jpg"},
+      { title: "Whistlepig", description: "750 mL bottle of whistlepig whiskey. Aged 10 year. Small Batch Rye", price: 7499, quantity: 21, url: "https://www.abc.virginia.gov/library/product-images/july15-warehouse/whistle-pig-straight-rye-whiskey.jpg"},
+      { title: "Iphone 14 Pro Max", description: "Apple's newest Iphone. Better than your android.", price: 119999, quantity: 50, url: "https://m.media-amazon.com/images/I/315eB2+GolL._AC_SY580_.jpg"},
+      { title: "PS5", description: "Sony's next generation Playstation. In Stock soon!", price: 49999, quantity: 0, url: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$facebook$"},
+      { title: "XBox Series X", description: "Next generation XBox. In Stock! Inventory sells out quickly. Act now!!!", price: 49999, quantity: 1, url: "https://i5.walmartimages.com/asr/12870b37-2928-4748-8e87-868e44ed218d.89acba7601d9b7c641d3c880ce173893.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"},
+      { title: "COLOMBIAN BLEND COFFEE", description: "Made with smooth arabica beans from the Sierra Nevada de Santa Marta Mountains of Colombia.", price: 1999, quantity: 32, url: "https://cdn.shopify.com/s/files/1/0271/7209/products/Death_Wish_Coffee_DarkRoast_1LB_Ground_Front.jpg?v=1630186442" },
+      { title: "Ground Hair Bender", description: "This 12oz bag of coffee is pre-ground at our roastery on a setting the works for just about any drip brewer.", price: 1600, quantity: 5, url: "https://stumptown-shop.imgix.net/products/Hair_Bender_Ground_2.png?v=1644615747&auto=format,compress&w=375" },
+      { title: "Bistro Blend", description: "A blend of South American, East African, and Indonesian coffees with a medium roast profile creating an approachable, balanced, and nuanced cup.", price: 1700, quantity: 10, url: "https://cdn.shopify.com/s/files/1/2097/8611/products/BistroFront_440x440.png?v=1614664155"}, 
+      { title: "Sinatra Select", description: "Made with our unique “Sinatra Barrels” that have deep grooves specially carved into their staves to expose the whiskey to extra layers of toasted oak.", price: 29999, quantity: 6, url: "https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_s9i6fwmx/def_height/2700/def_width/2700/version/100012/type/1"},
+      { title: "Jordan 6 Retro Black Infrared", description: "The Air Jordan 6 Retro 'Infrared' 2019 is a 2019 re-release of the OG colorway.", price: 23400, quantity: 9, url: "https://images.stockx.com/images/Air-Jordan-6-Retro-Black-Infrared-2019-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1606315701&q=75" }
 
     ]
     console.log("creating initial products")

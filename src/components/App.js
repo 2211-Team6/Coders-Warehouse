@@ -13,6 +13,10 @@ import Products from "./Products";
 import Admin from "./Admin";
 import AllUsers from "./Admin_Functions/AllUsers";
 import { getAllProducts } from "../api/auth";
+import Navbar from "./Navbar";
+import "../style/Navbar.css"
+
+
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -53,6 +57,16 @@ const App = () => {
     }
     };
 
+
+    const checkUserLoggedIn = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        return true;
+      }
+      return false;
+    };
+    
+
     useEffect(() => {
       const getMe = async () => {
         const token = localStorage.getItem("token");
@@ -76,7 +90,8 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>      
+      <Navbar checkUserLoggedIn={checkUserLoggedIn} user={user} setUser={setUser} token={token} setToken={setToken} className="navbar" />
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />

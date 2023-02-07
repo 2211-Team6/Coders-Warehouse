@@ -30,7 +30,10 @@ export const login = async (username, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password, }),
+      body: JSON.stringify({ 
+        username,
+        password,
+       }),
     });
     console.log("Here is result", verify)
     const data = await verify.json();

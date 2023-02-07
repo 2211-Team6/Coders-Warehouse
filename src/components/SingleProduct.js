@@ -6,6 +6,7 @@ import ReviewForm from './ReviewForm';
 import { useState, useEffect } from 'react';
 import { fetchMe } from '../api/auth';
 import EditProduct from './Admin_Functions/EditProduct';
+import "../style/SingleProduct.css"
 
 const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems, cartItems, addToCart}) => {
   const navigate = useNavigate();
@@ -30,13 +31,16 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
           <div>
             <img src={singleProduct.url}/>
           </div>
-          <div>
-            <h3>{singleProduct.title}</h3>
-            <p>Description: {singleProduct.description}</p>
-            <p>Price: ${singleProduct.price}</p>
-            <p>Quantity: {singleProduct.quantity}</p>
-            <button onClick={() => addToCart(singleProduct)}> Add to Cart</button>
-            <button onClick={() => setSelectedProduct({})}>View all products</button>
+          <div class="product">
+            <h1>{singleProduct.title}</h1>
+            <h2>Price: ${singleProduct.price/100}</h2>
+            <p class="description">Description: {singleProduct.description}</p>
+            <p class='quantity'>Quantity: {singleProduct.quantity}</p>
+            <div class="buttons">
+            <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
+            <br></br>
+            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            </div>
           </div>
         </div>
         <br></br>
