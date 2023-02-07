@@ -6,6 +6,7 @@
     justify-content: center;
     width: 100%;
     margin: 25px;
+    border-color: black;
   }
 
   .review-description {
@@ -20,6 +21,11 @@
     color: red;
   }
 
+  /* .review-body {
+    background-image: url(https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_4b2cd345e3ddcbd077c96207452218eb/powerreviews.png);
+    background-size: contain;
+    background-attachment: fixed;  
+} */
 /* .title {
     padding: 0%;
 } */
