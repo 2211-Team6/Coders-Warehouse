@@ -14,6 +14,7 @@ import "../style/Navbar.css";
 
 const Navbar = ({ checkUserLoggedIn, setToken, user }) => {
   console.log("user", user);
+  const navigate = useNavigate()
   return (
     <div class="navbar">
       <NavLink to="/" className="logo"></NavLink>
@@ -48,6 +49,7 @@ const Navbar = ({ checkUserLoggedIn, setToken, user }) => {
             onClick={() => {
               localStorage.removeItem("token");
               setToken(null);
+              navigate("/login")
             }}
           >
             Logout

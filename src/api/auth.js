@@ -61,7 +61,9 @@ export const fetchMe = async (token) => {
         },
       }
     );
+    console.log("Here is the response", response)
     const data = await response.json();
+    console.log("Here is the data", data)
     return data;
   } catch (error) {
     console.error(error);
@@ -113,7 +115,7 @@ export const getAllProducts = async () => {
 
 export const addReview = async (name, userName, productId, rating, description) => {
   const token = localStorage.getItem("token");
-  console.log("this is name from auth: ", name);
+  console.log("here is name in auth.js", name)
   try {
     const response = await fetch(`${BASE_URL}/reviews/reviews-form`, {
       method: "POST",
