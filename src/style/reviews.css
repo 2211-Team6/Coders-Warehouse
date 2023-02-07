@@ -25,6 +25,11 @@
       color: black;
   }
 
+  .stars {
+    display: flex;
+    flex-direction: row;
+  }
+
 
   /* .review-body {
     background-image: url(https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_4b2cd345e3ddcbd077c96207452218eb/powerreviews.png);
