@@ -46,9 +46,3 @@ img {
   margin-left: 50px;
   gap: 100px; 
 }
-
-.single-review{
-  align-self: flex-end;
-  font-style: italic;
-  font-family: 'Art Deco', sans-serif;
-}
