@@ -91,7 +91,7 @@ const App = () => {
   return (
     <div className="app-container">
       <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>      
-      <Navbar checkUserLoggedIn={checkUserLoggedIn} setToken={setToken} className="navbar" />
+      <Navbar checkUserLoggedIn={checkUserLoggedIn} user={user} setUser={setUser} token={token} setToken={setToken} className="navbar" />
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />

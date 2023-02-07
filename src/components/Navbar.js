@@ -13,58 +13,34 @@ import Checkout from "./Checkout";
 import "../style/Navbar.css";
 
 const Navbar = ({ checkUserLoggedIn, setToken, user }) => {
-  console.log("user", user)
+  console.log("user", user);
   return (
     <div class="navbar">
       <NavLink to="/" className="logo"></NavLink>
-      {
-      checkUserLoggedIn() ? 
-      (
+      {checkUserLoggedIn() ? (
         <div className="navbar">
           <div class="button">
-            <div class="button__ornament button__ornament--vertical">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <div class="button__ornament button__ornament--horizontal">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <span class="button__label">
-              <NavLink to="/" class="home">
-                Home
-              </NavLink>
-            </span>
+            <NavLink to="/" class="text">
+              Home
+            </NavLink>
           </div>
           <div class="button">
-            <div class="button__ornament button__ornament--vertical">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <div class="button__ornament button__ornament--horizontal">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <span class="button__label">
-              <NavLink to="/reviews" class="a">
-                Product Reviews
-              </NavLink>
-            </span>
+            <NavLink to="/reviews" class="text">
+              Product Reviews
+            </NavLink>
           </div>
           <div class="button">
-            <div class="button__ornament button__ornament--vertical">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <div class="button__ornament button__ornament--horizontal">
-              <div class="button__ornament-top-bottom"></div>
-              <div class="button__ornament-left-right"></div>
-            </div>
-            <span class="button__label">
-              <NavLink to="/cart" class="a">
-                Checkout
-              </NavLink>
-            </span>
+            <NavLink to="/cart" class="text">
+              <nav className="main-nav">
+                <ul className="horizontal nav-list full-width">
+                  <li>
+                    <a href="">
+                      <i className="material-icons">shopping_cart</i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </NavLink>
           </div>
           <button
             type="button"
@@ -74,25 +50,36 @@ const Navbar = ({ checkUserLoggedIn, setToken, user }) => {
               setToken(null);
             }}
           >
-            <div class="button">Logout
-            </div>
+            Logout
           </button>
         </div>
-      ) : 
-       (
+      ) : (
         <div className="navbar">
-          <NavLink to="/" class="home">Home
+          <NavLink to="/" class="home">
+            Home
           </NavLink>
-          <NavLink to="/login" class="a">Login
-          </NavLink>
-
-          <NavLink to="/register" class="a">Register
-          </NavLink>
-
-          <NavLink to="/reviews" class="a">Product Reviews
+          <NavLink to="/login" class="text">
+            Login
           </NavLink>
 
-          <NavLink to="/cart" class="a">Checkout
+          <NavLink to="/register" class="text">
+            Register
+          </NavLink>
+
+          <NavLink to="/reviews" class="text">
+            Product Reviews
+          </NavLink>
+
+          <NavLink to="/cart" class="text">
+            <nav className="main-nav">
+              <ul className="horizontal nav-list full-width">
+                <li>
+                  <a href="">
+                    <i className="material-icons">shopping_cart</i>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </NavLink>
         </div>
       )}

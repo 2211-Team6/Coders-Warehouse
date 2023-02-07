@@ -19,54 +19,16 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
     <nav style={{display: "block"}}>
 
  <header className="header">
-         <Link to="/" className="logo">
-         <div id="Buyitup">Buy It Up!</div>
-     </Link>
-     <nav className="main-nav">
-     <ul className="horizontal nav-list full-width">
-     <li><a href=""><i className="material-icons">shopping_cart</i></a></li>
-     </ul>
-     </nav>
      <br/>
       {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
         (<div>
-            <NavLink to="/">
-          Home
-        </NavLink>
-        <br></br>
-        <NavLink to="/reviews">Product Reviews</NavLink>
-       <br></br>
-       <NavLink to="/cart"> Checkout here!</NavLink>
-       <br></br>
-       <NavLink to="/checkout"></NavLink>
-       <br></br>
-       <button type="button" className="header-button logout" onClick={() => {
-         localStorage.removeItem('token');
-         setToken(null);
-         location.pathname = "/";
-         navigate("/login");
-       }}>Logout</button> 
         <h1>Hello, {user?.username}!</h1>
        </div>) : (
        <div>
-      <NavLink to="/login">Log in!</NavLink>
-      <br></br>
-      <NavLink to="/register">
-        Register!
-      </NavLink>
-      <br></br>
-      <NavLink to="/reviews">Product Reviews</NavLink>
-      <br></br>
-      <NavLink to="/cart"> Checkout here!</NavLink>
-      <br></br>
-      <NavLink to="/checkout"></NavLink>
-      <br></br>
       <h1>Hello, Stranger!</h1>
       </div>)}
       </header>
        <nav>
-       <h1>Hello, {user?.username}!</h1>
-       <br></br>
       {selectedProduct.id ? (
        <div>
         <SingleProduct 
