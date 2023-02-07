@@ -1,0 +1,25 @@
+.single-review{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+    margin: 25px;
+  }
+
+  .review-description {
+    color: red;
+  }
+  
+  .review-creator {
+    color: red;
+  }
+
+  .review-rating {
+    color: red;
+  }
+
+/* .title {
+    padding: 0%;
+} */
