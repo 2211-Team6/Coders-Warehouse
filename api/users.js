@@ -13,10 +13,8 @@ const { JWT_SECRET } = process.env;
 
 usersRouter.post("/register", async (req, res, next) => {
   const { username, password, email } = req.body;
-  console.log("hello there!", username, password, email);
   try {
     const _user = await getUserByUsername(username);
-    console.log("its me, Ya boi!", _user);
     if (_user) {
       res.send(401);
       next({
@@ -48,7 +46,6 @@ usersRouter.post("/register", async (req, res, next) => {
         expiresIn: "1w",
       }
     );
-    console.log("yo! I am a token!", token);
     res.send({
       user: user,
       message: "thank you for signing up",
@@ -62,7 +59,6 @@ usersRouter.post("/register", async (req, res, next) => {
 
 usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
-  console.log("Here is the username and password in API", username, password)
   if (!username || !password) {
     next({
       name: "MissingCredentialsError",
@@ -72,12 +68,10 @@ usersRouter.post("/login", async (req, res, next) => {
 
   try {
     const user = await getUserByUsername( username );
-    console.log("here is the user", user)
     if (user && user.password == password) {
       const token = jwt.sign(
         user, JWT_SECRET
       );
-      console.log("Out of the if statement")
       res.send({ message: "you're logged in!", token, user });
     } else {
       next({

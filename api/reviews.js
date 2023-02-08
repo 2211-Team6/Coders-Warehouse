@@ -8,7 +8,6 @@ const { requireUser } = require('./utils');
 router.get("/", async (req, res, next) => {
     try {
       const allReviews = await getAllReviews();
-  
       res.send(allReviews);
     } catch ({ name, message }) {
       next({ name, message });
