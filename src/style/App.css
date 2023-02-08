@@ -24,6 +24,10 @@
   flex-direction: row !important;
   width: 100%;
   font-size: 15px;
+  margin-left: 25px; 
+  margin-right: 25px; 
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 img {
@@ -34,8 +38,8 @@ img {
 }
 
 .productImg{
-  width: 200px !important; 
-  height: 200px !important; 
+  width: 100px !important; 
+  height: 100px !important; 
   border-radius: 50%;
   box-shadow: 1px 1px #ccc;
 }
@@ -45,4 +49,19 @@ img {
   flex-direction: row;
   margin-left: 50px;
   gap: 100px; 
+}
+
+.view-button:hover{
+  transform: scale(1.2); 
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  background-color:#3d1635;
+}
+
+.add-to-cart-button:hover{
+  transform: scale(1.2); 
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  background-color:#3d1635;
+  color: white;
 }
