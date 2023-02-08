@@ -38,7 +38,8 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       setCartItems={setCartItems}
       addToCart={addToCart}
       reviews={reviews} 
-      setReviews={setReviews}/> 
+      setReviews={setReviews}
+      checkUserLoggedIn={checkUserLoggedIn}/> 
       </div>
       ) : (
         <div>

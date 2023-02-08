@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addReview, getReviews, fetchMe } from "../api/auth";
 import StarRating from "./StarRating";
+import "../style/reviews.css";
 
 
 // Create a form for making a review
@@ -27,8 +28,10 @@ const ReviewForm = ({singleProduct}) => {
         e.preventDefault();
        try{
         const userName = currentUser.username
+        const name = singleProduct.title;
+        console.log("this is name from form: ", name);
         const productId = singleProduct.id
-        const newReview = await addReview(userName, productId, rating, description);
+        const newReview = await addReview(name, userName, productId, rating, description);
         setRating("")
         setDescription("")
         alert("Review sent!")
@@ -61,7 +64,9 @@ const ReviewForm = ({singleProduct}) => {
         onChange={(e) => setDescription(e.target.value)} >
         </input>
         <br></br>
-          <StarRating totalStars={10}/>
+        <div className="stars">
+        <StarRating totalStars={10} rating={rating} setRating={setRating}/>
+        </div>
         <br></br>
         <button className="submit" type="submit">Send Review</button>
         </form>
