@@ -45,6 +45,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
         </div>
         <br></br>
         <br></br>
+            {console.log("here is price", singleProduct.price)}
         <div class="single-review">
           {reviews.length > 0 ? 
           (<ProductReview reviews={reviews} singleProduct={singleProduct}/>
