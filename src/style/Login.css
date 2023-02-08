@@ -111,7 +111,7 @@
   }
   
   .bg-inner {
-    background: #212121;
+    /* background: #212121; */
     position: absolute;
     left: 2px;
     top: 2px;
@@ -162,5 +162,5 @@
     .block-cube-hover:focus,
     .block-cube-hover:hover .bg .bg-inner {
     top: 100%;
-    background: black;
+    /* background: black; */
     }
