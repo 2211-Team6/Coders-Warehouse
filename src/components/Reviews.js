@@ -23,7 +23,7 @@ const AllReviews = ({reviews, setReviews}) => {
     const reviewMatches = (review, text) => {
       // return true if any of the fields you want to check against include the text
       // strings have an .includes() method 
-      return Object.values(review).some(value => typeof value === 'string' && value.includes(text));
+      return Object.values(review).some(value => typeof value === 'string' && value.toLowerCase().includes(text));
     }
 
     // console.log("this is review mataches: ", reviewMatches)
