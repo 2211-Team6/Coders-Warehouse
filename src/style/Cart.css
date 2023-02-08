@@ -12,7 +12,7 @@
   
   .cart-header {
     font-size: 36px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   .empty-cart {
@@ -30,16 +30,12 @@
   .cart-item-title {
     font-size: 24px;
     margin-right: 20px;
+    margin-top: 30px; 
   }
-  
-  .product-img {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-    }
 
     .cart-item-actions {
         display: flex;
+        flex-direction: row; 
       }
       
       .add-button, .remove-button {
@@ -48,9 +44,9 @@
         border: 1px solid gray;
         border-radius: 5px;
         text-align: center;
-        line-height: 28px;
         margin-right: 10px;
         font-size: 18px;
+        padding: 0px;
       }
       
       .cart-item-price {
@@ -84,5 +80,16 @@
         margin: 0 auto;
         display: block;
       }
+
+      .checkout-button:hover{
+        transform: scale(1.2); 
+        transition-duration: .2s;
+        transition-timing-function: ease-in-out;
+        background-color:#3d1635;
+      }
+
+    .remove-button{
+      background-color: red;
+    }
       
   

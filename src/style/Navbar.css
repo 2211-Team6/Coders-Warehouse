@@ -33,3 +33,11 @@
   .navbar .button:hover::before {
   transform: scaleX(1);
   }
+
+  ul{
+    list-style: none;
+  }
+
+  .material-icons, a{
+    color: white;
+  }

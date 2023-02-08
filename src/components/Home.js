@@ -12,7 +12,11 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
   const [selectedProduct, setSelectedProduct] = useState({})
   const location = useLocation();
   const navigate = useNavigate()
- 
+  const [searchInput, setSearchInput] = useState("");
+
+  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
+
+  console.log("here are the products", products)
   
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
@@ -21,10 +25,24 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
  <header className="header">
      <br/>
       {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
-        (<div>
+        (<div className="header">
+           <input
+      className="search"
+      placeholder="Search"
+      value={searchInput}
+      type="text"
+      onChange={(e) => setSearchInput(e.target.value)}
+  ></input>
         <h1>Hello, {user?.username}!</h1>
        </div>) : (
-       <div>
+       <div className="header">
+         <input
+      className="search"
+      placeholder="Search"
+      value={searchInput}
+      type="text"
+      onChange={(e) => setSearchInput(e.target.value)}
+  ></input>
       <h1>Hello, Stranger!</h1>
       </div>)}
       </header>
@@ -52,7 +70,8 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         setCartItems={setCartItems}
         addToCart={addToCart}
         products={products}
-        setProducts={setProducts}/>
+        setProducts={setProducts}
+        filteredProducts={filteredProducts}/>
         </div>)}
         </nav>
         </nav>
