@@ -24,10 +24,16 @@ const Register = ({ setUser, setToken }) => {
     e.preventDefault();
     console.log(username, password, email);
     const token = await registerUser(username, password, email);
-    setToken(token);
-    localStorage.setItem("token", token);
-    navigate("/");
-  };
+    if(token === undefined){
+      localStorage.removeItem("token")
+      navigate("/login")
+    }
+    else{
+    setToken(token)
+    localStorage.setItem("token", token)
+    navigate("/")
+    }
+  }
 
   return (
     <div className="form">
