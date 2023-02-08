@@ -3,24 +3,7 @@ import { getAllProducts, getProductById, getReviewsByProductId } from "../api/au
 import "../style/Products.css"
 
 
-const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts }) => {
-  const [searchInput, setSearchInput] = useState("");
-  
-  // console.log("This is cart items in products", cartItems)
-
-
-  // useEffect(() => {
-  //   const productsArr = async () => {
-  //     const data = await getAllProducts();
-  //     setProducts(data);
-  //   };
-  //   productsArr();
-  // }, []);
-
-  const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
-
-
-  
+const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts, filteredProducts }) => {
 
   const handleClick = async (productId) => {
     const singleProduct = await getProductById(productId)
@@ -29,9 +12,11 @@ const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, add
     setReviews(singleReview)
   }
 
+  console.log("here are the filtered products", filteredProducts)
+
   return (
     <div className="products-container">
-    {products.map((product) => (
+    {filteredProducts.map((product) => (
       <div key={product.id} className="product-item">
         <img src={product.url} alt={product.title} className="product-img"/>
         <p className="product-title">{product.title}</p>
