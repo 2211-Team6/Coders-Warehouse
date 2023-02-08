@@ -54,6 +54,9 @@ const ReviewForm = ({singleProduct}) => {
         placeholder="Rating? (out of 10)"
         onChange={(e) => setRating(e.target.value)} >
         </input>
+        <div className="stars">
+        <StarRating totalStars={10} rating={rating} setRating={setRating}/>
+        </div>
         <br></br>
         <input 
         name="Content"
@@ -64,9 +67,6 @@ const ReviewForm = ({singleProduct}) => {
         onChange={(e) => setDescription(e.target.value)} >
         </input>
         <br></br>
-        <div className="stars">
-        <StarRating totalStars={10} rating={rating} setRating={setRating}/>
-        </div>
         <br></br>
         <button className="submit" type="submit">Send Review</button>
         </form>
