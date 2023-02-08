@@ -210,3 +210,11 @@ h1 {
   padding: 64px 15px 24px;
   margin: 0 auto;
 }
+
+.btn:hover{
+  transform: scale(1.2); 
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  background-color:#3d1635;
+  color: white; 
+}
