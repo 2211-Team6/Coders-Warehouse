@@ -16,6 +16,13 @@
   text-shadow: 1px 1px #ccc;
 }
 
+header{
+  font-size: 30px;
+  text-align: center;
+  font-family: monospace, serif;
+  margin-top: 50px; 
+}
+
 .navbar {
   display: flex;
   flex-wrap: wrap;
@@ -26,7 +33,7 @@
   font-size: 15px;
   margin-left: 25px; 
   margin-right: 25px; 
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
@@ -64,4 +71,12 @@ img {
   transition-timing-function: ease-in-out;
   background-color:#3d1635;
   color: white;
+}
+
+a{
+  font-size: 18px;
+}
+
+.header{
+  margin-top: 0;
 }

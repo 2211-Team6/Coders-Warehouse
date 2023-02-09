@@ -77,7 +77,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             <div class="buttons">
             <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
             <br></br>
-            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            <button class="all" onClick={() => handleClick()}>View all products</button>
             </div>
           </div>
         </div>
