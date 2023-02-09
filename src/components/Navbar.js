@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import UserProfile from "./UserProfile";
+// import UserProfile from "./UserProfile";
 import "../style/Navbar.css";
 
 const Navbar = ({ checkUserLoggedIn, setToken, user, }) => {
@@ -15,11 +15,11 @@ const Navbar = ({ checkUserLoggedIn, setToken, user, }) => {
               Home
             </NavLink>
           </div>
-          <div class="button">
+          {/* <div class="button">
               <NavLink to="/profile" class="text"> 
               Profile 
               </NavLink>
-            </div>
+            </div> */}
           <div class="button">
             <NavLink to="/reviews" class="text">
               Product Reviews
