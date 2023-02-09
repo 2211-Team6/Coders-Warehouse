@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getReviews, fetchMe } from '../api/auth';
-import AllReviews from './reviews';
-import OrderSummary from './ordersummary';
+import AllReviews from "../components/Reviews";
+import OrderSummary from "../components/OrderSummary";
 import "../style/UserProfile.css"
 
 const UserProfile = () => {
