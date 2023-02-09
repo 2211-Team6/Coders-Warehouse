@@ -36,7 +36,7 @@ h1 {
   padding: 14px 16px;
   border: 0;
   background: transparent;
-  color: #fff;
+  color:#3d1635;
   font-family: monospace, serif;
   letter-spacing: 0.05em;
   font-size: 16px;
@@ -55,7 +55,7 @@ h1 {
   background: transparent;
   outline: none;
   border: 0;
-  color: #640404;
+  color: #fff;
   letter-spacing: 0.1em;
   font-weight: bold;
   font-family: monospace;

@@ -8,15 +8,15 @@ import Admin from "./Admin";
 import Navbar from "./Navbar";
 
 
-const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser, products, setProducts}) => {
-  const [selectedProduct, setSelectedProduct] = useState({})
+const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, addToCart, user, setUser, products, setProducts, selectedProduct, setSelectedProduct}) => {
   const location = useLocation();
   const navigate = useNavigate()
   const [searchInput, setSearchInput] = useState("");
 
   const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchInput.toLowerCase()));
 
-  console.log("here are the products", products)
+  // console.log("here are the products", products)
+  // console.log("Here is the selectedProduct", selectedProduct)
   
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
@@ -46,21 +46,6 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
       <h1>Hello, Stranger!</h1>
       </div>)}
       </header>
-       <nav>
-      {selectedProduct.id ? (
-       <div>
-        <SingleProduct 
-      singleProduct={selectedProduct} 
-      setSelectedProduct={setSelectedProduct} 
-      cartItems={cartItems}
-      setCartItems={setCartItems}
-      addToCart={addToCart}
-      reviews={reviews} 
-      setReviews={setReviews}
-      checkUserLoggedIn={checkUserLoggedIn}/> 
-      </div>
-      ) : (
-        <div>
         <Products 
         selectedProduct={selectedProduct} 
         setSelectedProduct={setSelectedProduct} 
@@ -72,8 +57,6 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
         products={products}
         setProducts={setProducts}
         filteredProducts={filteredProducts}/>
-        </div>)}
-        </nav>
         </nav>
     </div>
   ); 
