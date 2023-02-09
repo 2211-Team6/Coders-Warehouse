@@ -23,6 +23,12 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
       console.log("Here's the user", me)
   }, []);
 
+  const handleClick = () => {
+    setSelectedProduct({})
+    navigate("/")
+  }
+
+  console.log("Made it here. Here's the product", singleProduct)
     return (
       <div>
             {checkUserLoggedIn() ? me.isAdmin ? (<EditProduct singleProduct={singleProduct}/>) : (
@@ -39,7 +45,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             <div class="buttons">
             <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
             <br></br>
-            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            <button class="all" onClick={() => handleClick()}>View all products</button>
             </div>
           </div>
         </div>
