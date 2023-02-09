@@ -17,6 +17,8 @@ import Navbar from "./Navbar";
 import "../style/Navbar.css"
 import OrderSummary from "./OrderSummary";
 import UserProfile from "./UserProfile";
+import SingleProduct from "./SingleProduct";
+
 
 
 const App = () => {
@@ -25,6 +27,7 @@ const App = () => {
   const [user, setUser] = useState({})
   const [cartItems, setCartItems] = useState([])
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState({})
   const navigate = useNavigate(); 
 
   const addToCart = async (singleProduct) => {
@@ -36,18 +39,18 @@ const App = () => {
           product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
           )
           );
+          singleProduct.quantity -=1;
           const id = user.id
           const productId = singleProduct.id
           const quantity = exists.quantity + 1
           const updatedProduct = await updateCartProduct(id, productId, quantity)
-        singleProduct.quantity -=1;
       } else {
         setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
         singleProduct.quantity -=1;
         const id = user.id
-          const productId = singleProduct.id
-          const quantity = 1
-          const addedProduct = await addCartProduct(id, productId, quantity)
+        const productId = singleProduct.id
+        const quantity = 1
+        const addedProduct = await addCartProduct(id, productId, quantity)
       }
     } else{
       alert("Out of stock")
@@ -88,9 +91,9 @@ const App = () => {
   return (
     <div className="app-container">
       <link href="https://fonts.googleapis.com/css?family=Material+Icons|IM+Fell+Great+Primer+SC|Dosis|Open+Sans+Condensed:300&display=swap" rel="stylesheet"></link>      
-      <Navbar checkUserLoggedIn={checkUserLoggedIn} user={user} setUser={setUser} token={token} setToken={setToken} className="navbar" />
+      <Navbar checkUserLoggedIn={checkUserLoggedIn} user={user} setUser={setUser} token={token} setToken={setToken} setSelectedProduct={setSelectedProduct} className="navbar" />
       <Routes>
-        <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
+        <Route path="/" element={<Home user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts} selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct}/>} />
         <Route path="/register" element={<Register setUser={setUser} setToken={setToken}/>} />
         <Route path="/login" element={<Login setToken={setToken}/>} />
         <Route path="/review-form" element={<ReviewForm user={user}/>} />
@@ -101,8 +104,10 @@ const App = () => {
         <Route path="/products" element={<Products products={products} setProducts={setProducts}/>} />
         <Route path="/admin" element={<Admin token={token} setToken={setToken} products={products} setProducts={setProducts} user={user} setUser={setUser}/>} />
         <Route path="/allUsers" element={<AllUsers user={user}/>} />
+        <Route path="/product" element={<SingleProduct singleProduct={selectedProduct} setSelectedProduct={setSelectedProduct} cartItems={cartItems}setCartItems={setCartItems}addToCart={addToCart}reviews={reviews} setReviews={setReviews}checkUserLoggedIn={checkUserLoggedIn}/>} />
         <Route path="/profile" element={<UserProfile user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
       </Routes>
+
     </div>
   );
 };

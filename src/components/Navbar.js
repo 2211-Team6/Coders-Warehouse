@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import "../style/Navbar.css";
 
-const Navbar = ({ checkUserLoggedIn, setToken, user }) => {
+const Navbar = ({ checkUserLoggedIn, setToken, user, }) => {
   const navigate = useNavigate();
   return (
     <div class="navbar">

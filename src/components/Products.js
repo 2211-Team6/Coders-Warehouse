@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { getAllProducts, getProductById, getReviewsByProductId } from "../api/auth";
 import "../style/Products.css"
+import { useNavigate } from 'react-router-dom'
 
 
 const Products = ({ setSelectedProduct, setReviews, cartItems, setCartItems, addToCart, products, setProducts, filteredProducts }) => {
 
+  const navigate = useNavigate(); 
+
   const handleClick = async (productId) => {
     const singleProduct = await getProductById(productId)
+    console.log("here is the singleProduct", singleProduct)
     const singleReview = await getReviewsByProductId(productId)
     setSelectedProduct(singleProduct[0])
     setReviews(singleReview)
+    navigate("/product")
+    console.log("here is the selectedProduct", singleProduct[0])
   }
 
-  console.log("here are the filtered products", filteredProducts)
 
   return (
     <div className="products-container">
