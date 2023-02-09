@@ -1,5 +1,5 @@
-const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
-// const BASE_URL = "/api"
+// const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
+const BASE_URL = "/api"
 
 export const registerUser = async (username, password, email, fname, city, birthday, about) => {
   try {
