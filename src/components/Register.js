@@ -36,11 +36,12 @@ const Register = ({ setUser, setToken }) => {
   }
 
   return (
-    <div className="form">
-      <form>
-        <h1>Register</h1>
-        <div className="control">
-          <label htmlFor="username">Username</label>
+    <div>
+      <form class="form" autocomplete="off">
+        <div class="control">
+          <h1>Register</h1>
+        </div>
+        <div class="control block-cube block-input">
           <input
             value={username}
             type="text"
@@ -48,15 +49,18 @@ const Register = ({ setUser, setToken }) => {
             minLength={5}
             placeholder="username"
             onChange={(event) => setUserName(event.target.value)}
-          />
-          <div className="block-cube">
-            <div className="bg-top"></div>
-            <div className="bg-right"></div>
-            <div className="bg-bottom"></div>
+          ></input>
+          <div class="bg-top">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg-right">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg">
+            <div class="bg-inner"></div>
           </div>
         </div>
-        <div className="control">
-          <label htmlFor="password">Password :</label>
+        <div class="control block-cube block-input">
           <input
             value={password}
             type="password"
@@ -64,16 +68,19 @@ const Register = ({ setUser, setToken }) => {
             minLength={7}
             placeholder="password"
             onChange={(event) => setPassword(event.target.value)}
-          />
-          <div className="block-cube">
-            <div className="bg-top"></div>
-            <div className="bg-right"></div>
-            <div className="bg-bottom"></div>
+          ></input>
+          <div class="bg-top">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg-right">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg">
+            <div class="bg-inner"></div>
           </div>
         </div>
-        <div className="control">
-          <label htmlFor="email">Email :</label>
-          <input
+        <div class="control block-cube block-input">
+        <input
             value={email}
             type="email"
             required
@@ -81,24 +88,39 @@ const Register = ({ setUser, setToken }) => {
             placeholder="email"
             onChange={(event) => setEmail(event.target.value)}
           />
-          <div className="block-cube">
-            <div className="bg-top"></div>
-            <div className="bg-right"></div>
-            <div className="bg-bottom"></div>
+          <div class="bg-top">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg-right">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg">
+            <div class="bg-inner"></div>
           </div>
         </div>
         <button
+          class="btn block-cube block-cube-hover"
           onClick={(e) => handleClick(e)}
           type="button"
-          name="register_button"
-          value="Register"
-          className="btn"
+          name="login_button"
+          value="Login"
         >
-          Register
+          <div class="bg-top">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg-right">
+            <div class="bg-inner"></div>
+          </div>
+          <div class="bg">
+            <div class="bg-inner"></div>
+          </div>
+          <div class='text'>
+      Register
+    </div>
         </button>
       </form>
     </div>
   );
-
 };
+  
 export default Register;
