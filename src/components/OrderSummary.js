@@ -2,11 +2,12 @@ import React from "react";
 import Cart from "./Cart";
 import Checkout from "./Checkout";
 
+
 function OrderSummary({ cartItems }) {
     console.log("This is the cart items", cartItems);
-  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  // const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
   const taxPrice = itemsPrice * 0.053;
-  const shippingPrice = itemsPrice > 35 ? 0 : 10;
+  // const shippingPrice = itemsPrice > 35 ? 0 : 10;
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
   return (
     <div>

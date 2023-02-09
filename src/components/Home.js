@@ -62,9 +62,4 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
   ); 
 };
 
-export default Home;
-
-
-
-// old code for reference
- 
+export default Home; 

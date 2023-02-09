@@ -1,7 +1,7 @@
 // const BASE_URL = "https://coders-warehouse-6.fly.dev/api";
 const BASE_URL = "/api"
 
-export const registerUser = async (username, password, email) => {
+export const registerUser = async (username, password, email, fname, city, birthday, about) => {
   try {
     console.log(username, password, email);
     const response = await fetch(`${BASE_URL}/users/register`, {
@@ -13,6 +13,10 @@ export const registerUser = async (username, password, email) => {
         username,
         password,
         email,
+        fname,
+        city,
+        birthday,
+        about
       }),
     });
     const result = await response.json();

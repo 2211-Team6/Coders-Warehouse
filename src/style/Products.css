@@ -8,7 +8,7 @@
   
   .product-item {
     width: 300px;
-    background-color: #f2f2f2;
+    background: linear-gradient(-225deg, rgb(183, 248, 219) 0%, rgb(80, 167, 194) 100%);
     margin-bottom: 40px;
     padding: 20px;
     text-align: center;
