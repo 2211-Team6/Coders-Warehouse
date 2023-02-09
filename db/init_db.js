@@ -116,7 +116,7 @@ async function populateInitialData() {
       { title: "Bistro Blend", description: "A blend of South American, East African, and Indonesian coffees with a medium roast profile creating an approachable, balanced, and nuanced cup.", price: 17.00, quantity: 10, url: "https://cdn.shopify.com/s/files/1/2097/8611/products/BistroFront_440x440.png?v=1614664155"}, 
       { title: "Sinatra Select", description: "Made with our unique “Sinatra Barrels” that have deep grooves specially carved into their staves to expose the whiskey to extra layers of toasted oak.", price: 299.99, quantity: 6, url: "https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_s9i6fwmx/def_height/2700/def_width/2700/version/100012/type/1"},
       { title: "Jordan 6 Retro Black Infrared", description: "The Air Jordan 6 Retro 'Infrared' 2019 is a 2019 re-release of the OG colorway.", price: 234.00, quantity: 9, url: "https://images.stockx.com/images/Air-Jordan-6-Retro-Black-Infrared-2019-Product.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&updated_at=1606315701&q=75" },
-      { title: "Q#", description: "A domain-specific programming language used for expressing quantum algorithms.", price: 50000000000.00 , quantity: 1 , url: "https://devblogs.microsoft.com/qsharp/wp-content/uploads/sites/28/2020/10/Q-DevBlog-ThumbB-2x-1024x640.jpg"}
+      { title: "Q#", description: "A domain-specific programming language used for expressing quantum algorithms.", price: 5000000000000 , quantity: 1 , url: "https://devblogs.microsoft.com/qsharp/wp-content/uploads/sites/28/2020/10/Q-DevBlog-ThumbB-2x-1024x640.jpg"}
 
     ]
     console.log("creating initial products")
