@@ -24,6 +24,7 @@ const UserProfile = () => {
 
     const fetchOrders = () => {
       // make API call to get the user's ordered products
+      //also test merge
     };
 
     fetchUser();
