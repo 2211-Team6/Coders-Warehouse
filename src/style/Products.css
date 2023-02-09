@@ -7,8 +7,8 @@
   }
   
   .product-item {
-    width: calc(33.33% - 20px);
-    background: radial-gradient(circle at 10% 20%, rgb(255, 19, 120) 0%, rgb(0, 0, 0) 90.5%);
+    width: 300px;
+    background: linear-gradient(-225deg, rgb(183, 248, 219) 0%, rgb(80, 167, 194) 100%);
     margin-bottom: 40px;
     padding: 20px;
     text-align: center;

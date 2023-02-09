@@ -1,35 +1,33 @@
-// grab our db client connection to use with our adapters
 const client = require('../client');
 
-
-
 async function getAllUsers() {
-  /* this adapter should fetch a list of users from your db */
-}
-
-async function createUser({ username, password, email, isAdmin }) {
-  
   try {
-    const { rows: [user] } = await client.query(`
-    INSERT INTO users(username, password, email, "isAdmin")
-    VALUES ($1, $2, $3, $4)
-    ON CONFLICT (username) DO NOTHING
-    RETURNING *;
-    `, [username, password, email, isAdmin]);
-    
-    delete user.password;
-    return user;
+    const {rows: users} = await client.query(`
+    SELECT * FROM users;
+    `)
+    return users;
   } catch (error) {
+    console.error("Error getting all users: ", error);
     throw error;
   }
 }
 
-
-//TESTING 1,2 1,2
-
+async function createUser({ username, password, email, fname, profile_image, city, birthday, about, isAdmin = false }) {
+  try {
+    const {rows: [user]} = await client.query(`
+      INSERT INTO users(username, password, email, fname, profile_image, city, birthday, about, "isAdmin")
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      ON CONFLICT (username, email) DO NOTHING
+      RETURNING *;
+    `, [username, password, email, fname, profile_image, city, birthday, about, isAdmin]);
+    return user;
+  } catch (error) {
+    console.error("Error creating user: ", error);
+    throw error;
+  }
+}
 
 module.exports = {
-  // add your database adapter fns here
-  getAllUsers, 
+  getAllUsers,
   createUser
 };

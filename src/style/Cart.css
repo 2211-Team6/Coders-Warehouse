@@ -66,9 +66,10 @@
         font-size: 18px;
       }
       
-      .cart-total {
+       h2{
         font-size: 24px;
         margin-bottom: 20px;
+        color: linear-gradient(-225deg, rgb(183, 248, 219) 0%, rgb(80, 167, 194) 100%) !important;
       }
       
       .checkout-button {

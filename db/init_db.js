@@ -27,16 +27,25 @@ async function dropTables() {
 }
 
 // create all tables, in the correct order
+//fixed by removing NOT NULL from fname
 async function createTables() {
   console.log("Starting to build tables...")
   try {
     await client.query(`
     CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    "isAdmin" BOOLEAN DEFAULT FALSE
+    email VARCHAR(255) NOT NULL,
+    fname VARCHAR(255),
+    profile_image BYTEA,
+    city VARCHAR(255),
+    birthday DATE,
+    about TEXT,
+    "isAdmin" BOOLEAN DEFAULT FALSE,
+    UNIQUE (username),
+    UNIQUE (email),
+    UNIQUE (username, email)
 );
     CREATE TABLE products (
     id SERIAL PRIMARY KEY,
@@ -83,9 +92,9 @@ async function createTables() {
 async function populateInitialData() {
   try {
     const usersToCreate = [
-      { username: "albert", password: "bertie99", email: "albert9@hotmail.com", isAdmin: false },
-      { username: "sandra", password: "sandra123", email: "sandy3@MSN.com", isAdmin: false },
-      { username: "glamgal", password: "glamgal123", email:"glamgal@AOL.com", isAdmin: false },
+      { username: "albert", password: "bertie99", email: "albert9@hotmail.com", fname: "Albert Jones", profile_image:"https://webneel.com/sites/default/files/images/manual/military/military-portraits%20(19).jpg", city: "Milwaukee", birthday: "January 1, 2000 ", about: "You have power over your mind - not outside events. Realize this, and you will find strength.", isAdmin: false },
+      { username: "sandra", password: "sandra123", email: "sandy3@MSN.com", fname: "Sandra Bullock", profile_image:"https://i.pinimg.com/originals/64/27/64/64276486bc4cc5dc65b380487f6e430b.jpg", city: "Seattle", birthday: "July 26, 1964", about: "Nobody can make me cry in public. I'll punch them first before they make my mascara smear.", isAdmin: false },
+      { username: "glamgal", password: "glamgal123", email:"glamgal@AOL.com", fname: "Kesha Rose Sebert", profile_image:"https://static01.nyt.com/images/2017/08/10/arts/10kesha-explainer1/10kesha-explainer1-superJumbo.jpg", city: "New York", birthday: "March 1, 1987", about: "I'm pretty sure that I was JFK in my past life.", isAdmin: false },
       { username: "admin", password: "team62022", email: "doesn'tmatter@yahoo.com", isAdmin: true}
     ];
     const user = await Promise.all(usersToCreate.map(createUser))
