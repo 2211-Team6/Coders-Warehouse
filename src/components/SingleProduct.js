@@ -39,7 +39,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
           </div>
           <div class="product">
             <h1>{singleProduct.title}</h1>
-            <h2>Price: ${singleProduct.price}</h2>
+            <h2 class="price">Price: ${singleProduct.price}</h2>
             <p class="description">Description: {singleProduct.description}</p>
             <p class='quantity'>Quantity: {singleProduct.quantity}</p>
             <div class="buttons">
@@ -77,7 +77,7 @@ const SingleProduct = ({singleProduct, setSelectedProduct, reviews, setCartItems
             <div class="buttons">
             <button class="add" onClick={() => addToCart(singleProduct)}> Add to Cart</button>
             <br></br>
-            <button class="all" onClick={() => setSelectedProduct({})}>View all products</button>
+            <button class="all" onClick={() => handleClick()}>View all products</button>
             </div>
           </div>
         </div>
