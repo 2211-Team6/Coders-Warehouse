@@ -1,0 +1,86 @@
+.user-profile-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .user-profile-username {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .user-profile-edit-button {
+    background-color: #795548;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .user-profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .user-profile-email {
+    font-size: 1.5rem;
+  }
+  
+  .user-profile-form {
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-profile-form-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .user-profile-form-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #795548;
+    margin-bottom: 1rem;
+  }
+  
+  button[type='submit'] {
+    background-color: #795548;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  
