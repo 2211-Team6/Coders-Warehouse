@@ -101,8 +101,6 @@ const App = () => {
         <Route path="/products" element={<Products products={products} setProducts={setProducts}/>} />
         <Route path="/admin" element={<Admin token={token} setToken={setToken} products={products} setProducts={setProducts} user={user} setUser={setUser}/>} />
         <Route path="/allUsers" element={<AllUsers user={user}/>} />
-
-
         <Route path="/profile" element={<UserProfile user={user} setUser={setUser} token={token} setToken={setToken} reviews={reviews} setReviews={setReviews} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} products={products} setProducts={setProducts}/>} />
       </Routes>
     </div>
