@@ -38,18 +38,18 @@ const App = () => {
           product.id === singleProduct.id ? { ...exists, quantity: exists.quantity + 1 } : product
           )
           );
+          singleProduct.quantity -=1;
           const id = user.id
           const productId = singleProduct.id
           const quantity = exists.quantity + 1
           const updatedProduct = await updateCartProduct(id, productId, quantity)
-        singleProduct.quantity -=1;
       } else {
         setCartItems([...cartItems, { ...singleProduct, quantity: 1}]);
         singleProduct.quantity -=1;
         const id = user.id
-          const productId = singleProduct.id
-          const quantity = 1
-          const addedProduct = await addCartProduct(id, productId, quantity)
+        const productId = singleProduct.id
+        const quantity = 1
+        const addedProduct = await addCartProduct(id, productId, quantity)
       }
     } else{
       alert("Out of stock")
