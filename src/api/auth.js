@@ -70,7 +70,7 @@ export const fetchMe = async (token) => {
     console.log("Here is the data", data)
     return data;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
