@@ -24,7 +24,7 @@ const Home = ({token, setToken, reviews, setReviews, cartItems, setCartItems, ad
 
  <header className="header">
      <br/>
-      {checkUserLoggedIn() ? user.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
+      {checkUserLoggedIn() ? user?.isAdmin ? (<Admin setSelectedProduct={setSelectedProduct}/>) :
         (<div className="header">
            <input
       className="search"
